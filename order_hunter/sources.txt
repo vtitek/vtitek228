@@ -1,0 +1,8 @@
+# rss <url>  — RSS/Atom лента биржи
+# tg  <канал> — публичный Telegram-канал с заказами
+rss https://www.fl.ru/rss/all.xml
+tg webfrl
+tg freelancetaverna
+tg workasap
+tg theyseeku
+tg digital_rabota
