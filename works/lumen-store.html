@@ -1,0 +1,929 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Lumen Store — дизайнерские светильники с доставкой по России</title>
+<meta name="description" content="Lumen Store — интернет-магазин дизайнерских светильников: люстры, торшеры, настольные лампы, бра, трековый и уличный свет. 1 200 товаров, доставка по России, оплата частями «Сплит», гарантия 2 года.">
+<meta name="theme-color" content="#fbf7ef">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='9' fill='%2323211e'/%3E%3Cpath d='M7 19a9 9 0 0 1 18 0z' fill='%23f7c948'/%3E%3Ccircle cx='16' cy='22' r='3' fill='%23fff3c4'/%3E%3C/svg%3E">
+<style>
+:root{
+  --bg:#fbf7ef;--surface:#fffdf8;--sand:#f3ead9;--ink:#23211e;--ink2:#47423b;--muted:#6b6458;--line:#e8dfcd;
+  --amber:#f7c948;--orange:#f08a24;--gold:#94490a;--night:#1e1b18;--night2:#2b2621;--cream:#f6eddc;
+  --grad:linear-gradient(135deg,#f7c948,#f08a24);
+  --r:22px;--r-sm:14px;
+  --sh:0 1px 2px rgba(70,45,10,.06),0 14px 34px -14px rgba(70,45,10,.22);
+  --serif:Georgia,"Times New Roman",serif;--sans:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:84px;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 var(--sans);-webkit-font-smoothing:antialiased}
+body:has(.modal:target),body:has(.drawer:target){overflow:hidden}
+img,svg{display:block;max-width:100%}
+a{color:inherit}
+h1,h2,h3{font-family:var(--serif);font-weight:400;line-height:1.12;margin:0;letter-spacing:-.01em}
+h2{font-size:clamp(30px,4.2vw,48px)}
+p{margin:0}
+:focus-visible{outline:3px solid var(--orange);outline-offset:3px;border-radius:6px}
+.wrap{width:min(1240px,100% - 32px);margin-inline:auto}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.eyebrow{display:inline-block;font-size:13px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
+.sec{padding-block:clamp(56px,8vw,104px)}
+.sec-head{display:flex;flex-wrap:wrap;align-items:end;justify-content:space-between;gap:12px 32px;margin-bottom:clamp(24px,4vw,44px)}
+.sec-head p{color:var(--muted);max-width:520px;font-size:17px}
+.sec-head h2{margin-top:8px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:0 26px;border:0;border-radius:999px;font:600 16px/1.2 var(--sans);text-decoration:none;cursor:pointer;transition:transform .2s,box-shadow .2s,background .2s;text-align:center}
+.btn-p{background:var(--grad);color:var(--ink);box-shadow:0 10px 26px -10px rgba(240,138,36,.7)}
+.btn-d{background:var(--ink);color:#fff}
+.btn-g{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1.5px #d9ccb3}
+.btn svg{width:20px;height:20px;flex:none}
+.link{color:var(--gold);font-weight:600;text-decoration:none;display:inline-flex;align-items:center;min-height:44px;gap:6px}
+
+/* back pill */
+.vt-back{position:fixed;left:max(12px,env(safe-area-inset-left));bottom:max(12px,env(safe-area-inset-bottom));z-index:9999;display:inline-flex;align-items:center;min-height:40px;padding:0 16px;border-radius:999px;background:rgba(24,22,20,.72);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);color:#fff;font:500 13.5px/1 var(--sans);text-decoration:none;box-shadow:0 6px 20px rgba(0,0,0,.25)}
+
+/* promo bar */
+.bar{background:var(--night);color:#f6e9cc;font-size:14px;text-align:center;padding:9px 16px;line-height:1.4}
+.bar b{color:var(--amber);font-weight:600}
+
+/* header */
+.hdr{position:sticky;top:0;z-index:50;background:rgba(251,247,239,.9);-webkit-backdrop-filter:saturate(1.4) blur(14px);backdrop-filter:saturate(1.4) blur(14px);border-bottom:1px solid var(--line)}
+.hdr-in{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;min-height:64px;padding-block:8px}
+.nav-cb{position:absolute;opacity:0;width:1px;height:1px}
+.burger{width:44px;height:44px;display:grid;place-items:center;border-radius:12px;cursor:pointer;margin-left:-6px}
+.burger span,.burger span::before,.burger span::after{display:block;width:22px;height:2px;border-radius:2px;background:var(--ink);transition:transform .25s,opacity .2s;content:""}
+.burger span{position:relative}
+.burger span::before{position:absolute;top:-7px}
+.burger span::after{position:absolute;top:7px}
+.nav-cb:checked+.burger span{background:transparent}
+.nav-cb:checked+.burger span::before{transform:translateY(7px) rotate(45deg)}
+.nav-cb:checked+.burger span::after{transform:translateY(-7px) rotate(-45deg)}
+.nav-cb:focus-visible+.burger{outline:3px solid var(--orange)}
+.logo{display:inline-flex;align-items:center;gap:10px;text-decoration:none;margin-right:auto;min-height:44px}
+.logo svg{width:34px;height:34px}
+.logo b{font:400 23px/1 var(--serif);letter-spacing:-.01em}
+.logo i{font:600 11px/1 var(--sans);letter-spacing:.22em;text-transform:uppercase;color:var(--gold);font-style:normal;margin-left:2px}
+.cart-btn{position:relative;width:48px;height:48px;display:grid;place-items:center;border-radius:14px;background:var(--surface);box-shadow:inset 0 0 0 1px var(--line);text-decoration:none}
+.cart-btn svg{width:24px;height:24px}
+.badge{position:absolute;top:2px;right:0;min-width:22px;height:22px;padding:0 6px;border-radius:11px;background:var(--grad);color:var(--ink);font:700 13px/22px var(--sans);text-align:center;box-shadow:0 0 0 2px var(--bg)}
+.hdr-phone{display:none}
+.search{display:none;flex-basis:100%;position:relative}
+.search input{width:100%;min-height:48px;border:1px solid var(--line);border-radius:999px;background:var(--surface);padding:0 56px 0 20px;font:16px var(--sans);color:var(--ink)}
+.search input::placeholder{color:#8a8274}
+.search button{position:absolute;right:4px;top:4px;width:40px;height:40px;border:0;border-radius:50%;background:var(--ink);color:#fff;display:grid;place-items:center;cursor:pointer}
+.search button svg{width:18px;height:18px}
+.menu{display:none;flex-basis:100%}
+.menu ul{list-style:none;margin:0;padding:0 0 8px}
+.menu a{display:flex;align-items:center;justify-content:space-between;min-height:50px;text-decoration:none;font-size:17px;border-bottom:1px solid var(--line)}
+.menu a::after{content:"→";color:var(--gold)}
+.menu .hot{color:var(--gold);font-weight:600}
+.nav-cb:checked~.search{display:block;order:3;margin-top:4px}
+.nav-cb:checked~.menu{display:block;order:4}
+@media(min-width:1000px){
+  .hdr-in{flex-wrap:wrap;gap:0 24px;padding-block:12px 0}
+  .burger{display:none}
+  .logo{margin-right:0}
+  .search{display:block;flex:1 1 auto;max-width:560px;flex-basis:auto;margin-inline:auto}
+  .hdr-phone{display:flex;flex-direction:column;text-decoration:none;font-weight:600;font-size:16px;line-height:1.25}
+  .hdr-phone small{font-weight:400;color:var(--muted);font-size:13px}
+  .menu{display:block;flex-basis:100%;order:5;margin-top:8px}
+  .menu ul{display:flex;gap:4px;padding:0;margin-left:-14px}
+  .menu a{border:0;min-height:48px;padding:0 14px;font-size:15.5px;border-radius:10px}
+  .menu a::after{content:none}
+}
+
+/* hero */
+.hero{padding-block:28px clamp(56px,7vw,96px)}
+.hero-grid{display:grid;gap:36px;align-items:center}
+.pill{display:inline-flex;align-items:center;gap:8px;padding:6px 14px 6px 8px;border-radius:999px;background:var(--surface);box-shadow:inset 0 0 0 1px var(--line);font-size:14px;color:var(--ink2)}
+.pill b{background:var(--grad);border-radius:999px;padding:3px 10px;font-size:12px;color:var(--ink);letter-spacing:.04em}
+.hero h1{font-size:clamp(40px,7.4vw,76px);line-height:1.02;margin:22px 0 20px;letter-spacing:-.02em}
+.hero h1 em{font-style:italic;background:linear-gradient(120deg,#d9860f,#f08a24 60%,#c9651a);-webkit-background-clip:text;background-clip:text;color:transparent}
+.lead{font-size:18px;color:var(--ink2);max-width:540px}
+.cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:40px;padding-top:24px;border-top:1px solid var(--line);max-width:540px}
+.stats b{display:block;font:400 clamp(24px,3vw,32px)/1.1 var(--serif)}
+.stats span{font-size:14px;color:var(--muted);line-height:1.35;display:block;margin-top:4px}
+.hero-art{position:relative;border-radius:30px;overflow:hidden;background:radial-gradient(120% 80% at 50% 30%,#4b3a25 0,#2a221b 45%,#1a1714 100%);box-shadow:0 40px 80px -40px rgba(80,50,10,.6)}
+.hero-art>svg{width:100%;height:auto}
+.promo{position:relative;margin:-56px 12px 12px;display:flex;align-items:center;gap:14px;padding:14px 16px;border-radius:20px;background:rgba(255,253,248,.93);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+.promo strong{font:400 36px/1 var(--serif);background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;flex:none}
+.promo p{font-size:15px;line-height:1.35;color:var(--ink2)}
+.promo p b{color:var(--ink);display:block;font-size:16px}
+.promo .link{margin-left:auto;flex:none;min-width:44px;justify-content:center;border-radius:50%;background:var(--ink);color:#fff;width:44px}
+.tag-art{position:absolute;top:16px;right:16px;padding:8px 14px;border-radius:999px;background:rgba(255,255,255,.1);color:#f6e9cc;font-size:13px;-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.14)}
+.pulse{animation:breathe 5.5s ease-in-out infinite}
+@keyframes breathe{0%,100%{opacity:.82}50%{opacity:1}}
+@media(min-width:900px){
+  .hero-grid{grid-template-columns:1.05fr 1fr;gap:56px}
+  .promo{position:absolute;left:24px;bottom:24px;margin:0;width:min(400px,calc(100% - 48px))}
+}
+
+/* categories */
+.cats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.tile{display:flex;flex-direction:column;gap:10px;padding:16px;border-radius:var(--r);background:var(--surface);box-shadow:inset 0 0 0 1px var(--line);text-decoration:none;transition:transform .25s,box-shadow .25s}
+.tile .ic{width:52px;height:52px;border-radius:18px;display:grid;place-items:center;background:radial-gradient(circle at 50% 40%,#fff3cf,#f7dfa4);color:var(--ink)}
+.tile .ic svg{width:34px;height:34px}
+.tile b{font:400 19px/1.2 var(--serif)}
+.tile span{font-size:14px;color:var(--muted)}
+@media(min-width:640px){.cats{grid-template-columns:repeat(3,1fr);gap:16px}}
+@media(min-width:1100px){.cats{grid-template-columns:repeat(6,1fr)}}
+
+/* catalog */
+.shop{counter-reset:n}
+.chips{display:flex;gap:8px;overflow-x:auto;scroll-snap-type:x proximity;padding:4px 2px 12px;margin-bottom:12px;scrollbar-width:none}
+.chips::-webkit-scrollbar{display:none}
+.chips input{position:absolute;opacity:0;width:1px;height:1px}
+.chips label{flex:none;scroll-snap-align:start;display:inline-flex;align-items:center;min-height:44px;padding:0 18px;border-radius:999px;background:var(--surface);box-shadow:inset 0 0 0 1px var(--line);cursor:pointer;font-size:15px;white-space:nowrap;transition:background .2s,color .2s}
+.chips input:checked+label{background:var(--ink);color:#fff;box-shadow:none}
+.chips input:focus-visible+label{outline:3px solid var(--orange);outline-offset:2px}
+.shop:has(#f-ceil:checked) .card:not(.c-ceil),.shop:has(#f-floor:checked) .card:not(.c-floor),.shop:has(#f-table:checked) .card:not(.c-table),.shop:has(#f-wall:checked) .card:not(.c-wall),.shop:has(#f-track:checked) .card:not(.c-track),.shop:has(#f-out:checked) .card:not(.c-out),.shop:has(#f-sale:checked) .card:not(.c-sale),.shop:has(#f-new:checked) .card:not(.c-new){display:none}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.card{counter-increment:n;display:flex;flex-direction:column;background:var(--surface);border-radius:var(--r);box-shadow:inset 0 0 0 1px var(--line);overflow:hidden;transition:transform .3s,box-shadow .3s}
+.card-img{position:relative;aspect-ratio:1;background:radial-gradient(circle at 50% 42%,#fff8e3 0,#f4e9d5 62%,#ecdfc6 100%)}
+.card-img svg{width:100%;height:100%}
+.bdgs{position:absolute;top:10px;left:10px;display:flex;flex-wrap:wrap;gap:6px}
+.bdg{padding:4px 9px;border-radius:999px;font:700 12.5px/1.2 var(--sans);letter-spacing:.02em}
+.bdg.s{background:var(--grad);color:var(--ink)}
+.bdg.n{background:var(--ink);color:#fff}
+.bdg.h{background:#fff;color:var(--gold);box-shadow:inset 0 0 0 1px #ecd9b2}
+.qv-link{position:absolute;right:8px;bottom:8px;padding:0 14px;display:flex;align-items:center;justify-content:center;gap:6px;min-height:44px;border-radius:999px;background:rgba(35,33,30,.82);color:#fff;font-size:13.5px;font-weight:600;text-decoration:none;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.qv-link svg{width:18px;height:18px}
+.qv-link .l{display:none}
+.card-b{display:flex;flex-direction:column;gap:6px;flex:1;padding:14px 12px}
+.card .cat{font-size:13px;color:var(--muted);line-height:1.3}
+.card h3{font-size:18px;line-height:1.2}
+.rate{font-size:14px;color:var(--ink2);line-height:1.3}
+.rate i{font-style:normal;color:#d98a0b}
+.price{margin-top:auto;padding-top:4px;display:flex;flex-wrap:wrap;align-items:baseline;gap:2px 8px}
+.price b{font-size:19px;white-space:nowrap}
+.price s{font-size:14px;color:var(--muted);white-space:nowrap}
+.card .btn{width:100%;min-height:44px;margin-top:6px;padding:0 10px;font-size:15.5px}
+.found{margin-top:24px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;color:var(--muted)}
+.found span::before{content:"Показано " counter(n) " из 1 200 моделей"}
+@media(min-width:720px){.grid{grid-template-columns:repeat(3,1fr);gap:20px}.card-b{padding:18px 18px 20px}.qv-link{right:12px;bottom:12px;padding:0 16px}.qv-link .l{display:inline}.qv-link .s{display:none}}
+@media(min-width:1120px){.grid{grid-template-columns:repeat(4,1fr);gap:24px}}
+
+/* advantages */
+.adv{display:grid;gap:14px}
+.adv li{list-style:none;display:flex;gap:16px;padding:22px 20px;border-radius:var(--r);background:var(--surface);box-shadow:inset 0 0 0 1px var(--line)}
+.adv .ic{flex:none;width:52px;height:52px;border-radius:16px;background:var(--grad);display:grid;place-items:center;color:var(--ink)}
+.adv .ic svg{width:28px;height:28px}
+.adv h3{font-size:20px;margin-bottom:6px}
+.adv p{color:var(--ink2)}
+.adv ul,ul.adv{margin:0;padding:0}
+@media(min-width:700px){.adv{grid-template-columns:1fr 1fr;gap:18px}}
+@media(min-width:1120px){.adv{grid-template-columns:repeat(4,1fr)}.adv li{flex-direction:column;padding:28px 24px}}
+
+/* inspiration */
+.dark{background:radial-gradient(100% 60% at 20% 0,#3a2d1f 0,var(--night) 60%);color:var(--cream)}
+.dark .eyebrow{color:var(--amber)}
+.dark .sec-head p{color:#cfc2aa}
+.ins{display:grid;grid-auto-flow:column;grid-auto-columns:86%;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:14px;scrollbar-width:thin;scrollbar-color:#6b5a44 transparent}
+.ins figure{margin:0;scroll-snap-align:start;border-radius:var(--r);overflow:hidden;background:var(--night2);border:1px solid rgba(255,255,255,.08);display:flex;flex-direction:column}
+.ins svg{width:100%;height:auto}
+.ins figcaption{padding:18px 18px 20px;display:flex;flex-direction:column;gap:6px;flex:1}
+.ins h3{font-size:22px;color:#fff}
+.ins p{color:#cfc2aa}
+.ins .k{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--amber)}
+.ins .link{color:var(--amber);margin-top:auto}
+.hint{font-size:14px;color:#a89a82;margin-top:6px}
+@media(min-width:960px){.ins{grid-auto-flow:row;grid-template-columns:repeat(3,1fr);overflow:visible;gap:22px}.hint{display:none}}
+
+/* reviews */
+.revs{display:grid;gap:14px}
+.rev{margin:0;padding:24px 22px;border-radius:var(--r);background:var(--surface);box-shadow:inset 0 0 0 1px var(--line);display:flex;flex-direction:column;gap:14px}
+.rev .st{color:#d98a0b;letter-spacing:2px;font-size:18px}
+.rev blockquote{margin:0;font:400 18px/1.55 var(--serif);color:var(--ink)}
+.rev figcaption{display:flex;align-items:center;gap:12px;margin-top:auto;font-size:15px;color:var(--muted);line-height:1.35}
+.rev figcaption b{color:var(--ink);display:block}
+.ava{flex:none;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:var(--grad);font:400 19px var(--serif);color:var(--ink)}
+.score{display:flex;align-items:center;gap:14px;padding:14px 18px;border-radius:16px;background:var(--surface);box-shadow:inset 0 0 0 1px var(--line)}
+.score b{font:400 36px/1 var(--serif)}
+.score span{font-size:14px;color:var(--muted);line-height:1.35}
+@media(min-width:900px){.revs{grid-template-columns:repeat(3,1fr);gap:22px}}
+
+/* faq */
+.faq-grid{display:grid;gap:28px}
+.faq details{border-bottom:1px solid var(--line)}
+.faq summary{list-style:none;display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:64px;padding:12px 0;cursor:pointer;font:400 20px/1.3 var(--serif)}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";flex:none;width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:var(--sand);font:400 22px/1 var(--sans);color:var(--gold);transition:transform .25s}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq details p{padding:0 0 20px;color:var(--ink2);max-width:680px}
+.help{padding:26px 22px;border-radius:var(--r);background:var(--night);color:var(--cream);align-self:start}
+.help .eyebrow{color:var(--amber)}
+.help h3{font-size:24px;color:#fff;margin:8px 0 10px}
+.help p{color:#cfc2aa;margin-bottom:18px}
+.help .btn{width:100%;margin-top:10px}
+.help .btn-g{color:#fff;box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.25)}
+@media(min-width:960px){.faq-grid{grid-template-columns:1.6fr 1fr;gap:56px}}
+
+/* newsletter */
+.nl{position:relative;overflow:hidden;border-radius:30px;padding:36px 20px;background:radial-gradient(90% 120% at 100% 0,#ffe7a3 0,#f7c948 40%,#f0a03a 100%);color:var(--ink);display:grid;gap:24px}
+.nl::after{content:"";position:absolute;right:-60px;bottom:-80px;width:260px;height:260px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.55),rgba(255,255,255,0) 70%);pointer-events:none}
+.nl h2{font-size:clamp(28px,4vw,44px)}
+.nl .eyebrow{color:var(--ink)}
+.nl p{color:#3b352d;font-size:17px;margin-top:10px}
+.nl form{position:relative;z-index:1;display:grid;gap:10px}
+.nl input{width:100%;min-height:54px;border:0;border-radius:999px;padding:0 22px;font:16px var(--sans);background:#fffdf8;color:var(--ink);box-shadow:0 8px 20px -12px rgba(80,40,0,.5)}
+.nl .btn{min-height:54px}
+.nl small{font-size:13.5px;color:#4a4136;line-height:1.45}
+#thanks{display:none;position:relative;z-index:1;padding:20px 22px;border-radius:20px;background:#fffdf8;box-shadow:0 10px 30px -14px rgba(80,40,0,.5)}
+#thanks b{font:400 22px/1.2 var(--serif);display:block;margin-bottom:4px}
+#thanks:target{display:block}
+.nl:has(#thanks:target) form{display:none}
+@media(min-width:860px){.nl{grid-template-columns:1fr 1fr;align-items:center;padding:56px}.nl form{grid-template-columns:1fr auto}.nl small{grid-column:1/-1}}
+
+/* footer */
+.ftr{background:var(--night);color:#d8ccb4;padding:64px 0 calc(96px + env(safe-area-inset-bottom))}
+.ftr-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px 20px}
+.ftr-grid>:first-child,.ftr-grid>:last-child{grid-column:1/-1}
+.ftr .logo b{color:#fff}
+.ftr .logo i{color:var(--amber)}
+.ftr p{font-size:15.5px;color:#b9ac94;margin-top:14px;max-width:340px}
+.ftr h3{font:600 13px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--amber);margin-bottom:10px}
+.ftr ul{list-style:none;margin:0;padding:0}
+.ftr li a{display:inline-flex;align-items:center;min-height:44px;line-height:1.3;text-decoration:none;color:#ece2cf;font-size:16px}
+.ftr address{font-style:normal;color:#b9ac94;font-size:15.5px;line-height:1.6;margin-top:6px}
+.ftr-bottom{margin-top:44px;padding-top:24px;border-top:1px solid rgba(255,255,255,.1);display:flex;flex-wrap:wrap;gap:18px;align-items:center;justify-content:space-between;font-size:14px;color:#9d917b}
+.pay{display:flex;flex-wrap:wrap;gap:8px}
+.pay svg{width:58px;height:36px}
+@media(min-width:1080px){.ftr-grid{grid-template-columns:1.5fr 1fr 1fr 1.2fr}.ftr-grid>:first-child,.ftr-grid>:last-child{grid-column:auto}}
+
+/* modal + drawer */
+.modal,.drawer{position:fixed;inset:0;z-index:200;visibility:hidden;opacity:0;transition:opacity .3s,visibility .3s}
+.modal:target,.drawer:target{visibility:visible;opacity:1}
+.modal{display:flex;align-items:flex-end;justify-content:center}
+.ov{position:absolute;inset:0;background:rgba(26,23,20,.58);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}
+.box{position:relative;width:100%;max-height:92dvh;overflow:auto;overscroll-behavior:contain;background:var(--surface);border-radius:26px 26px 0 0;padding:20px 16px calc(80px + env(safe-area-inset-bottom));transform:translateY(30px);transition:transform .35s}
+.modal:target .box{transform:none}
+.box>.x{position:sticky;top:0;margin:-6px -4px -38px auto}
+.x{position:absolute;top:12px;right:12px;z-index:2;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:var(--sand);text-decoration:none;font:400 26px/1 var(--sans);color:var(--ink)}
+.qv-view{position:relative;border-radius:20px;aspect-ratio:1;background:radial-gradient(circle at 50% 45%,#fff8e3 0,#f1e4cb 70%);transition:background .4s}
+.qv:has(#v-off:checked){--glow:0}
+.qv:has(#v-off:checked) .qv-view{background:radial-gradient(circle at 50% 45%,#f6f1e8 0,#e6ded0 70%)}
+.qv:has(#c-graph:checked){--shade:url(#g-graph)}
+.qv:has(#c-milk:checked){--shade:url(#g-milk)}
+.qv-view svg{width:100%;height:100%}
+.qv input{position:absolute;opacity:0;width:1px;height:1px}
+.thumbs{display:flex;gap:10px;margin-top:12px}
+.thumbs label{flex:1;display:flex;align-items:center;gap:10px;min-height:56px;padding:6px 12px 6px 6px;border-radius:14px;box-shadow:inset 0 0 0 1px var(--line);cursor:pointer;font-size:14.5px;line-height:1.25}
+.thumbs svg{width:44px;height:44px;border-radius:10px;flex:none}
+.thumbs .on{background:#f7ebcd}
+.thumbs .off{background:#ebe5da}
+.qv input:checked+label{box-shadow:inset 0 0 0 2px var(--ink)}
+.qv input:focus-visible+label{outline:3px solid var(--orange);outline-offset:2px}
+.qv-info{display:flex;flex-direction:column;gap:12px;margin-top:22px}
+.qv-info h2{font-size:clamp(26px,3vw,34px)}
+.qv-price{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 12px}
+.qv-price b{font:400 32px/1 var(--serif)}
+.qv-price s{color:var(--muted)}
+.qv-price .bdg{align-self:center}
+.split{font-size:15px;color:var(--ink2);padding:10px 14px;border-radius:12px;background:var(--sand)}
+.sw-t{font-size:15px;font-weight:600}
+.sw-t span::after{content:"латунь"}
+.qv:has(#c-graph:checked) .sw-t span::after{content:"графит"}
+.qv:has(#c-milk:checked) .sw-t span::after{content:"молочный белый"}
+.sw{display:flex;gap:10px}
+.sw label{width:48px;height:48px;border-radius:50%;cursor:pointer;display:grid;place-items:center;box-shadow:inset 0 0 0 1px var(--line)}
+.sw label::before{content:"";width:34px;height:34px;border-radius:50%;background:var(--c);box-shadow:inset 0 -3px 6px rgba(0,0,0,.18)}
+.tbl{overflow-x:auto;border-radius:14px;box-shadow:inset 0 0 0 1px var(--line)}
+table{width:100%;border-collapse:collapse;font-size:15px;min-width:300px}
+th,td{text-align:left;padding:11px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+tr:last-child th,tr:last-child td{border-bottom:0}
+th{font-weight:500;color:var(--muted);width:40%}
+.qv-act{display:grid;gap:10px;margin-top:4px}
+@media(min-width:860px){
+  .modal{align-items:center;padding:24px}
+  .box{max-width:1000px;max-height:calc(100dvh - 48px);border-radius:28px;padding:36px;transform:translateY(16px) scale(.98)}
+  .qv{display:grid;grid-template-columns:1fr 1fr;gap:36px;align-items:start}
+  .qv-gal{position:sticky;top:0}
+  .qv-info{margin-top:0}
+  .qv-act{grid-template-columns:1fr 1fr}
+}
+.drawer .panel{position:absolute;top:0;right:0;bottom:0;width:min(440px,100%);background:var(--surface);display:flex;flex-direction:column;transform:translateX(100%);transition:transform .35s;padding-top:env(safe-area-inset-top);padding-right:env(safe-area-inset-right)}
+.drawer:target .panel{transform:none}
+.d-head{display:flex;align-items:center;justify-content:space-between;padding:16px 16px 16px 20px;border-bottom:1px solid var(--line)}
+.d-head h2{font-size:28px}
+.d-head span{color:var(--muted);font-size:15px;margin-left:8px;font-family:var(--sans)}
+.d-head .x{position:static}
+.d-body{flex:1;overflow:auto;padding:8px 20px}
+.item{display:grid;grid-template-columns:84px 1fr;gap:14px;padding:16px 0;border-bottom:1px solid var(--line)}
+.item svg{width:84px;height:84px;border-radius:14px;background:radial-gradient(circle at 50% 42%,#fff8e3,#efe2c9)}
+.item b{font:400 17px/1.25 var(--serif);display:block}
+.item small{display:block;color:var(--muted);font-size:14px;margin:2px 0 6px}
+.item .pr{display:flex;justify-content:space-between;font-size:15px}
+.item .pr strong{font-size:16px}
+.ship{margin:16px 0 8px;padding:12px 14px;border-radius:12px;background:#f3f7ea;color:#3d5a1e;font-size:14.5px}
+.d-foot{padding:16px 20px calc(76px + env(safe-area-inset-bottom));border-top:1px solid var(--line);background:var(--bg)}
+.sum{display:flex;justify-content:space-between;font-size:15px;color:var(--ink2);margin-bottom:4px}
+.sum.t{font-size:18px;color:var(--ink);font-weight:700;margin:6px 0 2px}
+.d-foot form{display:grid;gap:10px;margin-top:14px}
+.d-foot input{min-height:50px;border:1px solid var(--line);border-radius:14px;padding:0 16px;font:16px var(--sans);background:#fff;color:var(--ink)}
+.d-foot small{font-size:13px;color:var(--muted);line-height:1.4}
+.ok{max-width:440px;text-align:center}
+.ok .big{width:72px;height:72px;margin:8px auto 14px;border-radius:50%;background:var(--grad);display:grid;place-items:center;font-size:34px}
+.ok h2{font-size:28px;margin-bottom:10px}
+.ok p{color:var(--ink2);margin-bottom:20px}
+@media(min-width:860px){.ok{padding:40px 36px}}
+
+@media(hover:hover){
+  .btn-p:hover{transform:translateY(-2px);box-shadow:0 16px 30px -12px rgba(240,138,36,.8)}
+  .btn-d:hover{background:#3a3631}
+  .btn-g:hover{background:var(--surface)}
+  .tile:hover,.card:hover{transform:translateY(-4px);box-shadow:inset 0 0 0 1px #e2cfa8,var(--sh)}
+  .menu a:hover{background:var(--sand)}
+  .chips label:hover{box-shadow:inset 0 0 0 1px #cdb894}
+  .ftr li a:hover{color:var(--amber)}
+  .link:hover{text-decoration:underline}
+}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+}
+</style>
+</head>
+<body id="top">
+<a class="vt-back" href="../index.html#works">← Портфолио vtitek</a>
+
+<!-- shared gradients and product drawings -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+<defs>
+<radialGradient id="g-glow"><stop offset="0" stop-color="#fff2c2" stop-opacity=".95"/><stop offset=".35" stop-color="#f7c948" stop-opacity=".42"/><stop offset=".7" stop-color="#f08a24" stop-opacity=".12"/><stop offset="1" stop-color="#f08a24" stop-opacity="0"/></radialGradient>
+<linearGradient id="g-cone" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffe9a6" stop-opacity=".8"/><stop offset="1" stop-color="#ffe9a6" stop-opacity="0"/></linearGradient>
+<linearGradient id="g-brass" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f6d98a"/><stop offset=".45" stop-color="#cf9a43"/><stop offset="1" stop-color="#7f531b"/></linearGradient>
+<linearGradient id="g-graph" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5a554d"/><stop offset="1" stop-color="#1d1b18"/></linearGradient>
+<linearGradient id="g-milk" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#d9d2c4"/></linearGradient>
+<linearGradient id="g-linen" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff9ea"/><stop offset="1" stop-color="#f0d9a8"/></linearGradient>
+<radialGradient id="g-opal" cx=".5" cy=".75" r=".8"><stop offset="0" stop-color="#fffdf2"/><stop offset=".6" stop-color="#fbe8b6"/><stop offset="1" stop-color="#eec472"/></radialGradient>
+<linearGradient id="g-terra" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e9935a"/><stop offset="1" stop-color="#a94f24"/></linearGradient>
+<linearGradient id="g-wood" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#c38a55"/><stop offset="1" stop-color="#8a5732"/></linearGradient>
+<linearGradient id="g-room" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3d342b"/><stop offset="1" stop-color="#2a241f"/></linearGradient>
+</defs>
+<symbol id="p-aurora" viewBox="0 0 200 200">
+<circle cx="100" cy="122" r="80" fill="url(#g-glow)" style="opacity:var(--glow,1)"/>
+<path d="M56 116h88l44 84H12z" fill="url(#g-cone)" style="opacity:var(--glow,1)"/>
+<path d="M100 0v52" stroke="#2b2824" stroke-width="2"/>
+<rect x="92" y="48" width="16" height="13" rx="3" fill="#2b2824"/>
+<path d="M46 116C46 82 70 60 100 60s54 22 54 56z" style="fill:var(--shade,url(#g-brass))"/>
+<path d="M62 86c8-12 19-18 32-20" stroke="#fff" stroke-opacity=".4" stroke-width="4" fill="none" stroke-linecap="round"/>
+<ellipse cx="100" cy="116" rx="54" ry="7" fill="#fff1c8"/>
+<circle cx="100" cy="120" r="9" fill="#fffbea"/>
+</symbol>
+<symbol id="p-silva" viewBox="0 0 200 200">
+<circle cx="138" cy="98" r="64" fill="url(#g-glow)"/>
+<path d="M120 92h36l34 102H86z" fill="url(#g-cone)"/>
+<ellipse cx="104" cy="194" rx="80" ry="5" fill="#5a3b10" opacity=".1"/>
+<path d="M58 188V120C58 56 92 32 138 44" stroke="url(#g-brass)" stroke-width="5" fill="none" stroke-linecap="round"/>
+<path d="M138 44v12" stroke="#2b2824" stroke-width="2"/>
+<path d="M114 92c0-22 10-36 24-36s24 14 24 36z" fill="url(#g-graph)"/>
+<ellipse cx="138" cy="92" rx="24" ry="4" fill="#fff1c4"/>
+<ellipse cx="58" cy="189" rx="26" ry="6" fill="url(#g-graph)"/>
+</symbol>
+<symbol id="p-bruno" viewBox="0 0 200 200">
+<circle cx="100" cy="86" r="84" fill="url(#g-glow)"/>
+<ellipse cx="100" cy="178" rx="62" ry="6" fill="#5a3b10" opacity=".12"/>
+<path d="M91 104h18l5 62H86z" fill="#f4e2bb"/>
+<ellipse cx="100" cy="168" rx="40" ry="10" fill="#efd7a6"/>
+<ellipse cx="100" cy="165" rx="40" ry="9" fill="#f8ebcd"/>
+<path d="M38 104c0-38 26-62 62-62s62 24 62 62z" fill="url(#g-opal)"/>
+<ellipse cx="100" cy="104" rx="62" ry="6" fill="#e8bf6c"/>
+<path d="M58 80c6-14 18-24 34-27" stroke="#fff" stroke-width="5" stroke-linecap="round" fill="none" opacity=".7"/>
+</symbol>
+<symbol id="p-luna" viewBox="0 0 200 200">
+<circle cx="100" cy="100" r="92" fill="url(#g-glow)"/>
+<circle cx="100" cy="100" r="64" fill="#fff0c2" opacity=".6"/>
+<circle cx="100" cy="100" r="56" fill="url(#g-graph)"/>
+<circle cx="100" cy="100" r="56" fill="none" stroke="url(#g-brass)" stroke-width="3"/>
+<path d="M66 76a44 44 0 0 1 30-18" stroke="#fff" stroke-opacity=".25" stroke-width="4" stroke-linecap="round" fill="none"/>
+<circle cx="100" cy="100" r="7" fill="url(#g-brass)"/>
+</symbol>
+<symbol id="p-capella" viewBox="0 0 200 200">
+<circle cx="100" cy="112" r="92" fill="url(#g-glow)"/>
+<rect x="54" y="10" width="92" height="8" rx="4" fill="url(#g-brass)"/>
+<path d="M64 18v76M82 18v52M100 18v96M118 18v62M136 18v84" stroke="#3a342c" stroke-width="1.5"/>
+<g stroke="#d4a352" stroke-width="1.5" fill="#fff7df" fill-opacity=".88">
+<circle cx="64" cy="110" r="17"/><circle cx="82" cy="86" r="17"/><circle cx="100" cy="130" r="17"/><circle cx="118" cy="96" r="17"/><circle cx="136" cy="118" r="17"/>
+</g>
+<g fill="#fff"><circle cx="64" cy="110" r="5"/><circle cx="82" cy="86" r="5"/><circle cx="100" cy="130" r="5"/><circle cx="118" cy="96" r="5"/><circle cx="136" cy="118" r="5"/></g>
+<g fill="url(#g-brass)"><rect x="60" y="91" width="8" height="4" rx="1"/><rect x="78" y="67" width="8" height="4" rx="1"/><rect x="96" y="111" width="8" height="4" rx="1"/><rect x="114" y="77" width="8" height="4" rx="1"/><rect x="132" y="99" width="8" height="4" rx="1"/></g>
+</symbol>
+<symbol id="p-linia" viewBox="0 0 200 200">
+<g fill="url(#g-cone)"><path d="M44 96h16l34 104H10z" transform="rotate(14 52 54)"/><path d="M92 99h16l34 101H58z"/><path d="M140 96h16l34 104h-84z" transform="rotate(-14 148 54)"/></g>
+<circle cx="100" cy="120" r="78" fill="url(#g-glow)" opacity=".7"/>
+<rect x="16" y="38" width="168" height="12" rx="6" fill="url(#g-graph)"/>
+<g transform="rotate(14 52 54)"><rect x="49" y="50" width="6" height="8" fill="#2b2824"/><rect x="42" y="58" width="20" height="38" rx="5" fill="url(#g-graph)"/><ellipse cx="52" cy="95" rx="8" ry="3" fill="#fff1c4"/></g>
+<g><rect x="97" y="50" width="6" height="10" fill="#2b2824"/><rect x="90" y="60" width="20" height="40" rx="5" fill="url(#g-graph)"/><ellipse cx="100" cy="99" rx="8" ry="3" fill="#fff1c4"/></g>
+<g transform="rotate(-14 148 54)"><rect x="145" y="50" width="6" height="8" fill="#2b2824"/><rect x="138" y="58" width="20" height="38" rx="5" fill="url(#g-graph)"/><ellipse cx="148" cy="95" rx="8" ry="3" fill="#fff1c4"/></g>
+</symbol>
+<symbol id="p-gavan" viewBox="0 0 200 200">
+<circle cx="100" cy="98" r="82" fill="url(#g-glow)"/>
+<ellipse cx="100" cy="194" rx="46" ry="4" fill="#5a3b10" opacity=".12"/>
+<rect x="94" y="146" width="12" height="46" fill="url(#g-graph)"/>
+<rect x="84" y="186" width="32" height="8" rx="2" fill="#2b2824"/>
+<rect x="76" y="62" width="48" height="74" rx="3" fill="#fff1c2"/>
+<circle cx="100" cy="100" r="16" fill="#fffbea"/>
+<path d="M76 62h48v74H76zM100 62v74M76 99h48" stroke="#2b2824" stroke-width="4" fill="none"/>
+<path d="M68 62l32-24 32 24z" fill="url(#g-graph)"/>
+<circle cx="100" cy="33" r="5" fill="#2b2824"/>
+<rect x="70" y="136" width="60" height="10" rx="2" fill="url(#g-graph)"/>
+</symbol>
+<symbol id="p-origami" viewBox="0 0 200 200">
+<circle cx="100" cy="94" r="80" fill="url(#g-glow)"/>
+<ellipse cx="100" cy="192" rx="56" ry="5" fill="#5a3b10" opacity=".12"/>
+<path d="M78 190c-9-20-7-40 10-56h24c17 16 19 36 10 56z" fill="url(#g-terra)"/>
+<path d="M90 140c-8 12-9 28-4 44" stroke="#fff" stroke-opacity=".25" stroke-width="4" stroke-linecap="round" fill="none"/>
+<rect x="96" y="122" width="8" height="14" fill="url(#g-brass)"/>
+<path d="M66 50h68l26 72H40z" fill="url(#g-linen)"/>
+<path d="M76 50l-18 72M88 50l-8 72M100 50v72M112 50l8 72M124 50l18 72" stroke="#e2c58e" stroke-width="1.5"/>
+<ellipse cx="100" cy="122" rx="60" ry="5" fill="#fff3cc"/>
+</symbol>
+</svg>
+
+<div class="bar"><b>Зимняя распродажа: −25% на торшеры</b> до 31 декабря · доставка бесплатно от 15 000 ₽</div>
+
+<header class="hdr">
+  <div class="wrap hdr-in">
+    <input type="checkbox" id="nav" class="nav-cb" aria-label="Меню каталога">
+    <label for="nav" class="burger" aria-hidden="true"><span></span></label>
+    <a class="logo" href="#top" aria-label="Lumen Store — на главную">
+      <svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="24" r="17" fill="url(#g-glow)"/><path d="M20 2v8" stroke="#23211e" stroke-width="1.6"/><path d="M8 24c0-8 5-14 12-14s12 6 12 14z" fill="#23211e"/><ellipse cx="20" cy="24" rx="12" ry="2" fill="#f7c948"/><circle cx="20" cy="27" r="3" fill="#f08a24"/></svg>
+      <span><b>Lumen</b><i>Store</i></span>
+    </a>
+    <form class="search" role="search" action="#catalog" method="get">
+      <input type="search" name="q" placeholder="Торшер, бра, E27, латунь…" aria-label="Поиск по каталогу" autocomplete="off">
+      <button type="submit" aria-label="Найти"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg></button>
+    </form>
+    <a class="hdr-phone" href="tel:+74951234567">+7 (495) 123-45-67<small>ежедневно 9:00–21:00</small></a>
+    <a class="cart-btn" href="#cart" aria-label="Корзина: 2 товара">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 8h14l-1.2 11.2a2 2 0 0 1-2 1.8H8.2a2 2 0 0 1-2-1.8z"/><path d="M9 10V6a3 3 0 0 1 6 0v4"/></svg>
+      <span class="badge">2</span>
+    </a>
+    <nav class="menu" aria-label="Каталог">
+      <ul>
+        <li><a href="#catalog">Люстры</a></li>
+        <li><a href="#catalog">Торшеры</a></li>
+        <li><a href="#catalog">Настольные лампы</a></li>
+        <li><a href="#catalog">Бра</a></li>
+        <li><a href="#catalog">Трековые</a></li>
+        <li><a href="#catalog">Уличные</a></li>
+        <li><a href="#inspire">Вдохновение</a></li>
+        <li><a class="hot" href="#catalog">Распродажа −25%</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section class="hero" aria-labelledby="h1">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="pill"><b>NEW</b> Коллекция «Тёплая зима» 2026</span>
+      <h1 id="h1">Свет, в котором <em>хочется</em> остаться дома</h1>
+      <p class="lead">1 200 дизайнерских светильников от 48 фабрик из Италии, Дании и России. Поможем подобрать свет под интерьер, привезём за 1 день по Москве и бережно повесим.</p>
+      <div class="cta">
+        <a class="btn btn-p" href="#catalog">Перейти в каталог <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a class="btn btn-g" href="#inspire">Идеи для интерьера</a>
+      </div>
+      <div class="stats">
+        <div><b>1 200</b><span>моделей в наличии</span></div>
+        <div><b>4,9 ★</b><span>8 300 отзывов покупателей</span></div>
+        <div><b>2 года</b><span>гарантии на всё</span></div>
+      </div>
+    </div>
+    <div class="hero-art">
+      <svg viewBox="0 0 480 540" role="img" aria-label="Латунный подвесной светильник «Аурора» мягко освещает комод с вазой и книгами">
+        <path d="M60 540V200a180 180 0 0 1 360 0v340z" fill="#fff" opacity=".03"/>
+        <circle class="pulse" cx="240" cy="250" r="240" fill="url(#g-glow)"/>
+        <path class="pulse" d="M134 238h212l134 302H0z" fill="url(#g-cone)" opacity=".5"/>
+        <path d="M240 0v118" stroke="#7a6548" stroke-width="2"/>
+        <rect x="229" y="112" width="22" height="20" rx="5" fill="url(#g-brass)"/>
+        <path d="M130 238c0-66 48-108 110-108s110 42 110 108z" fill="url(#g-brass)"/>
+        <path d="M160 186c16-26 40-40 68-44" stroke="#fff" stroke-opacity=".4" stroke-width="7" stroke-linecap="round" fill="none"/>
+        <ellipse cx="240" cy="238" rx="110" ry="13" fill="#fff2c8"/>
+        <circle cx="240" cy="250" r="44" fill="url(#g-glow)"/>
+        <circle cx="240" cy="246" r="16" fill="#fffcef"/>
+        <rect x="40" y="462" width="400" height="14" rx="4" fill="url(#g-wood)"/>
+        <rect x="56" y="476" width="368" height="64" fill="#2a231d"/>
+        <path d="M240 476v64" stroke="#3b3128" stroke-width="2"/>
+        <circle cx="222" cy="506" r="3" fill="#c79a52"/><circle cx="258" cy="506" r="3" fill="#c79a52"/>
+        <path d="M318 462c-15-20-15-48 0-66h22c15 18 15 46 0 66z" fill="url(#g-terra)"/>
+        <path d="M329 396c-4-30-22-50-40-62M329 396c6-34 26-54 46-60M329 396c0-26 2-44 6-58" stroke="#a88a62" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <g fill="#a88a62"><circle cx="289" cy="334" r="4"/><circle cx="375" cy="336" r="4"/><circle cx="335" cy="338" r="4"/><circle cx="305" cy="350" r="3"/><circle cx="358" cy="352" r="3"/></g>
+        <rect x="110" y="448" width="86" height="14" rx="2" fill="#c9b28a"/>
+        <rect x="118" y="436" width="74" height="12" rx="2" fill="#7d8a74"/>
+        <rect x="114" y="426" width="64" height="10" rx="2" fill="#b0643a"/>
+      </svg>
+      <span class="tag-art">«Аурора» · латунь · 2700 K</span>
+      <div class="promo">
+        <strong>−25%</strong>
+        <p><b>Торшеры «Тёплая зима»</b>до 31 декабря или 4 платежа в «Сплит»</p>
+        <a class="link" href="#catalog" aria-label="Смотреть торшеры со скидкой">→</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="cats" aria-labelledby="cats-h" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><span class="eyebrow">Каталог</span><h2 id="cats-h">Свет для каждой комнаты</h2></div>
+      <p>Выберите тип светильника — в каждой категории фильтры по цоколю, цвету, стилю и площади помещения.</p>
+    </div>
+    <div class="cats">
+      <a class="tile" href="#catalog"><span class="ic"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M24 4v8M10 26c0-8 6-14 14-14s14 6 14 14zM8 26l-2 8M40 26l2 8M24 26v10"/><circle cx="24" cy="38" r="3"/><circle cx="6" cy="36" r="2"/><circle cx="42" cy="36" r="2"/></svg></span><b>Люстры</b><span>214 моделей</span></a>
+      <a class="tile" href="#catalog"><span class="ic"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 6h16l4 12H12zM24 18v24M16 44h16"/></svg></span><b>Торшеры</b><span>136 моделей</span></a>
+      <a class="tile" href="#catalog"><span class="ic"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 24c0-10 7-16 16-16s16 6 16 16zM24 24v14M14 40h20"/></svg></span><b>Настольные лампы</b><span>258 моделей</span></a>
+      <a class="tile" href="#catalog"><span class="ic"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 10v28"/><path d="M8 24h12"/><circle cx="30" cy="24" r="10"/><path d="M30 8V4M42 12l3-3M46 24h-3M42 36l3 3"/></svg></span><b>Бра</b><span>187 моделей</span></a>
+      <a class="tile" href="#catalog"><span class="ic"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 10h40"/><path d="M12 10v4l-3 12h8l-3-12M34 10v4l-3 12h8l-3-12M24 10v4v12"/><rect x="21" y="16" width="6" height="12" rx="2"/><path d="M10 32l-2 8M38 32l2 8M24 32v8"/></svg></span><b>Трековые</b><span>302 модели</span></a>
+      <a class="tile" href="#catalog"><span class="ic"><svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 14l10-8 10 8zM16 14h16v16H16zM24 14v16M18 30h12M24 30v14M18 44h12"/></svg></span><b>Уличные</b><span>103 модели</span></a>
+    </div>
+  </div>
+</section>
+
+<section class="sec shop" id="catalog" aria-labelledby="cat-h" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><span class="eyebrow">Хиты сезона</span><h2 id="cat-h">Выбор покупателей</h2></div>
+      <p>Только то, что есть на складе в Москве: отгрузим сегодня, если оформить заказ до 16:00.</p>
+    </div>
+    <div class="chips" role="radiogroup" aria-label="Фильтр по категории">
+      <input type="radio" name="f" id="f-all" checked><label for="f-all">Все</label>
+      <input type="radio" name="f" id="f-ceil"><label for="f-ceil">Люстры и подвесы</label>
+      <input type="radio" name="f" id="f-floor"><label for="f-floor">Торшеры</label>
+      <input type="radio" name="f" id="f-table"><label for="f-table">Настольные</label>
+      <input type="radio" name="f" id="f-wall"><label for="f-wall">Бра</label>
+      <input type="radio" name="f" id="f-track"><label for="f-track">Трековые</label>
+      <input type="radio" name="f" id="f-out"><label for="f-out">Уличные</label>
+      <input type="radio" name="f" id="f-sale"><label for="f-sale">Со скидкой</label>
+      <input type="radio" name="f" id="f-new"><label for="f-new">Новинки</label>
+    </div>
+
+    <div class="grid">
+      <article class="card c-ceil c-sale">
+        <div class="card-img">
+          <svg role="img" aria-label="Латунный подвесной светильник-купол"><use href="#p-aurora"/></svg>
+          <div class="bdgs"><span class="bdg s">−20%</span></div>
+          <a class="qv-link" href="#quick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg><span class="s">Подробнее</span><span class="l">Быстрый просмотр</span></a>
+        </div>
+        <div class="card-b">
+          <span class="cat">Подвесной светильник</span>
+          <h3>«Аурора» Ø45</h3>
+          <span class="rate"><i>★</i> 4,9 · 128 отзывов</span>
+          <div class="price"><b>18 900 ₽</b><s>23 600 ₽</s></div>
+          <a class="btn btn-p" href="#cart">В корзину</a>
+        </div>
+      </article>
+      <article class="card c-floor c-sale c-new">
+        <div class="card-img">
+          <svg role="img" aria-label="Торшер-дуга с графитовым плафоном"><use href="#p-silva"/></svg>
+          <div class="bdgs"><span class="bdg s">−25%</span><span class="bdg n">Новинка</span></div>
+        </div>
+        <div class="card-b">
+          <span class="cat">Торшер</span>
+          <h3>«Сильва» дуга</h3>
+          <span class="rate"><i>★</i> 4,8 · 64 отзыва</span>
+          <div class="price"><b>24 300 ₽</b><s>32 400 ₽</s></div>
+          <a class="btn btn-p" href="#cart">В корзину</a>
+        </div>
+      </article>
+      <article class="card c-table">
+        <div class="card-img">
+          <svg role="img" aria-label="Настольная лампа-гриб из опалового стекла"><use href="#p-bruno"/></svg>
+          <div class="bdgs"><span class="bdg h">Хит продаж</span></div>
+        </div>
+        <div class="card-b">
+          <span class="cat">Настольная лампа</span>
+          <h3>«Бруно» опал</h3>
+          <span class="rate"><i>★</i> 5,0 · 212 отзывов</span>
+          <div class="price"><b>8 900 ₽</b></div>
+          <a class="btn btn-p" href="#cart">В корзину</a>
+        </div>
+      </article>
+      <article class="card c-wall c-sale">
+        <div class="card-img">
+          <svg role="img" aria-label="Круглое бра с контурной подсветкой"><use href="#p-luna"/></svg>
+          <div class="bdgs"><span class="bdg s">−20%</span></div>
+        </div>
+        <div class="card-b">
+          <span class="cat">Бра</span>
+          <h3>«Луна» с подсветкой</h3>
+          <span class="rate"><i>★</i> 4,9 · 87 отзывов</span>
+          <div class="price"><b>6 700 ₽</b><s>8 400 ₽</s></div>
+          <a class="btn btn-p" href="#cart">В корзину</a>
+        </div>
+      </article>
+      <article class="card c-ceil c-new">
+        <div class="card-img">
+          <svg role="img" aria-label="Люстра из пяти стеклянных шаров на подвесах разной длины"><use href="#p-capella"/></svg>
+          <div class="bdgs"><span class="bdg n">Новинка</span></div>
+        </div>
+        <div class="card-b">
+          <span class="cat">Люстра · 5 плафонов</span>
+          <h3>«Капелла»</h3>
+          <span class="rate"><i>★</i> 4,7 · 31 отзыв</span>
+          <div class="price"><b>54 900 ₽</b></div>
+          <a class="btn btn-p" href="#cart">В корзину</a>
+        </div>
+      </article>
+      <article class="card c-track">
+        <div class="card-img">
+          <svg role="img" aria-label="Шинопровод с тремя поворотными трековыми спотами"><use href="#p-linia"/></svg>
+        </div>
+        <div class="card-b">
+          <span class="cat">Трековый спот · 12 Вт</span>
+          <h3>«Линия» поворотный</h3>
+          <span class="rate"><i>★</i> 4,8 · 156 отзывов</span>
+          <div class="price"><b>4 200 ₽</b></div>
+          <a class="btn btn-p" href="#cart">В корзину</a>
+        </div>
+      </article>
+      <article class="card c-out">
+        <div class="card-img">
+          <svg role="img" aria-label="Уличный фонарь-лантерна на столбике"><use href="#p-gavan"/></svg>
+          <div class="bdgs"><span class="bdg h">IP54</span></div>
+        </div>
+        <div class="card-b">
+          <span class="cat">Уличный фонарь</span>
+          <h3>«Гавань» на столбике</h3>
+          <span class="rate"><i>★</i> 4,9 · 42 отзыва</span>
+          <div class="price"><b>11 500 ₽</b></div>
+          <a class="btn btn-p" href="#cart">В корзину</a>
+        </div>
+      </article>
+      <article class="card c-table c-sale">
+        <div class="card-img">
+          <svg role="img" aria-label="Настольная лампа с плиссированным абажуром и керамическим основанием"><use href="#p-origami"/></svg>
+          <div class="bdgs"><span class="bdg s">−15%</span></div>
+        </div>
+        <div class="card-b">
+          <span class="cat">Настольная лампа</span>
+          <h3>«Оригами» керамика</h3>
+          <span class="rate"><i>★</i> 4,8 · 73 отзыва</span>
+          <div class="price"><b>7 300 ₽</b><s>8 600 ₽</s></div>
+          <a class="btn btn-p" href="#cart">В корзину</a>
+        </div>
+      </article>
+    </div>
+    <div class="found"><span></span><a class="btn btn-d" href="#cats">Весь каталог · 1 200 товаров</a></div>
+  </div>
+</section>
+
+<section class="sec" id="benefits" aria-labelledby="adv-h" style="background:var(--sand)">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><span class="eyebrow">Почему Lumen Store</span><h2 id="adv-h">Покупать свет — спокойно</h2></div>
+      <p>Берём на себя всё, что обычно раздражает: доставку хрупкого стекла, установку и возвраты.</p>
+    </div>
+    <ul class="adv">
+      <li><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7z"/><circle cx="7" cy="17.5" r="1.8"/><circle cx="17" cy="17.5" r="1.8"/></svg></span><div><h3>Доставка по России</h3><p>По Москве — завтра, бесплатно от 15 000 ₽. В регионы — СДЭК и «Деловые линии», 2–7 дней, стекло в жёсткой обрешётке.</p></div></li>
+      <li><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M3 10h18M7 15h3"/></svg></span><div><h3>Оплата частями «Сплит»</h3><p>4 платежа раз в две недели без процентов и переплат. Первый платёж — 25% при оформлении.</p></div></li>
+      <li><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="m8.5 12 2.5 2.5 4.5-5"/></svg></span><div><h3>Гарантия 2 года</h3><p>На все светильники и LED-модули. Заменим неисправный товар за 3 дня — без экспертиз и споров.</p></div></li>
+      <li><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.5 6.5a4 4 0 0 0-5.3 5.3L3.5 17.5l3 3 5.7-5.7a4 4 0 0 0 5.3-5.3l-2.4 2.4-2.6-.6-.6-2.6z"/></svg></span><div><h3>Установка</h3><p>Электрики с допуском повесят люстру и соберут трековую систему. От 1 500 ₽ за точку, в день доставки.</p></div></li>
+    </ul>
+  </div>
+</section>
+
+<section class="sec dark" id="inspire" aria-labelledby="ins-h">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><span class="eyebrow">Вдохновение</span><h2 id="ins-h">Сценарии света в интерьере</h2></div>
+      <p>Собрали готовые сочетания вместе с дизайнерами бюро «Форма». Повторите целиком или возьмите идею.</p>
+    </div>
+    <div class="ins">
+      <figure>
+        <svg viewBox="0 0 400 260" role="img" aria-label="Вечерняя гостиная: диван, картина и торшер-дуга с тёплым светом">
+          <rect width="400" height="260" fill="url(#g-room)"/>
+          <circle cx="146" cy="104" r="150" fill="url(#g-glow)" opacity=".75"/>
+          <rect y="206" width="400" height="54" fill="#211c18"/>
+          <path d="M130 92h34l56 114H74z" fill="url(#g-cone)" opacity=".55"/>
+          <rect x="226" y="46" width="96" height="66" rx="3" fill="#4a4036" stroke="#7a6550" stroke-width="3"/>
+          <path d="M236 100c18-30 40-36 76-40" stroke="#c9934b" stroke-width="3" fill="none"/>
+          <circle cx="290" cy="74" r="10" fill="#e7b25c" opacity=".8"/>
+          <rect x="190" y="124" width="190" height="42" rx="16" fill="#9b7b61"/>
+          <rect x="178" y="148" width="214" height="52" rx="18" fill="#8a6c55"/>
+          <rect x="206" y="138" width="56" height="24" rx="10" fill="#d9b98f"/>
+          <rect x="304" y="138" width="56" height="24" rx="10" fill="#b8916b"/>
+          <path d="M192 200v8M378 200v8" stroke="#3a2f26" stroke-width="5"/>
+          <path d="M72 204V112c0-52 32-70 74-56" stroke="url(#g-brass)" stroke-width="4" fill="none" stroke-linecap="round"/>
+          <path d="M128 92c0-18 8-28 18-28s18 10 18 28z" fill="url(#g-graph)"/>
+          <ellipse cx="146" cy="92" rx="18" ry="3" fill="#fff1c4"/>
+          <ellipse cx="72" cy="206" rx="20" ry="5" fill="#16130f"/>
+          <rect x="114" y="170" width="44" height="5" rx="2" fill="url(#g-wood)"/><path d="M136 175v31" stroke="#6e4a2c" stroke-width="4"/>
+        </svg>
+        <figcaption><span class="k">Гостиная · 2700 K</span><h3>Мягкий вечер</h3><p>Торшер «Сильва» над диваном и два бра «Луна» вместо верхнего света.</p><a class="link" href="#catalog">Смотреть товары →</a></figcaption>
+      </figure>
+      <figure>
+        <svg viewBox="0 0 400 260" role="img" aria-label="Спальня с кроватью и двумя круглыми бра с контурной подсветкой">
+          <rect width="400" height="260" fill="url(#g-room)"/>
+          <rect y="206" width="400" height="54" fill="#211c18"/>
+          <circle cx="98" cy="96" r="80" fill="url(#g-glow)"/>
+          <circle cx="302" cy="96" r="80" fill="url(#g-glow)"/>
+          <circle cx="98" cy="96" r="22" fill="#fff0c2" opacity=".55"/><circle cx="98" cy="96" r="18" fill="url(#g-graph)" stroke="#c9934b" stroke-width="2"/>
+          <circle cx="302" cy="96" r="22" fill="#fff0c2" opacity=".55"/><circle cx="302" cy="96" r="18" fill="url(#g-graph)" stroke="#c9934b" stroke-width="2"/>
+          <rect x="136" y="92" width="128" height="80" rx="12" fill="#6f5a48"/>
+          <rect x="116" y="150" width="168" height="50" rx="10" fill="#efe2cc"/>
+          <rect x="116" y="166" width="168" height="38" rx="10" fill="#b98a5e"/>
+          <rect x="146" y="138" width="48" height="20" rx="9" fill="#fbf3e4"/><rect x="206" y="138" width="48" height="20" rx="9" fill="#fbf3e4"/>
+          <rect x="60" y="160" width="48" height="46" rx="4" fill="#4a3d32"/><rect x="292" y="160" width="48" height="46" rx="4" fill="#4a3d32"/>
+          <path d="M66 182h36M298 182h36" stroke="#6b5847" stroke-width="2"/>
+          <rect x="74" y="148" width="18" height="12" rx="2" fill="#7d8a74"/>
+        </svg>
+        <figcaption><span class="k">Спальня · 2400 K</span><h3>Перед сном</h3><p>Бра «Луна» по сторонам изголовья с диммером — вместо люстры над кроватью.</p><a class="link" href="#catalog">Смотреть товары →</a></figcaption>
+      </figure>
+      <figure>
+        <svg viewBox="0 0 400 260" role="img" aria-label="Кухня-столовая: три латунных подвеса над деревянным столом">
+          <rect width="400" height="260" fill="url(#g-room)"/>
+          <rect y="206" width="400" height="54" fill="#211c18"/>
+          <circle cx="200" cy="130" r="170" fill="url(#g-glow)" opacity=".6"/>
+          <g fill="url(#g-cone)" opacity=".6"><path d="M122 88h36l20 80h-76z"/><path d="M182 88h36l20 80h-76z"/><path d="M242 88h36l20 80h-76z"/></g>
+          <path d="M140 0v66M200 0v66M260 0v66" stroke="#7a6548" stroke-width="1.5"/>
+          <g fill="url(#g-brass)"><path d="M120 88c0-14 9-24 20-24s20 10 20 24z"/><path d="M180 88c0-14 9-24 20-24s20 10 20 24z"/><path d="M240 88c0-14 9-24 20-24s20 10 20 24z"/></g>
+          <g fill="#fff1c4"><ellipse cx="140" cy="88" rx="20" ry="3"/><ellipse cx="200" cy="88" rx="20" ry="3"/><ellipse cx="260" cy="88" rx="20" ry="3"/></g>
+          <rect x="90" y="166" width="220" height="9" rx="3" fill="url(#g-wood)"/>
+          <path d="M108 175v31M292 175v31" stroke="#6e4a2c" stroke-width="5"/>
+          <path d="M60 206v-56a8 8 0 0 1 8-8h14M60 176h26v30M340 206v-56a8 8 0 0 0-8-8h-14M340 176h-26v30" stroke="#8a6c55" stroke-width="5" fill="none" stroke-linecap="round"/>
+          <ellipse cx="200" cy="160" rx="24" ry="7" fill="#d9c7a8"/><circle cx="194" cy="155" r="5" fill="#e0893a"/><circle cx="205" cy="154" r="5" fill="#c9a33a"/>
+        </svg>
+        <figcaption><span class="k">Кухня-столовая · 3000 K</span><h3>Ужин на шестерых</h3><p>Три подвеса «Аурора» на высоте 75 см над столом и трековые споты над рабочей зоной.</p><a class="link" href="#catalog">Смотреть товары →</a></figcaption>
+      </figure>
+    </div>
+    <p class="hint">← Листайте, чтобы увидеть все сценарии →</p>
+  </div>
+</section>
+
+<section class="sec" id="reviews" aria-labelledby="rev-h">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><span class="eyebrow">Отзывы</span><h2 id="rev-h">Нам доверяют свет</h2></div>
+      <div class="score"><b>4,9</b><span>средняя оценка<br>8 300 отзывов о магазине</span></div>
+    </div>
+    <div class="revs">
+      <figure class="rev"><span class="st" aria-label="Оценка 5 из 5">★★★★★</span><blockquote>Заказала три подвеса «Аурора» над кухонным островом. Привезли на следующий день, монтажник повесил ровно по центру и спрятал провода. Вечером кухня выглядит как в журнале.</blockquote><figcaption><span class="ava" aria-hidden="true">А</span><span><b>Анна Белова</b>Москва · подвес «Аурора»</span></figcaption></figure>
+      <figure class="rev"><span class="st" aria-label="Оценка 5 из 5">★★★★★</span><blockquote>Брал торшер в «Сплит» на четыре платежа — оформил за минуту. До Казани доехал за 4 дня в деревянной обрешётке. Свет мягкий и без мерцания, проверял камерой телефона.</blockquote><figcaption><span class="ava" aria-hidden="true">Д</span><span><b>Дмитрий Хасанов</b>Казань · торшер «Сильва»</span></figcaption></figure>
+      <figure class="rev"><span class="st" aria-label="Оценка 5 из 5">★★★★★</span><blockquote>Работаем с Lumen Store по программе для дизайнеров: персональный менеджер, скидка 15% и подбор аналогов, если позиция закончилась. Экономим часы на каждом проекте.</blockquote><figcaption><span class="ava" aria-hidden="true">Ф</span><span><b>Бюро «Форма»</b>Санкт-Петербург · 40+ проектов</span></figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section class="sec faq" id="faq" aria-labelledby="faq-h" style="padding-top:0">
+  <div class="wrap faq-grid">
+    <div>
+      <span class="eyebrow">Вопросы и ответы</span>
+      <h2 id="faq-h" style="margin:8px 0 20px">Частые вопросы</h2>
+      <details open><summary>Сколько стоит и сколько идёт доставка?</summary><p>По Москве и в пределах 30 км от МКАД — на следующий день, 490 ₽, бесплатно от 15 000 ₽. По России отправляем СДЭК и «Деловыми линиями» за 2–7 дней, точная стоимость считается в корзине.</p></details>
+      <details><summary>Как оплатить частями через «Сплит»?</summary><p>Выберите «Сплит» при оформлении: 25% сразу, остальное — тремя платежами раз в две недели. Без процентов, переплат и похода в банк, решение за минуту.</p></details>
+      <details><summary>Можно ли вернуть или обменять светильник?</summary><p>Да, в течение 14 дней, если товар не был в монтаже и сохранил упаковку. Курьер заберёт его бесплатно, деньги вернутся за 1–3 рабочих дня.</p></details>
+      <details><summary>Вы устанавливаете светильники?</summary><p>Наши электрики работают в Москве и области: подвесить люстру — от 1 500 ₽, собрать трековую систему — от 3 900 ₽. Можно заказать монтаж в день доставки.</p></details>
+      <details><summary>Какую цветовую температуру выбрать?</summary><p>2400–2700 K — тёплый «ламповый» свет для спальни и гостиной, 3000 K — для кухни и столовой, 4000 K — для кабинета и рабочих зон. Если сомневаетесь, напишите нам — подберём бесплатно.</p></details>
+    </div>
+    <aside class="help" aria-label="Консультация">
+      <span class="eyebrow">Консультация</span>
+      <h3>Подберём свет по плану квартиры</h3>
+      <p>Пришлите планировку — светодизайнер рассчитает освещённость и соберёт подборку за 24 часа. Бесплатно.</p>
+      <a class="btn btn-p" href="tel:+74951234567"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>+7 (495) 123-45-67</a>
+      <a class="btn btn-g" href="mailto:hello@lumen-store.ru">hello@lumen-store.ru</a>
+    </aside>
+  </div>
+</section>
+
+<section class="sec" id="subscribe" aria-labelledby="nl-h" style="padding-top:0">
+  <div class="wrap">
+    <div class="nl">
+      <div>
+        <span class="eyebrow">Рассылка</span>
+        <h2 id="nl-h" style="margin-top:8px">−10% на первый заказ</h2>
+        <p>Раз в две недели — новинки, закрытые распродажи и советы светодизайнеров. Без спама.</p>
+      </div>
+      <form action="#thanks" method="get">
+        <label class="sr" for="nl-email">Ваш e-mail</label>
+        <input id="nl-email" type="email" name="email" placeholder="you@mail.ru" required autocomplete="email" inputmode="email">
+        <button class="btn btn-d" type="submit">Получить промокод</button>
+        <small>Нажимая кнопку, вы соглашаетесь с политикой обработки персональных данных. Отписаться можно в один клик.</small>
+      </form>
+      <div id="thanks" role="status"><b>Готово! ✨</b>Промокод <strong>LUMEN10</strong> уже летит на вашу почту. Он действует 30 дней на любые товары.</div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="ftr">
+  <div class="wrap">
+    <div class="ftr-grid">
+      <div>
+        <a class="logo" href="#top" aria-label="Lumen Store — наверх">
+          <svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="24" r="17" fill="url(#g-glow)"/><path d="M20 2v8" stroke="#f6eddc" stroke-width="1.6"/><path d="M8 24c0-8 5-14 12-14s12 6 12 14z" fill="#f6eddc"/><ellipse cx="20" cy="24" rx="12" ry="2" fill="#f7c948"/><circle cx="20" cy="27" r="3" fill="#f08a24"/></svg>
+          <span><b>Lumen</b><i>Store</i></span>
+        </a>
+        <p>Дизайнерские светильники с 2014 года. Шоурум 600 м² — приходите посмотреть свет вживую.</p>
+      </div>
+      <div>
+        <h3>Покупателям</h3>
+        <ul><li><a href="#faq">Доставка и оплата</a></li><li><a href="#faq">Возврат и обмен</a></li><li><a href="#benefits">Гарантия 2 года</a></li><li><a href="#benefits">Оплата частями «Сплит»</a></li><li><a href="#faq">Вопросы и ответы</a></li></ul>
+      </div>
+      <div>
+        <h3>Компания</h3>
+        <ul><li><a href="#top">О магазине</a></li><li><a href="#inspire">Вдохновение</a></li><li><a href="#reviews">Отзывы</a></li><li><a href="#faq">Дизайнерам и архитекторам</a></li><li><a href="#subscribe">Новости и акции</a></li></ul>
+      </div>
+      <div>
+        <h3>Контакты</h3>
+        <ul><li><a href="tel:+74951234567">+7 (495) 123-45-67</a></li><li><a href="mailto:hello@lumen-store.ru">hello@lumen-store.ru</a></li></ul>
+        <address>Шоурум: Москва, ул. Большая Новодмитровская, 36, стр. 4<br>Ежедневно 10:00–21:00<br>Интернет-магазин: 9:00–21:00</address>
+      </div>
+    </div>
+    <div class="ftr-bottom">
+      <span>© 2026 ООО «Люмен Стор» · ИНН 7714123456</span>
+      <div class="pay" aria-label="Способы оплаты">
+        <svg viewBox="0 0 58 36" role="img" aria-label="Мир"><rect width="58" height="36" rx="7" fill="#fff"/><text x="29" y="23" text-anchor="middle" font-family="Arial, sans-serif" font-weight="700" font-size="14" fill="#0f754e">МИР</text></svg>
+        <svg viewBox="0 0 58 36" role="img" aria-label="СБП"><rect width="58" height="36" rx="7" fill="#fff"/><path d="M10 9l6 4v10l-6 4z" fill="#5b57a2"/><path d="M16 13l6-4v18l-6-4z" fill="#d90751"/><text x="38" y="23" text-anchor="middle" font-family="Arial, sans-serif" font-weight="700" font-size="12" fill="#23211e">СБП</text></svg>
+        <svg viewBox="0 0 58 36" role="img" aria-label="Visa"><rect width="58" height="36" rx="7" fill="#fff"/><text x="29" y="23" text-anchor="middle" font-family="Arial, sans-serif" font-weight="700" font-style="italic" font-size="14" fill="#1a1f71">VISA</text></svg>
+        <svg viewBox="0 0 58 36" role="img" aria-label="Mastercard"><rect width="58" height="36" rx="7" fill="#fff"/><circle cx="24" cy="18" r="9" fill="#eb001b"/><circle cx="34" cy="18" r="9" fill="#f79e1b" fill-opacity=".9"/></svg>
+        <svg viewBox="0 0 58 36" role="img" aria-label="Сплит"><rect width="58" height="36" rx="7" fill="#f7c948"/><text x="29" y="23" text-anchor="middle" font-family="Arial, sans-serif" font-weight="700" font-size="12" fill="#23211e">Сплит</text></svg>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- quick view -->
+<div class="modal" id="quick" role="dialog" aria-modal="true" aria-labelledby="qv-h">
+  <a class="ov" href="#_" tabindex="-1" aria-hidden="true"></a>
+  <div class="box">
+    <a class="x" href="#_" aria-label="Закрыть">×</a>
+    <div class="qv">
+      <div class="qv-gal">
+        <div class="qv-view"><svg role="img" aria-label="Подвесной светильник «Аурора» в выбранном цвете"><use href="#p-aurora"/></svg></div>
+        <div class="thumbs">
+          <input type="radio" name="view" id="v-on" checked><label for="v-on"><svg class="on" viewBox="0 0 200 200" aria-hidden="true"><use href="#p-aurora"/></svg>Свет включён</label>
+          <input type="radio" name="view" id="v-off"><label for="v-off"><svg class="off" viewBox="0 0 200 200" aria-hidden="true" style="--glow:0"><use href="#p-aurora"/></svg>Днём, без света</label>
+        </div>
+      </div>
+      <div class="qv-info">
+        <span class="eyebrow">Подвесной светильник · Россия</span>
+        <h2 id="qv-h">«Аурора» Ø45</h2>
+        <span class="rate"><i>★</i> 4,9 · 128 отзывов · артикул LS-20417</span>
+        <div class="qv-price"><b>18 900 ₽</b><s>23 600 ₽</s><span class="bdg s">−20%</span></div>
+        <p class="split">или 4 платежа по 4 725 ₽ в «Сплит»</p>
+        <p style="color:var(--ink2)">Купол из алюминия с ручной полировкой и опаловым рассеивателем снизу: свет мягко падает вниз и не слепит. Хорош над обеденным столом и кухонным островом — повесьте два-три в ряд.</p>
+        <span class="sw-t">Цвет: <span></span></span>
+        <div class="sw" role="radiogroup" aria-label="Цвет плафона">
+          <input type="radio" name="c" id="c-brass" checked><label for="c-brass" style="--c:linear-gradient(135deg,#f6d98a,#a8722b)" title="Латунь"><span class="sr">Латунь</span></label>
+          <input type="radio" name="c" id="c-graph"><label for="c-graph" style="--c:linear-gradient(135deg,#5a554d,#1d1b18)" title="Графит"><span class="sr">Графит</span></label>
+          <input type="radio" name="c" id="c-milk"><label for="c-milk" style="--c:linear-gradient(135deg,#fff,#d9d2c4)" title="Молочный белый"><span class="sr">Молочный белый</span></label>
+        </div>
+        <div class="tbl">
+          <table>
+            <caption class="sr">Характеристики светильника «Аурора»</caption>
+            <tr><th scope="row">Мощность</th><td>до 60 Вт; в комплекте LED-лампа 9 Вт, 2700 K</td></tr>
+            <tr><th scope="row">Цоколь</th><td>E27</td></tr>
+            <tr><th scope="row">Материал</th><td>алюминий, латунное напыление, опаловое стекло</td></tr>
+            <tr><th scope="row">Размеры</th><td>Ø 450 × 280 мм, подвес регулируется до 1 500 мм</td></tr>
+            <tr><th scope="row">Площадь</th><td>до 6 м², IP20, совместим с диммером</td></tr>
+          </table>
+        </div>
+        <div class="qv-act">
+          <a class="btn btn-p" href="#cart">В корзину</a>
+          <a class="btn btn-g" href="tel:+74951234567">Консультация</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- cart drawer -->
+<div class="drawer" id="cart" role="dialog" aria-modal="true" aria-labelledby="cart-h">
+  <a class="ov" href="#_" tabindex="-1" aria-hidden="true"></a>
+  <div class="panel">
+    <div class="d-head"><h2 id="cart-h">Корзина<span>2 товара</span></h2><a class="x" href="#_" aria-label="Закрыть корзину">×</a></div>
+    <div class="d-body">
+      <div class="item"><svg viewBox="0 0 200 200" aria-hidden="true"><use href="#p-aurora"/></svg><div><b>Подвес «Аурора» Ø45</b><small>Латунь · E27 · 2700 K</small><div class="pr"><span>1 шт.</span><strong>18 900 ₽</strong></div></div></div>
+      <div class="item"><svg viewBox="0 0 200 200" aria-hidden="true"><use href="#p-bruno"/></svg><div><b>Настольная лампа «Бруно»</b><small>Опаловое стекло · E14</small><div class="pr"><span>1 шт.</span><strong>8 900 ₽</strong></div></div></div>
+      <p class="ship">✓ Бесплатная доставка по Москве — завтра, 10:00–14:00</p>
+    </div>
+    <div class="d-foot">
+      <div class="sum"><span>Товары (2)</span><span>27 800 ₽</span></div>
+      <div class="sum"><span>Доставка</span><span>бесплатно</span></div>
+      <div class="sum t"><span>Итого</span><span>27 800 ₽</span></div>
+      <div class="sum"><span>или в «Сплит»</span><span>4 × 6 950 ₽</span></div>
+      <form action="#order" method="get">
+        <label class="sr" for="c-phone">Телефон</label>
+        <input id="c-phone" type="tel" name="phone" placeholder="+7 (___) ___-__-__" required pattern="[0-9 +()\-]{10,18}" autocomplete="tel" inputmode="tel">
+        <button class="btn btn-p" type="submit">Оформить заказ</button>
+        <small>Менеджер перезвонит за 10 минут и подтвердит заказ. Нажимая кнопку, вы соглашаетесь с обработкой персональных данных.</small>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="order" role="dialog" aria-modal="true" aria-labelledby="ok-h">
+  <a class="ov" href="#_" tabindex="-1" aria-hidden="true"></a>
+  <div class="box ok">
+    <div class="big" aria-hidden="true">💡</div>
+    <h2 id="ok-h">Заказ № LS-28417 принят</h2>
+    <p>Спасибо! Менеджер позвонит в течение 10 минут, чтобы подтвердить время доставки.</p>
+    <a class="btn btn-d" href="#_">Продолжить покупки</a>
+  </div>
+</div>
+</body>
+</html>
