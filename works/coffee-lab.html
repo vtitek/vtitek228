@@ -1,0 +1,882 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Coffee Lab — specialty-кофейня и обжарочная в Москве</title>
+<meta name="description" content="Coffee Lab — три specialty-кофейни в Москве со своей обжаркой. Эспрессо, альтернатива, свежие зёрна каждую неделю, десерты собственной кондитерской. Бронирование столиков и предзаказ.">
+<meta name="theme-color" content="#f7f0e6">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%232a1a10'/%3E%3Cellipse cx='32' cy='32' rx='14' ry='20' fill='%23c58a54'/%3E%3Cpath d='M32 13c-8 11 8 27 0 38' stroke='%232a1a10' stroke-width='3.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+<style>
+:root{
+  --cream:#f7f0e6;--latte:#ecdcc6;--foam:#fffaf3;--espresso:#2a1a10;--ink:#2f1d12;--muted:#69503f;
+  --brown:#6b3f22;--brown-2:#8a5230;--caramel:#c58a54;--caramel-l:#e6b27f;
+  --sage:#4f6b43;--sage-l:#dde6d3;--terra:#b4502c;
+  --line:rgba(74,42,20,.14);--line-2:rgba(74,42,20,.28);
+  --r:18px;--r-lg:28px;--shadow:0 22px 44px -22px rgba(60,30,10,.45);
+  --serif:"Palatino Linotype",Palatino,"Book Antiqua",Georgia,"Times New Roman",serif;
+  --sans:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --pl:max(20px,env(safe-area-inset-left));--pr:max(20px,env(safe-area-inset-right));
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%;scroll-padding-top:84px}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+body{margin:0;font:400 1.0625rem/1.65 var(--sans);color:var(--ink);background:var(--cream);-webkit-font-smoothing:antialiased}
+svg{display:block;max-width:100%}
+a{color:var(--brown)}
+h1,h2,h3{font-family:var(--serif);color:var(--espresso);margin:0;font-weight:700}
+p{margin:0}
+:focus-visible{outline:3px solid var(--terra);outline-offset:3px}
+.sr{position:absolute!important;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.wrap{width:100%;max-width:1200px;margin-inline:auto;padding-inline:var(--pl) var(--pr)}
+@media (min-width:768px){.wrap{padding-inline:max(40px,env(safe-area-inset-left)) max(40px,env(safe-area-inset-right))}}
+.sec{padding-block:clamp(64px,10vw,120px)}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:.8125rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--terra);margin-bottom:14px}
+.eyebrow svg{width:14px;height:18px;color:var(--terra)}
+.h2{font-size:clamp(2rem,6vw,3.25rem);line-height:1.08;letter-spacing:-.015em}
+.h2 em{font-style:italic;color:var(--brown-2)}
+.lead{color:var(--muted);font-size:1.125rem;max-width:60ch;margin-top:16px}
+.sec-head{margin-bottom:clamp(32px,5vw,56px)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:0 26px;border-radius:999px;font:600 1rem/1.2 var(--sans);text-decoration:none;background:var(--brown);color:#fff;border:0;cursor:pointer;transition:transform .2s,background .2s,box-shadow .2s;box-shadow:0 10px 24px -12px rgba(107,63,34,.8)}
+.btn svg{width:18px;height:18px}
+.btn-ghost{background:transparent;color:var(--brown);box-shadow:inset 0 0 0 2px var(--brown)}
+.btn-light{background:var(--cream);color:var(--espresso)}
+@media (hover:hover){.btn:hover{background:var(--espresso);transform:translateY(-2px)}.btn-ghost:hover{background:var(--brown);color:#fff}.btn-light:hover{background:#fff;color:var(--espresso)}}
+
+/* back pill */
+.vt-back{position:fixed;left:max(12px,env(safe-area-inset-left));bottom:max(12px,env(safe-area-inset-bottom));z-index:9999;display:inline-flex;align-items:center;min-height:40px;padding:0 16px;border-radius:999px;background:rgba(30,18,10,.72);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);color:#fff;font:600 13.5px/1 var(--sans);text-decoration:none;box-shadow:0 8px 22px -8px rgba(0,0,0,.5)}
+@media (hover:hover){.vt-back:hover{background:rgba(30,18,10,.9)}}
+
+/* header */
+.site-header{position:sticky;top:0;z-index:50;padding-top:env(safe-area-inset-top)}
+.site-header::before{content:"";position:absolute;inset:0;z-index:-1;background:rgba(247,240,230,.88);-webkit-backdrop-filter:saturate(1.4) blur(14px);backdrop-filter:saturate(1.4) blur(14px);border-bottom:1px solid var(--line)}
+.hdr{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:68px}
+.logo{display:inline-flex;align-items:center;gap:10px;min-height:44px;font:700 1.375rem/1 var(--serif);color:var(--espresso);text-decoration:none;letter-spacing:-.01em}
+.logo svg{width:36px;height:36px}
+.logo small{display:block;font:600 .6875rem/1.2 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-top:3px}
+.burger{display:grid;place-items:center;width:48px;height:48px;border-radius:14px;background:var(--espresso);color:var(--cream)}
+.burger svg{width:22px;height:22px}
+.nav{display:none}
+.nav ul{list-style:none;margin:0;padding:0}
+.nav-close,.nav-foot{display:none}
+@media (max-width:959px){
+  .nav:target{display:flex;flex-direction:column;position:fixed;inset:0;z-index:60;background:var(--espresso);color:var(--cream);padding:calc(16px + env(safe-area-inset-top)) var(--pr) calc(80px + env(safe-area-inset-bottom)) var(--pl);overflow-y:auto;animation:navIn .35s cubic-bezier(.2,.7,.2,1)}
+  .nav:target .nav-close{display:grid;place-items:center;align-self:flex-end;width:48px;height:48px;border-radius:14px;background:rgba(255,255,255,.1);color:var(--cream)}
+  .nav-close svg{width:22px;height:22px}
+  .nav ul{margin:24px 0 28px}
+  .nav li a{display:flex;align-items:center;justify-content:space-between;min-height:58px;font:600 1.75rem/1.1 var(--serif);color:var(--cream);text-decoration:none;border-bottom:1px solid rgba(255,255,255,.12)}
+  .nav li a::after{content:"→";font:400 1.25rem var(--sans);color:var(--caramel-l)}
+  .nav .btn{background:var(--caramel);color:var(--espresso);box-shadow:none}
+  .nav:target .nav-foot{display:block;margin-top:24px;color:rgba(247,240,230,.75);font-size:1rem}
+  .nav-foot a{color:var(--cream);font-weight:600;display:inline-flex;min-height:44px;align-items:center}
+}
+@keyframes navIn{from{opacity:0;transform:translateY(-12px)}to{opacity:1;transform:none}}
+@media (min-width:960px){
+  .burger{display:none}
+  .nav{display:flex;align-items:center;gap:20px}
+  .nav ul{display:flex;gap:2px}
+  .nav li a{display:inline-flex;align-items:center;min-height:44px;padding:0 13px;border-radius:999px;font-size:.9375rem;font-weight:500;color:var(--ink);text-decoration:none}
+  .nav .btn{min-height:46px;padding:0 22px;font-size:.9375rem}
+}
+@media (min-width:960px) and (hover:hover){.nav li a:hover{background:var(--latte)}}
+
+/* hero */
+.hero{position:relative;overflow:hidden;padding-block:clamp(32px,6vw,72px) clamp(56px,8vw,96px)}
+.hero::before{content:"";position:absolute;width:720px;height:720px;right:-260px;top:-260px;border-radius:50%;background:radial-gradient(circle,rgba(197,138,84,.22),transparent 65%);pointer-events:none}
+.hero-grid{position:relative;display:grid;grid-template-columns:minmax(0,1fr);gap:40px;align-items:center}
+@media (min-width:920px){.hero-grid{grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:56px}}
+.pill{display:inline-flex;align-items:center;gap:10px;padding:8px 16px 8px 12px;border-radius:999px;background:var(--foam);border:1px solid var(--line);font-size:.9375rem;color:var(--muted);line-height:1.3}
+.pill b{color:var(--espresso);font-weight:600}
+.dot{flex:none;width:10px;height:10px;border-radius:50%;background:#5d8a4c;box-shadow:0 0 0 0 rgba(93,138,76,.6);animation:pulse 2.2s infinite}
+@keyframes pulse{70%{box-shadow:0 0 0 10px rgba(93,138,76,0)}100%{box-shadow:0 0 0 0 rgba(93,138,76,0)}}
+.hero h1{font-size:clamp(2.4rem,9vw,4.5rem);line-height:1.02;letter-spacing:-.025em;margin:20px 0 20px}
+.hero h1 em{font-style:italic;color:var(--brown-2)}
+.hero .lead{margin-top:0}
+.hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.hero-cta .btn{flex:1 1 200px}
+@media (min-width:560px){.hero-cta .btn{flex:0 0 auto}}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:36px 0 0;padding-top:24px;border-top:1px solid var(--line)}
+.stats dt{font:700 clamp(1.625rem,5vw,2.25rem)/1 var(--serif);color:var(--espresso)}
+.stats dd{margin:6px 0 0;font-size:.875rem;line-height:1.35;color:var(--muted)}
+.hero-art{position:relative;width:100%;max-width:520px;aspect-ratio:1;margin-inline:auto;perspective:900px}
+.disc{position:absolute;inset:7%;border-radius:50%;background:radial-gradient(circle at 34% 28%,#e8b886,#c58a54 42%,#8a5230 100%);box-shadow:inset -20px -30px 60px rgba(60,28,10,.35),0 40px 80px -40px rgba(90,45,15,.7)}
+.disc::after{content:"";position:absolute;inset:-5%;border-radius:50%;border:1.5px dashed rgba(107,63,34,.35);animation:spin2d 60s linear infinite}
+.cup{position:absolute;inset:0;width:100%;height:100%}
+.steam path{opacity:.6;transform-box:fill-box;transform-origin:50% 100%;animation:steam 3.6s ease-in-out infinite}
+.steam path:nth-child(2){animation-delay:1.2s}.steam path:nth-child(3){animation-delay:2.4s}
+@keyframes steam{0%{opacity:0;transform:translateY(18px) scaleY(.7)}35%{opacity:.9}100%{opacity:0;transform:translateY(-28px) scaleY(1.1)}}
+.bean3d{position:absolute;top:5%;right:6%;width:58px;height:80px;transform-style:preserve-3d;animation:spin3d 9s linear infinite;transform:rotateX(18deg) rotateY(-30deg)}
+.bean3d i{position:absolute;inset:0;border-radius:50%;background:#3d1f0d}
+.bean3d i:nth-child(1){transform:translateZ(6px);background:radial-gradient(circle at 34% 28%,#b0703f,#6b3818 62%,#3d1f0d)}
+.bean3d i:nth-child(1)::after{content:"";position:absolute;left:40%;top:12%;width:22%;height:76%;border-radius:50%;border-left:4px solid #2a1308;transform:rotate(8deg)}
+.bean3d i:nth-child(2){transform:translateZ(3px) scale(.99)}
+.bean3d i:nth-child(3){transform:translateZ(0) scale(.98)}
+.bean3d i:nth-child(4){transform:translateZ(-3px) scale(.96)}
+.bean3d i:nth-child(5){transform:translateZ(-6px) rotateY(180deg);background:radial-gradient(circle at 40% 30%,#8a4f27,#4a2410 70%)}
+@keyframes spin3d{from{transform:rotateX(18deg) rotateY(0)}to{transform:rotateX(18deg) rotateY(360deg)}}
+@keyframes spin2d{to{transform:rotate(360deg)}}
+.fb{position:absolute;width:30px;height:42px;color:var(--brown-2);animation:float 6s ease-in-out infinite alternate}
+.fb.b1{left:3%;top:24%;transform:rotate(-25deg)}
+.fb.b2{right:0;top:52%;width:24px;height:34px;color:#5a3018;animation-delay:-2s}
+.fb.b3{left:18%;top:2%;width:22px;height:30px;color:var(--caramel);animation-delay:-4s}
+@keyframes float{from{transform:translate3d(0,0,0) rotate(-20deg)}to{transform:translate3d(6px,-16px,40px) rotate(25deg)}}
+.badge-rot{position:absolute;left:0;bottom:4%;width:28%;max-width:132px;aspect-ratio:1;border-radius:50%;background:var(--foam);box-shadow:var(--shadow)}
+.badge-rot svg{width:100%;height:100%}
+.badge-rot .ring{transform-origin:60px 60px;animation:spin2d 22s linear infinite}
+.art-chip{position:absolute;right:2%;bottom:10%;display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:16px;background:var(--foam);box-shadow:var(--shadow);font-size:.875rem;line-height:1.3;color:var(--muted)}
+.art-chip b{display:block;color:var(--espresso);font-size:.9375rem}
+
+/* ribbon */
+.ribbon{background:var(--espresso);color:var(--cream);overflow:hidden}
+.ribbon-track{display:flex;width:max-content;animation:marq 38s linear infinite}
+.ribbon-track p{display:flex;flex:none;gap:28px;padding:16px 14px;font:italic 1.1875rem/1.3 var(--serif);white-space:nowrap}
+.ribbon-track span{color:var(--caramel-l);font-style:normal}
+@keyframes marq{to{transform:translateX(-50%)}}
+
+/* menu */
+.tabs{display:grid;grid-template-columns:1fr 1fr;gap:6px;padding:6px;background:var(--latte);border-radius:22px;margin-bottom:28px}
+@media (min-width:600px){.tabs{display:inline-flex;border-radius:999px}}
+.tabs label{display:flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:0 20px;border-radius:999px;font-weight:600;color:var(--muted);cursor:pointer;white-space:nowrap;transition:background .2s,color .2s}
+@media (hover:hover){.tabs label:hover{color:var(--espresso);background:rgba(255,250,243,.6)}}
+#m1:checked~.tabs [for=m1],#m2:checked~.tabs [for=m2],#m3:checked~.tabs [for=m3],#m4:checked~.tabs [for=m4]{background:var(--brown);color:#fff;box-shadow:0 8px 18px -10px rgba(107,63,34,.9)}
+#m1:focus-visible~.tabs [for=m1],#m2:focus-visible~.tabs [for=m2],#m3:focus-visible~.tabs [for=m3],#m4:focus-visible~.tabs [for=m4]{outline:3px solid var(--terra);outline-offset:2px}
+.panel{display:none}
+#m1:checked~.panels #p1,#m2:checked~.panels #p2,#m3:checked~.panels #p3,#m4:checked~.panels #p4{display:grid;animation:fadeUp .45s ease}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.panel{grid-template-columns:1fr;column-gap:56px;list-style:none;margin:0;padding:0}
+@media (min-width:820px){.panel{grid-template-columns:1fr 1fr}}
+.item{padding:20px 0;border-bottom:1px dashed var(--line-2)}
+.item-top{display:flex;align-items:baseline;gap:10px}
+.item-name{font:700 1.25rem/1.25 var(--serif);color:var(--espresso)}
+.item-top i{flex:1;min-width:16px;border-bottom:2px dotted var(--line-2);transform:translateY(-4px)}
+.price{font-weight:700;font-size:1.0625rem;white-space:nowrap;color:var(--brown)}
+.item p{margin-top:6px;color:var(--muted);font-size:1rem;line-height:1.55}
+.vol{display:inline-block;margin-right:6px;padding:1px 9px;border-radius:999px;background:var(--latte);color:var(--ink);font-size:.8125rem;font-weight:600;white-space:nowrap}
+.tag{display:inline-block;margin-left:6px;padding:2px 8px;border-radius:999px;background:var(--sage-l);color:var(--sage);font:700 .6875rem/1.4 var(--sans);letter-spacing:.06em;text-transform:uppercase;vertical-align:middle}
+.tag.hot{background:#f6dccd;color:var(--terra)}
+.menu-note{display:flex;gap:14px;align-items:flex-start;margin-top:32px;padding:18px 20px;border-radius:var(--r);background:var(--foam);border:1px solid var(--line);color:var(--muted);font-size:1rem}
+.menu-note svg{flex:none;width:26px;height:26px;color:var(--sage)}
+
+/* beans flip */
+.beans{background:var(--latte)}
+.beans-grid{display:grid;gap:20px}
+@media (min-width:640px){.beans-grid{grid-template-columns:1fr 1fr}}
+@media (min-width:1120px){.beans-grid{grid-template-columns:repeat(4,1fr)}}
+.flip{position:relative;height:360px;perspective:1200px}
+@media (min-width:640px){.flip{height:420px}}
+.flip-inner{display:block;position:relative;height:100%;transform-style:preserve-3d;transition:transform .8s cubic-bezier(.2,.7,.2,1);cursor:pointer;border-radius:var(--r-lg)}
+.flip input:checked+.flip-inner{transform:rotateY(180deg)}
+@media (hover:hover){.flip:hover .flip-inner{transform:rotateY(180deg)}}
+.flip input:focus-visible+.flip-inner{outline:3px solid var(--terra);outline-offset:4px}
+.face{position:absolute;inset:0;display:flex;flex-direction:column;padding:26px;border-radius:var(--r-lg);overflow:hidden;-webkit-backface-visibility:hidden;backface-visibility:hidden;box-shadow:var(--shadow)}
+.front{color:var(--foam)}
+.front .hills{position:absolute;left:0;right:0;bottom:0;width:100%;height:58%;color:rgba(255,250,243,.12)}
+.f-eth{background:linear-gradient(160deg,#a5482a,#6e2c16)}
+.f-col{background:linear-gradient(160deg,#4f6b43,#2f4429)}
+.f-bra{background:linear-gradient(160deg,#8a5230,#55301a)}
+.f-ken{background:linear-gradient(160deg,#4a2b19,#1f130b)}
+.f-num{font:italic 700 1rem var(--serif);opacity:.8}
+.f-country{display:block;font:700 2.375rem/1.05 var(--serif);margin-top:auto;color:#fff}
+.f-region{display:block;margin-top:8px;font-size:1rem;opacity:.92}
+.f-meta{position:relative;display:flex;flex-wrap:wrap;gap:6px;margin-top:16px}
+.f-meta span{padding:4px 10px;border-radius:999px;background:rgba(255,255,255,.16);font-size:.8125rem;font-weight:600}
+.f-hint{position:relative;display:flex;align-items:center;gap:8px;margin-top:20px;font-size:.875rem;font-weight:600;opacity:.9}
+.f-hint svg{width:18px;height:18px}
+.f-bean{position:absolute;right:22px;top:22px;width:44px;height:62px;color:rgba(255,250,243,.9)}
+.back{transform:rotateY(180deg);background:var(--foam);border:1px solid var(--line)}
+.b-title{display:block;font:700 1.5rem/1.15 var(--serif);color:var(--espresso)}
+.b-sub{display:block;font-size:.9375rem;color:var(--muted);margin-top:4px}
+.notes{display:flex;flex-wrap:wrap;gap:6px;margin:16px 0 18px}
+.notes span{padding:5px 11px;border-radius:999px;background:var(--latte);font-size:.875rem;font-weight:600;color:var(--ink)}
+.m-row{display:block;margin-top:12px;font-size:.875rem;font-weight:600;color:var(--muted)}
+.meter{display:grid;grid-template-columns:repeat(5,1fr);gap:4px;margin-top:6px}
+.meter i{height:8px;border-radius:4px;background:var(--latte)}
+.meter[data-v="1"] i:nth-child(-n+1),.meter[data-v="2"] i:nth-child(-n+2),.meter[data-v="3"] i:nth-child(-n+3),.meter[data-v="4"] i:nth-child(-n+4),.meter[data-v="5"] i{background:var(--brown)}
+.b-price{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-top:auto;padding-top:16px;border-top:1px dashed var(--line-2);font-size:.9375rem;color:var(--muted)}
+.b-price b{font:700 1.375rem var(--serif);color:var(--brown)}
+
+/* process */
+.process{background:var(--espresso);color:rgba(247,240,230,.86);position:relative;overflow:hidden}
+.process .h2{color:var(--cream)}.process .h2 em{color:var(--caramel-l)}
+.process .eyebrow{color:var(--caramel-l)}.process .eyebrow svg{color:var(--caramel-l)}
+.process .lead{color:rgba(247,240,230,.75)}
+.proc-grid{display:grid;gap:48px;align-items:center}
+@media (min-width:960px){.proc-grid{grid-template-columns:.9fr 1.1fr;gap:72px}}
+.roaster{width:100%;max-width:420px;margin:36px auto 0}
+.drum{transform-origin:200px 196px;animation:spin2d 6s linear infinite}
+.drum2{transform-origin:150px 170px;animation:spin2d 6s linear infinite}
+.flame{transform-box:fill-box;transform-origin:50% 100%;animation:flick .5s ease-in-out infinite alternate}
+@keyframes flick{to{transform:scaleY(.75)}}
+.steps{list-style:none;margin:0;padding:0;counter-reset:s;display:grid;gap:14px}
+.steps li{counter-increment:s;position:relative;padding:22px 22px 22px 84px;border-radius:var(--r);background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09)}
+.steps li::before{content:"0" counter(s);position:absolute;left:22px;top:18px;font:italic 700 2.25rem/1 var(--serif);color:var(--caramel-l)}
+.steps h3{color:var(--cream);font-size:1.3125rem;margin-bottom:6px}
+.steps p{font-size:1rem}
+.steps b{color:var(--cream)}
+
+/* team */
+.team-grid{display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.person{padding:26px;border-radius:var(--r-lg);background:var(--foam);border:1px solid var(--line);transition:transform .3s,box-shadow .3s}
+@media (hover:hover){.person:hover{transform:translateY(-6px);box-shadow:var(--shadow)}}
+.person svg{width:104px;height:104px;margin-bottom:18px}
+.person h3{font-size:1.375rem}
+.role{color:var(--terra);font-weight:700;font-size:.9375rem;margin-top:2px}
+.person p:last-child{color:var(--muted);font-size:1rem;margin-top:10px}
+
+/* gallery */
+.gal-sec{padding-bottom:clamp(40px,6vw,72px)}
+.gallery{display:grid;grid-auto-flow:column;grid-auto-columns:min(78%,330px);gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding:6px var(--pr) 22px var(--pl);scroll-padding-inline:var(--pl);margin:0;list-style:none;scrollbar-width:thin;scrollbar-color:var(--caramel) transparent}
+@media (min-width:768px){.gallery{padding-inline:max(40px,calc((100% - 1120px)/2));scroll-padding-inline:max(40px,calc((100% - 1120px)/2))}}
+.gallery li{scroll-snap-align:start}
+.gallery figure{margin:0}
+.gallery svg{width:100%;height:auto;aspect-ratio:5/6;border-radius:var(--r-lg);box-shadow:var(--shadow)}
+.gallery figcaption{margin-top:12px;font:700 1.125rem var(--serif);color:var(--espresso)}
+.gallery figcaption span{display:block;font:400 .9375rem var(--sans);color:var(--muted)}
+.swipe{display:flex;align-items:center;gap:8px;margin-top:20px;font-size:.9375rem;color:var(--muted)}
+.swipe svg{width:22px;height:22px;animation:nudge 1.6s ease-in-out infinite}
+@keyframes nudge{50%{transform:translateX(6px)}}
+.twinkle{animation:tw 2.4s ease-in-out infinite alternate}
+.twinkle:nth-child(2n){animation-delay:-1.2s}
+@keyframes tw{from{opacity:.35}to{opacity:1}}
+
+/* loyalty */
+.loyal{background:linear-gradient(180deg,var(--cream),var(--sage-l))}
+.loyal-grid{display:grid;gap:48px;align-items:center}
+@media (min-width:920px){.loyal-grid{grid-template-columns:1fr 1fr;gap:72px}}
+.card-stage{perspective:1100px;padding:10px}
+.l-card{position:relative;max-width:480px;margin-inline:auto;padding:26px;border-radius:26px;color:var(--cream);background:radial-gradient(120% 90% at 100% 0,#9a5c33 0,transparent 55%),linear-gradient(140deg,#5a331b,#24150c);box-shadow:0 40px 70px -30px rgba(42,26,16,.8);transform:rotateX(10deg) rotateY(-14deg);animation:tilt 7s ease-in-out infinite alternate;overflow:hidden}
+.l-card::after{content:"";position:absolute;inset:-40%;background:linear-gradient(115deg,transparent 40%,rgba(255,255,255,.14) 50%,transparent 60%);animation:shine 7s ease-in-out infinite alternate;pointer-events:none}
+@keyframes tilt{from{transform:rotateX(10deg) rotateY(-14deg)}to{transform:rotateX(4deg) rotateY(12deg)}}
+@keyframes shine{from{transform:translateX(-30%)}to{transform:translateX(30%)}}
+.l-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.l-brand{font:700 1.375rem/1.1 var(--serif);color:#fff}
+.l-brand small{display:block;font:600 .6875rem/1.4 var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--caramel-l);margin-top:4px}
+.l-no{font:600 .8125rem ui-monospace,Menlo,Consolas,monospace;color:rgba(247,240,230,.75)}
+.stamps{display:grid;grid-template-columns:repeat(7,1fr);gap:7px;margin:30px 0 22px}
+.stamp{display:grid;place-items:center;aspect-ratio:1;border-radius:50%;border:2px dashed rgba(247,240,230,.4)}
+.stamp svg{width:58%;height:58%}
+.stamp.on{border:0;background:var(--caramel);color:var(--espresso);transform:rotate(-8deg)}
+.stamp.on:nth-child(2n){transform:rotate(10deg)}
+.stamp.gift{border:2px solid var(--caramel-l);font-size:clamp(.875rem,3.5vw,1.25rem);animation:pop 1.8s ease-in-out infinite}
+@keyframes pop{50%{transform:scale(1.12)}}
+.l-foot{display:flex;justify-content:space-between;gap:12px;font-size:.875rem;color:rgba(247,240,230,.8)}
+.l-foot b{color:#fff}
+.l-list{list-style:none;padding:0;margin:28px 0 0;display:grid;gap:14px}
+.l-list li{display:flex;gap:14px;align-items:flex-start}
+.l-list span{flex:none;display:grid;place-items:center;width:40px;height:40px;border-radius:12px;background:var(--foam);border:1px solid var(--line);font:700 1.0625rem var(--serif);color:var(--brown)}
+.l-list p{padding-top:6px}
+
+/* reviews */
+.rating{display:flex;flex-wrap:wrap;align-items:center;gap:8px 16px;margin-top:20px;color:var(--muted)}
+.rating b{font:700 2.5rem/1 var(--serif);color:var(--espresso)}
+.stars{color:#c27a2c;letter-spacing:2px;font-size:1.125rem}
+.rev-grid{display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(270px,1fr))}
+.rev{margin:0;display:flex;flex-direction:column;padding:26px;border-radius:var(--r-lg);background:var(--foam);border:1px solid var(--line)}
+.rev blockquote{margin:12px 0 22px;font:400 1.125rem/1.6 var(--serif);color:var(--ink)}
+.rev figcaption{display:flex;align-items:center;gap:12px;margin-top:auto;font-size:.9375rem;color:var(--muted);line-height:1.35}
+.rev figcaption b{display:block;color:var(--espresso)}
+.ava{flex:none;display:grid;place-items:center;width:44px;height:44px;border-radius:50%;font:700 1.125rem var(--serif);color:#fff;background:var(--brown-2)}
+.ava.a2{background:var(--sage)}.ava.a3{background:var(--terra)}
+
+/* places */
+.places{background:var(--latte)}
+.pl-grid{display:grid;gap:28px}
+@media (min-width:980px){.pl-grid{grid-template-columns:1.1fr .9fr;align-items:start}.map{position:sticky;top:96px}}
+.map svg{width:100%;height:auto;border-radius:var(--r-lg);box-shadow:var(--shadow);background:#efe4d3}
+.pin{transform-box:fill-box;transform-origin:50% 100%;animation:bob 2.4s ease-in-out infinite}
+.pin:nth-of-type(2){animation-delay:-.8s}.pin:nth-of-type(3){animation-delay:-1.6s}
+@keyframes bob{50%{transform:translateY(-6px)}}
+.pl-list{display:grid;gap:16px}
+.place{padding:24px;border-radius:var(--r-lg);background:var(--foam);border:1px solid var(--line)}
+.place-h{display:flex;align-items:center;gap:12px}
+.num{flex:none;display:grid;place-items:center;width:36px;height:36px;border-radius:50%;background:var(--terra);color:#fff;font:700 1rem var(--serif)}
+.place h3{font-size:1.375rem}
+.addr{margin-top:10px}
+.metro{color:var(--muted);font-size:1rem}
+.hours{display:grid;grid-template-columns:auto 1fr;gap:4px 16px;margin:14px 0 0;font-size:1rem}
+.hours dt{color:var(--muted)}.hours dd{margin:0;font-weight:600}
+.feats{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+.feats span{padding:4px 11px;border-radius:999px;background:var(--sage-l);color:var(--sage);font-size:.8125rem;font-weight:700}
+.place-tel{display:inline-flex;align-items:center;gap:8px;min-height:44px;margin-top:8px;font-weight:700;text-decoration:none}
+.place-tel svg{width:18px;height:18px}
+
+/* booking */
+.book-grid{display:grid;gap:40px}
+@media (min-width:960px){.book-grid{grid-template-columns:.85fr 1.15fr;gap:64px;align-items:start}}
+.perks{list-style:none;padding:0;margin:28px 0 0;display:grid;gap:16px}
+.perks li{display:flex;gap:14px;align-items:flex-start}
+.perks svg{flex:none;width:44px;height:44px;padding:10px;border-radius:14px;background:var(--latte);color:var(--brown)}
+.perks b{display:block;color:var(--espresso)}
+.perks p{color:var(--muted);font-size:1rem}
+.form{padding:clamp(22px,4vw,40px);border-radius:var(--r-lg);background:var(--foam);border:1px solid var(--line);box-shadow:var(--shadow)}
+.fgrid{display:grid;gap:16px}
+@media (min-width:600px){.fgrid{grid-template-columns:1fr 1fr}.full{grid-column:1/-1}}
+.field label,.fs legend{display:block;margin-bottom:6px;font-size:.9375rem;font-weight:600;color:var(--espresso)}
+.field input,.field select,.field textarea{width:100%;min-height:52px;padding:12px 16px;border-radius:14px;border:1.5px solid var(--line-2);background:#fff;color:var(--ink);font:400 1rem/1.4 var(--sans);-webkit-appearance:none;appearance:none}
+.field select{background-image:linear-gradient(45deg,transparent 50%,var(--brown) 50%),linear-gradient(135deg,var(--brown) 50%,transparent 50%);background-position:calc(100% - 22px) 50%,calc(100% - 16px) 50%;background-size:6px 6px;background-repeat:no-repeat;padding-right:40px}
+.field textarea{min-height:96px;resize:vertical}
+.field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--brown);box-shadow:0 0 0 4px rgba(197,138,84,.3)}
+.field input[type=tel]:not(:placeholder-shown):invalid,.field input[type=text]:not(:placeholder-shown):invalid{border-color:var(--terra)}
+.fs{border:0;padding:0;margin:0;min-width:0}
+.seg{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.seg label{display:flex;align-items:center;justify-content:center;text-align:center;min-height:52px;padding:6px 12px;border-radius:14px;border:1.5px solid var(--line-2);background:#fff;font-weight:600;font-size:.9375rem;line-height:1.25;cursor:pointer}
+.seg input:checked+label{background:var(--brown);border-color:var(--brown);color:#fff}
+.seg input:focus-visible+label{outline:3px solid var(--terra);outline-offset:2px}
+.form .btn{width:100%;margin-top:22px;min-height:56px;font-size:1.0625rem}
+.consent{margin-top:12px;font-size:.8125rem;line-height:1.5;color:var(--muted);text-align:center}
+.thanks{display:none;position:fixed;inset:0;z-index:200;place-items:center;padding:24px var(--pr) 24px var(--pl);background:rgba(42,26,16,.62);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.thanks:target{display:grid;animation:fadeUp .35s ease}
+.thanks-box{width:100%;max-width:440px;padding:36px 28px 28px;border-radius:var(--r-lg);background:var(--foam);text-align:center;box-shadow:0 40px 80px -30px rgba(0,0,0,.6)}
+.thanks-box svg{width:96px;height:96px;margin:0 auto 12px}
+.thanks-box h2{font-size:1.875rem}
+.thanks-box p{margin:10px 0 22px;color:var(--muted)}
+
+/* footer */
+.foot{background:var(--espresso);color:rgba(247,240,230,.78);padding:64px 0 calc(96px + env(safe-area-inset-bottom));font-size:1rem}
+.foot-grid{display:grid;gap:36px}
+@media (min-width:760px){.foot-grid{grid-template-columns:1.4fr 1fr 1fr 1fr}}
+.foot .logo{color:var(--cream)}.foot .logo small{color:rgba(247,240,230,.6)}
+.foot h3{font:700 .8125rem var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--caramel-l);margin-bottom:12px}
+.foot ul{list-style:none;padding:0;margin:0}
+.foot li a{display:inline-flex;align-items:center;min-height:44px;color:var(--cream);text-decoration:none}
+@media (hover:hover){.foot li a:hover{color:var(--caramel-l)}}
+.foot-about{margin-top:16px;max-width:34ch}
+.soc{display:flex;gap:10px;margin-top:18px}
+.soc a{display:grid;place-items:center;width:48px;height:48px;border-radius:14px;background:rgba(255,255,255,.08);color:var(--cream);transition:background .2s}
+.soc svg{width:22px;height:22px}
+@media (hover:hover){.soc a:hover{background:var(--brown)}}
+.foot-bottom{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 24px;margin-top:48px;padding-top:24px;border-top:1px solid rgba(255,255,255,.1);font-size:.875rem;color:rgba(247,240,230,.6)}
+
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body id="top">
+<a class="vt-back" href="../index.html#works">← Портфолио vtitek</a>
+
+<svg width="0" height="0" class="sr" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="bean" viewBox="0 0 40 56"><ellipse cx="20" cy="28" rx="18" ry="26" fill="currentColor"/><path d="M20 5C10 18 30 38 20 51" stroke="#2a1308" stroke-width="3.5" fill="none" stroke-linecap="round" opacity=".55"/></symbol>
+    <symbol id="cupi" viewBox="0 0 24 24"><path d="M4 9h13v4a6 6 0 0 1-6 6h-1a6 6 0 0 1-6-6zM17 10h1.5a2.5 2.5 0 0 1 0 5H16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M8 3.5c-1 1.2 1 2 0 3.3M12 3.5c-1 1.2 1 2 0 3.3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></symbol>
+    <symbol id="hills" viewBox="0 0 300 160" preserveAspectRatio="none"><path d="M0 90C40 60 70 40 110 62s70-40 110-30 60 30 80 20V160H0z" fill="currentColor"/><path d="M0 125c50-30 90-10 140-24s90-28 160-6V160H0z" fill="currentColor"/></symbol>
+    <symbol id="flipi" viewBox="0 0 24 24"><path d="M3 12a9 9 0 0 1 15.5-6.2L21 8M21 3v5h-5M21 12a9 9 0 0 1-15.5 6.2L3 16M3 21v-5h5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  </defs>
+</svg>
+
+<header class="site-header">
+  <div class="wrap hdr">
+    <a class="logo" href="#top" aria-label="Coffee Lab — на главную">
+      <svg viewBox="0 0 36 36" aria-hidden="true"><rect width="36" height="36" rx="11" fill="#2a1a10"/><ellipse cx="18" cy="18" rx="8.5" ry="12" fill="#c58a54"/><path d="M18 6.5c-5 6.5 5 16.5 0 23" stroke="#2a1a10" stroke-width="2.4" fill="none" stroke-linecap="round"/></svg>
+      <span>Coffee Lab<small>обжарочная · Москва</small></span>
+    </a>
+    <a class="burger" href="#nav" aria-label="Открыть меню навигации">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7h18M3 12h18M9 17h12" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+    </a>
+    <nav id="nav" class="nav" aria-label="Основная навигация">
+      <a class="nav-close" href="#_" aria-label="Закрыть меню"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></a>
+      <ul>
+        <li><a href="#menu">Меню</a></li>
+        <li><a href="#beans">Зёрна</a></li>
+        <li><a href="#roast">Обжарка</a></li>
+        <li><a href="#team">Команда</a></li>
+        <li><a href="#loyalty">Карта гостя</a></li>
+        <li><a href="#places">Адреса</a></li>
+      </ul>
+      <a class="btn" href="#booking">Забронировать стол</a>
+      <p class="nav-foot">Ежедневно с 7:30 до 22:00<br><a href="tel:+74951234567">+7 (495) 123-45-67</a></p>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="wrap hero-grid">
+      <div>
+        <p class="pill"><span class="dot" aria-hidden="true"></span><span>Обжарка недели: <b>Кения Ньери AA</b></span></p>
+        <h1 id="hero-title">Кофе, который мы <em>обжариваем сами</em></h1>
+        <p class="lead">Specialty-кофейня и обжарочная на Покровке, Патриарших и у «Динамо». Свежие зёрна каждую неделю, бариста-чемпионы и десерты из собственной кондитерской.</p>
+        <div class="hero-cta">
+          <a class="btn" href="#menu">Смотреть меню <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          <a class="btn btn-ghost" href="#booking">Забронировать стол</a>
+        </div>
+        <dl class="stats">
+          <div><dt>2017</dt><dd>варим и обжариваем</dd></div>
+          <div><dt>12</dt><dd>лотов в обжарке за сезон</dd></div>
+          <div><dt>4,9★</dt><dd>1 284 оценки на картах</dd></div>
+        </dl>
+      </div>
+
+      <div class="hero-art">
+        <div class="disc" aria-hidden="true"></div>
+        <svg class="cup" viewBox="0 0 400 400" role="img" aria-label="Чашка капучино с латте-артом и поднимающимся паром">
+          <defs>
+            <linearGradient id="cupB" x1="0" x2="1"><stop offset="0" stop-color="#fffaf3"/><stop offset=".65" stop-color="#f3e7d6"/><stop offset="1" stop-color="#d9c2a4"/></linearGradient>
+            <radialGradient id="crema" cx=".45" cy=".4" r=".7"><stop offset="0" stop-color="#bd7a43"/><stop offset=".7" stop-color="#8a4f27"/><stop offset="1" stop-color="#5e3216"/></radialGradient>
+          </defs>
+          <g class="steam" fill="none" stroke="#fffaf3" stroke-width="9" stroke-linecap="round">
+            <path d="M168 146c-18-24 16-40 0-64s14-40 2-58"/>
+            <path d="M202 136c-18-24 16-40 0-64s14-40 2-58"/>
+            <path d="M236 146c-18-24 16-40 0-64s14-40 2-58"/>
+          </g>
+          <ellipse cx="200" cy="336" rx="158" ry="34" fill="#3a2214" opacity=".28"/>
+          <ellipse cx="200" cy="322" rx="152" ry="34" fill="url(#cupB)"/>
+          <ellipse cx="200" cy="316" rx="98" ry="18" fill="#e3cfb4"/>
+          <path d="M302 202c48-8 60 58 6 76" fill="none" stroke="#ecdcc6" stroke-width="18" stroke-linecap="round"/>
+          <path d="M86 176h228c0 96-44 144-114 144S86 272 86 176z" fill="url(#cupB)"/>
+          <ellipse cx="200" cy="176" rx="114" ry="26" fill="#f7eee2"/>
+          <ellipse cx="200" cy="178" rx="101" ry="20" fill="url(#crema)"/>
+          <path d="M200 193c-28-9-40-20-32-30 7-8 21-5 32 5 11-10 25-13 32-5 8 10-4 21-32 30z" fill="#fbf1e2"/>
+          <path d="M200 192v-22" stroke="#d9b48c" stroke-width="2"/>
+          <text x="200" y="258" text-anchor="middle" font-family="Georgia,serif" font-size="21" font-style="italic" fill="#8a5230">Coffee Lab</text>
+        </svg>
+        <div class="bean3d" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+        <svg class="fb b1" aria-hidden="true"><use href="#bean"/></svg>
+        <svg class="fb b2" aria-hidden="true"><use href="#bean"/></svg>
+        <svg class="fb b3" aria-hidden="true"><use href="#bean"/></svg>
+        <div class="badge-rot" aria-hidden="true">
+          <svg viewBox="0 0 120 120">
+            <path id="circ" d="M60 60m-44 0a44 44 0 1 1 88 0a44 44 0 1 1-88 0" fill="none"/>
+            <g class="ring"><text font-family="system-ui,sans-serif" font-size="10.5" font-weight="700" letter-spacing="2" fill="#6b3f22"><textPath href="#circ" textLength="272">СВЕЖАЯ ОБЖАРКА • С 2017 • </textPath></text></g>
+            <svg x="46" y="40" width="28" height="40" color="#6b3f22"><use href="#bean"/></svg>
+          </svg>
+        </div>
+        <p class="art-chip"><span class="dot" aria-hidden="true"></span><span><b>Открыто до 22:00</b>3 кофейни в центре</span></p>
+      </div>
+    </div>
+  </section>
+
+  <div class="ribbon" aria-hidden="true">
+    <div class="ribbon-track">
+      <p>Свежая обжарка по вторникам <span>✦</span> Лоты от 84 баллов SCA <span>✦</span> Овсяное и миндальное молоко без доплаты <span>✦</span> Зёрна навынос 250 г и 1 кг <span>✦</span></p>
+      <p>Свежая обжарка по вторникам <span>✦</span> Лоты от 84 баллов SCA <span>✦</span> Овсяное и миндальное молоко без доплаты <span>✦</span> Зёрна навынос 250 г и 1 кг <span>✦</span></p>
+    </div>
+  </div>
+
+  <section class="sec" id="menu" aria-labelledby="menu-title">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow"><svg aria-hidden="true"><use href="#bean"/></svg>Меню</p>
+        <h2 class="h2" id="menu-title">Что сегодня <em>в чашке</em></h2>
+        <p class="lead">Эспрессо-смесь «Лаборатория» — Бразилия и Колумбия. На альтернативу берём моносорта недели: спросите бариста, что сейчас в воронке.</p>
+      </div>
+      <div class="menu-box">
+        <input class="sr" type="radio" name="menu" id="m1" checked>
+        <input class="sr" type="radio" name="menu" id="m2">
+        <input class="sr" type="radio" name="menu" id="m3">
+        <input class="sr" type="radio" name="menu" id="m4">
+        <div class="tabs">
+          <label for="m1">☕ Кофе</label>
+          <label for="m2">⚗️ Альтернатива</label>
+          <label for="m3">🍵 Чай</label>
+          <label for="m4">🥐 Десерты</label>
+        </div>
+        <div class="panels">
+          <ul class="panel" id="p1" aria-label="Кофе">
+            <li class="item"><div class="item-top"><span class="item-name">Эспрессо</span><i></i><span class="price">160 ₽</span></div><p><span class="vol">30 мл</span>Плотный, с нотами молочного шоколада и лесного ореха.</p></li>
+            <li class="item"><div class="item-top"><span class="item-name">Капучино <span class="tag hot">хит</span></span><i></i><span class="price">260 / 310 ₽</span></div><p><span class="vol">250 / 350 мл</span>Классика на эспрессо-смеси, бархатная молочная пена 62 °C.</p></li>
+            <li class="item"><div class="item-top"><span class="item-name">Флэт уайт</span><i></i><span class="price">290 ₽</span></div><p><span class="vol">200 мл</span>Двойной ристретто и тонкий слой молока — кофе звучит ярче.</p></li>
+            <li class="item"><div class="item-top"><span class="item-name">Кортадо</span><i></i><span class="price">230 ₽</span></div><p><span class="vol">150 мл</span>Эспрессо пополам с молоком, для тех, кто любит покороче.</p></li>
+            <li class="item"><div class="item-top"><span class="item-name">Раф «Лаванда и мёд»</span><i></i><span class="price">360 ₽</span></div><p><span class="vol">300 мл</span>Сливки, гречишный мёд и лаванда, которую сушим сами.</p></li>
+            <li class="item"><div class="item-top"><span class="item-name">Латте «Солёная карамель»</span><i></i><span class="price">340 ₽</span></div><p><span class="vol">350 мл</span>Домашняя карамель на сливочном масле, щепотка флёр-де-сель.</p></li>
+          </ul>
+          <ul class="panel" id="p2" aria-label="Альтернатива">
+            <li class="item"><div class="item-top"><span class="item-name">Воронка V60</span><i></i><span class="price">350 ₽</span></div><p><span class="vol">300 мл</span>Моносорт недели. Сейчас — Кения Ньери: смородина и грейпфрут.</p></li>
+            <li class="item"><div class="item-top"><span class="item-name">Кемекс на двоих</span><i></i><span class="price">520 ₽</span></div><p><span class="vol">500 мл</span>Чистая чашка, подаём в графине с двумя пиалами.</p></li>
+            <li class="item"><div class="item-top"><span class="item-name">Аэропресс</span><i></i><span class="price">330 ₽</span></div><p><span class="vol">250 мл</span>Насыщенный и сладкий — по рецепту Ани, финалистки чемпионата.</p></li>
+            <li class="item"><div class="item-top"><span class="item-name">Колд брю <span class="tag">новинка</span></span><i></i><span class="price">320 ₽</span></div><p><span class="vol">300 мл</span>Настаиваем 18 часов при +4 °C. Подаём со льдом и апельсином.</p></li>
+            <li class="item"><div class="item-top"><span class="item-name">Эспрессо-тоник</span><i></i><span class="price">340 ₽</span></div><p><span class="vol">300 мл</span>Тоник, лёд, розмарин и двойной эспрессо Эфиопии.</p></li>
+            <li class="item"><div class="item-top"><span class="item-name">Батч-брю</span><i></i><span class="price">210 ₽</span></div><p><span class="vol">250 мл</span>Фильтр-кофе из кофемашины — быстро, если торопитесь.</p></li>
+          </ul>
+          <ul class="panel" id="p3" aria-label="Чай">
+            <li class="item"><div class="item-top"><span class="item-name">Сенча Ямакай</span><i></i><span class="price">290 ₽</span></div><p><span class="vol">400 мл</span>Японский зелёный, травянистый, со сладким послевкусием.</p></li>
+            <li class="item"><div class="item-top"><span class="item-name">Да Хун Пао</span><i></i><span class="price">340 ₽</span></div><p><span class="vol">400 мл</span>Утёсный улун: печёный хлеб, сухофрукты, лёгкий дымок.</p></li>
+            <li class="item"><div class="item-top"><span class="item-name">Масала-чай</span><i></i><span class="price">320 ₽</span></div><p><span class="vol">300 мл</span>Ассам на молоке с кардамоном, имбирём и чёрным перцем.</p></li>
+            <li class="item"><div class="item-top"><span class="item-name">Иван-чай с облепихой</span><i></i><span class="price">280 ₽</span></div><p><span class="vol">400 мл</span>Ферментированный кипрей из Карелии и свежая облепиха.</p></li>
+            <li class="item"><div class="item-top"><span class="item-name">Матча латте <span class="tag">веган</span></span><i></i><span class="price">360 ₽</span></div><p><span class="vol">300 мл</span>Церемониальная матча из Удзи на овсяном молоке.</p></li>
+            <li class="item"><div class="item-top"><span class="item-name">Чай с чабрецом</span><i></i><span class="price">250 ₽</span></div><p><span class="vol">400 мл</span>Цейлон, чабрец и мята — согревает лучше пледа.</p></li>
+          </ul>
+          <ul class="panel" id="p4" aria-label="Десерты">
+            <li class="item"><div class="item-top"><span class="item-name">Баскский чизкейк <span class="tag hot">хит</span></span><i></i><span class="price">340 ₽</span></div><p><span class="vol">140 г</span>Карамельная корочка, кремовая середина. Печём каждое утро.</p></li>
+            <li class="item"><div class="item-top"><span class="item-name">Канеле</span><i></i><span class="price">190 ₽</span></div><p><span class="vol">60 г</span>Бордоский пирожок с ромом и ванилью, хрустящий снаружи.</p></li>
+            <li class="item"><div class="item-top"><span class="item-name">Морковный торт</span><i></i><span class="price">360 ₽</span></div><p><span class="vol">160 г</span>С грецким орехом и крем-чизом на маскарпоне.</p></li>
+            <li class="item"><div class="item-top"><span class="item-name">Миндальный круассан</span><i></i><span class="price">260 ₽</span></div><p><span class="vol">110 г</span>Двойная выпечка, франжипан и лепестки миндаля.</p></li>
+            <li class="item"><div class="item-top"><span class="item-name">Шу «Солёная карамель»</span><i></i><span class="price">220 ₽</span></div><p><span class="vol">70 г</span>Заварное тесто с кракелином и карамельным кремом.</p></li>
+            <li class="item"><div class="item-top"><span class="item-name">Печенье с тёмным шоколадом</span><i></i><span class="price">150 ₽</span></div><p><span class="vol">80 г</span>Бельгийский шоколад 70 % и морская соль.</p></li>
+          </ul>
+        </div>
+        <p class="menu-note"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 19c0-8 5-14 14-14 0 9-6 14-14 14zm0 0l7-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Овсяное, миндальное и кокосовое молоко — без доплаты. Двойной шот +70 ₽, сироп +40 ₽. Со своей кружкой — скидка 20 ₽.</span></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec beans" id="beans" aria-labelledby="beans-title">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow"><svg aria-hidden="true"><use href="#bean"/></svg>Наши зёрна</p>
+        <h2 class="h2" id="beans-title">Четыре страны — <em>четыре характера</em></h2>
+        <p class="lead">Покупаем зелёное зерно напрямую у импортёров и знаем каждую ферму по имени. Нажмите на карточку, чтобы перевернуть её и узнать вкус.</p>
+      </div>
+      <div class="beans-grid">
+        <div class="flip">
+          <input class="sr" type="checkbox" id="bn1">
+          <label class="flip-inner" for="bn1">
+            <span class="face front f-eth">
+              <svg class="hills" aria-hidden="true"><use href="#hills"/></svg>
+              <span class="f-num">01 / мытая</span>
+              <svg class="f-bean" aria-hidden="true"><use href="#bean"/></svg>
+              <span class="f-country" role="heading" aria-level="3">Эфиопия</span>
+              <span class="f-region">Иргачеффе, станция Кочере</span>
+              <span class="f-meta"><span>1 950–2 100 м</span><span>Heirloom</span></span>
+              <span class="f-hint"><svg aria-hidden="true"><use href="#flipi"/></svg>Нажмите, чтобы узнать вкус</span>
+            </span>
+            <span class="face back">
+              <span class="b-title">Эфиопия Кочере</span>
+              <span class="b-sub">Для воронки и эспрессо-тоника</span>
+              <span class="notes"><span>жасмин</span><span>бергамот</span><span>белый персик</span></span>
+              <span class="m-row">Степень обжарки — светлая</span><span class="meter" data-v="1" aria-label="Обжарка 1 из 5"><i></i><i></i><i></i><i></i><i></i></span>
+              <span class="m-row">Кислотность — яркая</span><span class="meter" data-v="4" aria-label="Кислотность 4 из 5"><i></i><i></i><i></i><i></i><i></i></span>
+              <span class="b-price">250 г / 1 кг <b>990 ₽</b></span>
+            </span>
+          </label>
+        </div>
+        <div class="flip">
+          <input class="sr" type="checkbox" id="bn2">
+          <label class="flip-inner" for="bn2">
+            <span class="face front f-col">
+              <svg class="hills" aria-hidden="true"><use href="#hills"/></svg>
+              <span class="f-num">02 / мытая</span>
+              <svg class="f-bean" aria-hidden="true"><use href="#bean"/></svg>
+              <span class="f-country" role="heading" aria-level="3">Колумбия</span>
+              <span class="f-region">Уила, ферма Эль Параисо</span>
+              <span class="f-meta"><span>1 700 м</span><span>Кастильо</span></span>
+              <span class="f-hint"><svg aria-hidden="true"><use href="#flipi"/></svg>Нажмите, чтобы узнать вкус</span>
+            </span>
+            <span class="face back">
+              <span class="b-title">Колумбия Уила</span>
+              <span class="b-sub">Основа эспрессо-смеси «Лаборатория»</span>
+              <span class="notes"><span>красное яблоко</span><span>карамель</span><span>какао</span></span>
+              <span class="m-row">Степень обжарки — средняя</span><span class="meter" data-v="3" aria-label="Обжарка 3 из 5"><i></i><i></i><i></i><i></i><i></i></span>
+              <span class="m-row">Кислотность — сбалансированная</span><span class="meter" data-v="3" aria-label="Кислотность 3 из 5"><i></i><i></i><i></i><i></i><i></i></span>
+              <span class="b-price">250 г / 1 кг <b>890 ₽</b></span>
+            </span>
+          </label>
+        </div>
+        <div class="flip">
+          <input class="sr" type="checkbox" id="bn3">
+          <label class="flip-inner" for="bn3">
+            <span class="face front f-bra">
+              <svg class="hills" aria-hidden="true"><use href="#hills"/></svg>
+              <span class="f-num">03 / натуральная</span>
+              <svg class="f-bean" aria-hidden="true"><use href="#bean"/></svg>
+              <span class="f-country" role="heading" aria-level="3">Бразилия</span>
+              <span class="f-region">Серрадо Минейро, Фазенда Санта-Луция</span>
+              <span class="f-meta"><span>1 150 м</span><span>Жёлтый катуай</span></span>
+              <span class="f-hint"><svg aria-hidden="true"><use href="#flipi"/></svg>Нажмите, чтобы узнать вкус</span>
+            </span>
+            <span class="face back">
+              <span class="b-title">Бразилия Серрадо</span>
+              <span class="b-sub">Для капучино и турки</span>
+              <span class="notes"><span>фундук</span><span>молочный шоколад</span><span>патока</span></span>
+              <span class="m-row">Степень обжарки — средне-тёмная</span><span class="meter" data-v="4" aria-label="Обжарка 4 из 5"><i></i><i></i><i></i><i></i><i></i></span>
+              <span class="m-row">Кислотность — мягкая</span><span class="meter" data-v="2" aria-label="Кислотность 2 из 5"><i></i><i></i><i></i><i></i><i></i></span>
+              <span class="b-price">250 г / 1 кг <b>790 ₽</b></span>
+            </span>
+          </label>
+        </div>
+        <div class="flip">
+          <input class="sr" type="checkbox" id="bn4">
+          <label class="flip-inner" for="bn4">
+            <span class="face front f-ken">
+              <svg class="hills" aria-hidden="true"><use href="#hills"/></svg>
+              <span class="f-num">04 / мытая</span>
+              <svg class="f-bean" aria-hidden="true"><use href="#bean"/></svg>
+              <span class="f-country" role="heading" aria-level="3">Кения</span>
+              <span class="f-region">Ньери, кооператив Гатина, AA</span>
+              <span class="f-meta"><span>1 800 м</span><span>SL28 · SL34</span></span>
+              <span class="f-hint"><svg aria-hidden="true"><use href="#flipi"/></svg>Нажмите, чтобы узнать вкус</span>
+            </span>
+            <span class="face back">
+              <span class="b-title">Кения Ньери AA</span>
+              <span class="b-sub">Лот недели, ограниченно — 60 кг</span>
+              <span class="notes"><span>чёрная смородина</span><span>грейпфрут</span><span>тростниковый сахар</span></span>
+              <span class="m-row">Степень обжарки — светлая</span><span class="meter" data-v="2" aria-label="Обжарка 2 из 5"><i></i><i></i><i></i><i></i><i></i></span>
+              <span class="m-row">Кислотность — сочная</span><span class="meter" data-v="5" aria-label="Кислотность 5 из 5"><i></i><i></i><i></i><i></i><i></i></span>
+              <span class="b-price">250 г / 1 кг <b>1 190 ₽</b></span>
+            </span>
+          </label>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec process" id="roast" aria-labelledby="roast-title">
+    <div class="wrap proc-grid">
+      <div>
+        <p class="eyebrow"><svg aria-hidden="true"><use href="#bean"/></svg>Как мы обжариваем</p>
+        <h2 class="h2" id="roast-title">От зелёного зерна <em>до вашей чашки</em> — 9 дней</h2>
+        <p class="lead">Цех на Ленинградском проспекте видно прямо из зала. По вторникам и пятницам в 11:00 можно прийти и посмотреть, как трещит зерно.</p>
+        <svg class="roaster" viewBox="0 0 400 330" role="img" aria-label="Ростер с вращающимся барабаном">
+          <path d="M150 20h100l-18 60h-64z" fill="#8a5230"/>
+          <rect x="180" y="80" width="40" height="22" fill="#6b3f22"/>
+          <rect x="96" y="102" width="208" height="190" rx="26" fill="#b4502c"/>
+          <rect x="96" y="250" width="208" height="42" rx="0" fill="#8f3d20"/>
+          <circle cx="200" cy="196" r="66" fill="#2a1a10" stroke="#e6b27f" stroke-width="8"/>
+          <g class="drum" stroke="#c58a54" stroke-width="6" stroke-linecap="round"><path d="M200 140v112M144 196h112M160 156l80 80M240 156l-80 80"/></g>
+          <circle cx="200" cy="196" r="12" fill="#e6b27f"/>
+          <path d="M304 150h40v40" fill="none" stroke="#6b3f22" stroke-width="16" stroke-linecap="round"/>
+          <ellipse cx="200" cy="312" rx="150" ry="16" fill="#4a2b19"/>
+          <g fill="#f0a24a"><path class="flame" d="M150 292c-6-10 4-14 6-24 6 10 8 16 2 24z"/><path class="flame" d="M196 292c-6-12 4-16 6-28 6 12 8 20 2 28z"/><path class="flame" d="M242 292c-6-10 4-14 6-24 6 10 8 16 2 24z"/></g>
+          <circle cx="130" cy="128" r="8" fill="#e6b27f"/><circle cx="270" cy="128" r="8" fill="#5d8a4c"/>
+        </svg>
+      </div>
+      <ol class="steps">
+        <li><h3>Отбираем лоты</h3><p>Каждый месяц пробуем на каппинге 30+ образцов и берём только кофе от <b>84 баллов SCA</b>. Остальное возвращаем поставщику.</p></li>
+        <li><h3>Обжариваем малыми партиями</h3><p>Ростер на 6 кг, профиль под каждый лот. Пишем кривую температуры и повторяем её с точностью до секунды.</p></li>
+        <li><h3>Даём зерну отдохнуть</h3><p>5–7 дней дегазации в клапанных пакетах. Только после этого кофе раскрывается и попадает в бар.</p></li>
+        <li><h3>Калибруем и завариваем</h3><p>Каждое утро настраиваем помол под погоду и влажность. Неидеальный шот — в раковину, без исключений.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="sec" id="team" aria-labelledby="team-title">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow"><svg aria-hidden="true"><use href="#bean"/></svg>Команда</p>
+        <h2 class="h2" id="team-title">Люди за <em>стойкой</em></h2>
+        <p class="lead">Нас 23 человека, и каждый бариста проходит 60 часов обучения в собственной школе, прежде чем выйти в зал.</p>
+      </div>
+      <div class="team-grid">
+        <article class="person">
+          <svg viewBox="0 0 120 120" role="img" aria-label="Портрет Анны Соколовой"><circle cx="60" cy="60" r="60" fill="#ecdcc6"/><path d="M34 54c0-20 12-32 26-32s26 12 26 32v34H34z" fill="#4a2410"/><path d="M18 120c4-24 22-36 42-36s38 12 42 36z" fill="#6b3f22"/><rect x="52" y="66" width="16" height="18" rx="6" fill="#d9a47c"/><circle cx="60" cy="54" r="21" fill="#f0c6a0"/><path d="M38 52c2-16 12-24 23-24s20 8 22 22c-10-2-20-8-24-16-4 10-12 16-21 18z" fill="#4a2410"/><circle cx="52" cy="56" r="2.2" fill="#2a1a10"/><circle cx="68" cy="56" r="2.2" fill="#2a1a10"/><path d="M53 64c4 4 10 4 14 0" fill="none" stroke="#a0522d" stroke-width="2" stroke-linecap="round"/><path d="M48 92h24v28H48z" fill="#c58a54"/></svg>
+          <h3>Анна Соколова</h3>
+          <p class="role">Шеф-бариста</p>
+          <p>Финалистка чемпионата России по брюингу 2025. Придумала наш раф с лавандой.</p>
+        </article>
+        <article class="person">
+          <svg viewBox="0 0 120 120" role="img" aria-label="Портрет Тимура Галиева"><circle cx="60" cy="60" r="60" fill="#dde6d3"/><path d="M18 120c4-24 22-36 42-36s38 12 42 36z" fill="#2f4429"/><rect x="52" y="66" width="16" height="18" rx="6" fill="#c08a62"/><circle cx="60" cy="54" r="21" fill="#d9a47c"/><path d="M39 50c0-14 9-22 21-22s21 8 21 22c-4-6-12-9-21-9s-17 3-21 9z" fill="#1f130b"/><path d="M41 58c2 14 9 20 19 20s17-6 19-20c-4 6-10 8-19 8s-15-2-19-8z" fill="#1f130b"/><circle cx="52" cy="54" r="2.2" fill="#1f130b"/><circle cx="68" cy="54" r="2.2" fill="#1f130b"/><path d="M54 66c4 2 8 2 12 0" fill="none" stroke="#d9a47c" stroke-width="2" stroke-linecap="round"/></svg>
+          <h3>Тимур Галиев</h3>
+          <p class="role">Обжарщик, Q-грейдер</p>
+          <p>Восемь лет за ростером. Может по треску сказать, сколько секунд осталось до конца обжарки.</p>
+        </article>
+        <article class="person">
+          <svg viewBox="0 0 120 120" role="img" aria-label="Портрет Лизы Морозовой"><circle cx="60" cy="60" r="60" fill="#f6dccd"/><circle cx="60" cy="24" r="12" fill="#b4502c"/><path d="M18 120c4-24 22-36 42-36s38 12 42 36z" fill="#2a1a10"/><rect x="52" y="66" width="16" height="18" rx="6" fill="#e2b48e"/><circle cx="60" cy="54" r="21" fill="#f5d1b0"/><path d="M38 54c0-16 10-26 22-26s22 10 22 26c-6-8-14-12-22-12s-16 4-22 12z" fill="#b4502c"/><circle cx="52" cy="56" r="2.2" fill="#2a1a10"/><circle cx="68" cy="56" r="2.2" fill="#2a1a10"/><circle cx="47" cy="62" r="3" fill="#f0a98a"/><circle cx="73" cy="62" r="3" fill="#f0a98a"/><path d="M53 64c4 4 10 4 14 0" fill="none" stroke="#a0522d" stroke-width="2" stroke-linecap="round"/></svg>
+          <h3>Лиза Морозова</h3>
+          <p class="role">Бариста, латте-арт</p>
+          <p>Рисует лебедя за 9 секунд. По субботам ведёт мастер-класс по латте-арту для гостей.</p>
+        </article>
+        <article class="person">
+          <svg viewBox="0 0 120 120" role="img" aria-label="Портрет Ильи Ковалёва"><circle cx="60" cy="60" r="60" fill="#e8d3b8"/><path d="M18 120c4-24 22-36 42-36s38 12 42 36z" fill="#fffaf3"/><path d="M50 86l10 12 10-12" fill="none" stroke="#c58a54" stroke-width="3"/><rect x="52" y="66" width="16" height="18" rx="6" fill="#e0b08a"/><circle cx="60" cy="54" r="21" fill="#f0c49e"/><path d="M38 48c-2-14 8-24 22-24s24 10 22 24c-3-6-6-8-10-8-2 4-8 6-12 2-4 4-10 4-12-2-4 0-8 2-10 8z" fill="#8a5230"/><circle cx="52" cy="55" r="6" fill="none" stroke="#2a1a10" stroke-width="2"/><circle cx="68" cy="55" r="6" fill="none" stroke="#2a1a10" stroke-width="2"/><path d="M58 55h4" stroke="#2a1a10" stroke-width="2"/><circle cx="52" cy="55" r="1.8" fill="#2a1a10"/><circle cx="68" cy="55" r="1.8" fill="#2a1a10"/><path d="M54 66c4 3 8 3 12 0" fill="none" stroke="#a0522d" stroke-width="2" stroke-linecap="round"/></svg>
+          <h3>Илья Ковалёв</h3>
+          <p class="role">Шеф-кондитер</p>
+          <p>Раньше работал в Париже. Отвечает за канеле, чизкейк и всё, что пахнет ванилью.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec gal-sec" id="atmosphere" aria-labelledby="gal-title">
+    <div class="wrap sec-head">
+      <p class="eyebrow"><svg aria-hidden="true"><use href="#bean"/></svg>Атмосфера</p>
+      <h2 class="h2" id="gal-title">Место, где хочется <em>остаться</em></h2>
+      <p class="swipe"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Листайте галерею в сторону</p>
+    </div>
+    <ul class="gallery" aria-label="Галерея кофейни">
+      <li><figure>
+        <svg viewBox="0 0 300 360" role="img" aria-label="Утро у арочного окна, чашка на столе"><defs><linearGradient id="g1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f2d4ab"/><stop offset="1" stop-color="#e2b88a"/></linearGradient></defs><rect width="300" height="360" fill="url(#g1)"/><path d="M70 270V120a80 80 0 0 1 160 0v150z" fill="#cfe0e3"/><path d="M70 270V120a80 80 0 0 1 160 0v150z" fill="none" stroke="#6b3f22" stroke-width="10"/><path d="M150 40v230M70 170h160" stroke="#6b3f22" stroke-width="6"/><path d="M90 270l70-200h40l-50 200z" fill="#fff" opacity=".35"/><rect y="270" width="300" height="90" fill="#8a5230"/><rect y="270" width="300" height="10" fill="#6b3f22"/><path d="M178 238h40v10a20 20 0 0 1-20 20 20 20 0 0 1-20-20z" fill="#fffaf3"/><path d="M218 244c10 0 10 14 0 14" fill="none" stroke="#fffaf3" stroke-width="4"/><path d="M60 270h36l-4-34H64z" fill="#b4502c"/><path d="M78 238c-14-20-20-40-6-52 4 18 8 30 6 52zm0 0c8-24 20-36 34-38-6 18-16 30-34 38zm0 0c-12-10-26-12-36-8 10 10 22 12 36 8z" fill="#4f6b43"/></svg>
+        <figcaption>Утро на Покровке<span>Первый эспрессо — в 7:30</span></figcaption>
+      </figure></li>
+      <li><figure>
+        <svg viewBox="0 0 300 360" role="img" aria-label="Капучино с латте-артом «розетта», вид сверху"><rect width="300" height="360" fill="#6b3f22"/><circle cx="150" cy="180" r="118" fill="#f3e7d6"/><circle cx="150" cy="180" r="94" fill="#fffaf3"/><circle cx="150" cy="180" r="80" fill="#9a5a2e"/><g fill="#fbf1e2"><ellipse cx="150" cy="232" rx="40" ry="16"/><ellipse cx="150" cy="210" rx="34" ry="13"/><ellipse cx="150" cy="190" rx="28" ry="11"/><ellipse cx="150" cy="172" rx="22" ry="9"/><ellipse cx="150" cy="156" rx="16" ry="7"/><path d="M150 140c-10-10-10-18 0-22 10 4 10 12 0 22z"/></g><path d="M150 248V122" stroke="#9a5a2e" stroke-width="3"/><rect x="238" y="70" width="12" height="70" rx="6" fill="#d9c2a4" transform="rotate(30 244 105)"/></svg>
+        <figcaption>Розетта от Лизы<span>Латте-арт на каждом напитке</span></figcaption>
+      </figure></li>
+      <li><figure>
+        <svg viewBox="0 0 300 360" role="img" aria-label="Ростер в обжарочном цехе"><rect width="300" height="360" fill="#2a1a10"/><circle cx="230" cy="70" r="70" fill="#e6b27f" opacity=".12"/><path d="M110 40h80l-14 46h-52z" fill="#8a5230"/><rect x="66" y="96" width="168" height="150" rx="22" fill="#b4502c"/><circle cx="150" cy="170" r="50" fill="#1a0f08" stroke="#e6b27f" stroke-width="6"/><g class="drum2" stroke="#c58a54" stroke-width="5" stroke-linecap="round"><path d="M150 128v84M108 170h84"/></g><rect x="66" y="246" width="168" height="24" fill="#8f3d20"/><ellipse cx="150" cy="306" rx="110" ry="24" fill="#6b3f22"/><ellipse cx="150" cy="300" rx="96" ry="18" fill="#4a2410"/><g fill="#a8673a"><circle cx="120" cy="298" r="5"/><circle cx="138" cy="304" r="5"/><circle cx="160" cy="296" r="5"/><circle cx="180" cy="302" r="5"/><circle cx="150" cy="292" r="5"/><circle cx="196" cy="296" r="5"/><circle cx="104" cy="304" r="5"/></g></svg>
+        <figcaption>Обжарочный цех<span>Ленинградский проспект, 47</span></figcaption>
+      </figure></li>
+      <li><figure>
+        <svg viewBox="0 0 300 360" role="img" aria-label="Полка с пачками кофе разных сортов"><rect width="300" height="360" fill="#ecdcc6"/><rect x="20" y="150" width="260" height="10" rx="3" fill="#6b3f22"/><rect x="20" y="290" width="260" height="10" rx="3" fill="#6b3f22"/><g><path d="M40 70h50l6 80H34z" fill="#b4502c"/><rect x="46" y="96" width="38" height="26" rx="4" fill="#fffaf3"/><path d="M106 60h50l6 90h-62z" fill="#4f6b43"/><rect x="112" y="92" width="38" height="26" rx="4" fill="#fffaf3"/><path d="M172 76h50l6 74h-62z" fill="#2a1a10"/><rect x="178" y="100" width="38" height="26" rx="4" fill="#fffaf3"/><path d="M234 90h36l4 60h-44z" fill="#c58a54"/></g><g><path d="M40 206h56l6 84H34z" fill="#c58a54"/><rect x="48" y="234" width="40" height="26" rx="4" fill="#fffaf3"/><path d="M116 196h56l6 94h-68z" fill="#8a5230"/><rect x="124" y="230" width="40" height="26" rx="4" fill="#fffaf3"/><circle cx="226" cy="262" r="28" fill="#4f6b43"/><path d="M226 234c-6-20 6-34 20-38-2 18-10 28-20 38z" fill="#4f6b43"/></g></svg>
+        <figcaption>Зёрна навынос<span>Помолем под вашу кофеварку</span></figcaption>
+      </figure></li>
+      <li><figure>
+        <svg viewBox="0 0 300 360" role="img" aria-label="Каппинг: ряд чаш с кофе и ложки на столе"><rect width="300" height="360" fill="#c58a54"/><rect x="0" y="0" width="300" height="360" fill="#8a5230" opacity=".15"/><g fill="#fffaf3"><circle cx="80" cy="90" r="36"/><circle cx="220" cy="90" r="36"/><circle cx="80" cy="200" r="36"/><circle cx="220" cy="200" r="36"/><circle cx="80" cy="310" r="36"/><circle cx="220" cy="310" r="36"/></g><g fill="#5e3216"><circle cx="80" cy="90" r="27"/><circle cx="220" cy="90" r="27"/><circle cx="80" cy="200" r="27"/><circle cx="220" cy="200" r="27"/><circle cx="80" cy="310" r="27"/><circle cx="220" cy="310" r="27"/></g><g fill="#e6b27f" opacity=".6"><circle cx="72" cy="84" r="9"/><circle cx="212" cy="196" r="9"/><circle cx="76" cy="304" r="9"/></g><rect x="142" y="60" width="16" height="120" rx="8" fill="#d9c2a4"/><ellipse cx="150" cy="190" rx="14" ry="18" fill="#d9c2a4"/></svg>
+        <figcaption>Открытый каппинг<span>Четверг, 19:00 · 900 ₽</span></figcaption>
+      </figure></li>
+      <li><figure>
+        <svg viewBox="0 0 300 360" role="img" aria-label="Летняя веранда вечером с гирляндой"><defs><linearGradient id="g6" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2a1a10"/><stop offset=".7" stop-color="#8f3d20"/><stop offset="1" stop-color="#c58a54"/></linearGradient></defs><rect width="300" height="360" fill="url(#g6)"/><path d="M0 60q150 70 300 0" fill="none" stroke="#e6b27f" stroke-width="2"/><g fill="#ffd38a"><circle class="twinkle" cx="30" cy="72" r="6"/><circle class="twinkle" cx="80" cy="88" r="6"/><circle class="twinkle" cx="130" cy="94" r="6"/><circle class="twinkle" cx="180" cy="92" r="6"/><circle class="twinkle" cx="230" cy="84" r="6"/><circle class="twinkle" cx="276" cy="70" r="6"/></g><rect y="300" width="300" height="60" fill="#2a1a10"/><rect x="96" y="232" width="108" height="10" rx="4" fill="#1a0f08"/><rect x="146" y="242" width="8" height="58" fill="#1a0f08"/><path d="M60 300v-60h26v26h10v34M240 300v-60h-26v26h-10v34" fill="none" stroke="#1a0f08" stroke-width="8"/><path d="M120 232h18v-10a9 9 0 0 0-18 0z" fill="#fffaf3"/><path d="M162 232h18v-10a9 9 0 0 0-18 0z" fill="#fffaf3"/><path d="M20 300h30l-4-40H24z" fill="#4a2410"/><path d="M35 262c-10-26-4-50 8-60 2 24-2 42-8 60zm0 0c-12-14-26-18-32-14 8 12 18 16 32 14z" fill="#4f6b43"/></svg>
+        <figcaption>Веранда на Патриарших<span>С мая по сентябрь, с пледами</span></figcaption>
+      </figure></li>
+    </ul>
+  </section>
+
+  <section class="sec loyal" id="loyalty" aria-labelledby="loyal-title">
+    <div class="wrap loyal-grid">
+      <div class="card-stage">
+        <div class="l-card" role="img" aria-label="Карта гостя Coffee Lab: шесть штампов из семи, седьмой кофе в подарок">
+          <div class="l-top"><p class="l-brand">Coffee Lab<small>карта гостя</small></p><p class="l-no">№ 0417</p></div>
+          <div class="stamps">
+            <span class="stamp on"><svg aria-hidden="true"><use href="#cupi"/></svg></span>
+            <span class="stamp on"><svg aria-hidden="true"><use href="#cupi"/></svg></span>
+            <span class="stamp on"><svg aria-hidden="true"><use href="#cupi"/></svg></span>
+            <span class="stamp on"><svg aria-hidden="true"><use href="#cupi"/></svg></span>
+            <span class="stamp on"><svg aria-hidden="true"><use href="#cupi"/></svg></span>
+            <span class="stamp on"><svg aria-hidden="true"><use href="#cupi"/></svg></span>
+            <span class="stamp gift">🎁</span>
+          </div>
+          <div class="l-foot"><span>Гость: <b>Мария К.</b></span><span><b>6</b> из 7</span></div>
+        </div>
+      </div>
+      <div>
+        <p class="eyebrow"><svg aria-hidden="true"><use href="#bean"/></svg>Карта гостя</p>
+        <h2 class="h2" id="loyal-title">Каждый 7-й кофе — <em>в подарок</em></h2>
+        <p class="lead">Без приложений и анкет: бумажная карта или электронная в Telegram-боте. Работает во всех трёх кофейнях.</p>
+        <ol class="l-list">
+          <li><span>1</span><p>Попросите карту у бариста или напишите боту <b>@coffeelab_moscow_bot</b>.</p></li>
+          <li><span>2</span><p>За каждый напиток — штамп. Десерты и зёрна тоже считаются.</p></li>
+          <li><span>3</span><p>Седьмой напиток любого объёма — за наш счёт. Штампы не сгорают.</p></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="reviews" aria-labelledby="rev-title">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow"><svg aria-hidden="true"><use href="#bean"/></svg>Отзывы</p>
+        <h2 class="h2" id="rev-title">Что говорят <em>гости</em></h2>
+        <p class="rating"><b>4,9</b><span class="stars" aria-label="Рейтинг 4,9 из 5">★★★★★</span><span>1 284 оценки на Яндекс Картах и 2ГИС</span></p>
+      </div>
+      <div class="rev-grid">
+        <figure class="rev"><span class="stars" aria-label="5 из 5">★★★★★</span><blockquote>«Лучший флэт уайт в центре. Беру с собой каждое утро по дороге на работу — бариста уже помнят, что мне на овсяном и без сахара.»</blockquote><figcaption><span class="ava" aria-hidden="true">О</span><span><b>Ольга Т.</b>Покровка · Яндекс Карты</span></figcaption></figure>
+        <figure class="rev"><span class="stars" aria-label="5 из 5">★★★★★</span><blockquote>«Сходили на открытый каппинг — за полтора часа узнали о кофе больше, чем за десять лет. Купил Кению домой, дома в V60 вышло почти как у них.»</blockquote><figcaption><span class="ava a2" aria-hidden="true">Д</span><span><b>Дмитрий Р.</b>Динамо · 2ГИС</span></figcaption></figure>
+        <figure class="rev"><span class="stars" aria-label="5 из 5">★★★★★</span><blockquote>«Баскский чизкейк — отдельная причина приезжать на Патриаршие. Летом на веранде дают пледы, а собаке выносят миску воды.»</blockquote><figcaption><span class="ava a3" aria-hidden="true">К</span><span><b>Ксения М.</b>Патриаршие · Яндекс Карты</span></figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec places" id="places" aria-labelledby="pl-title">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow"><svg aria-hidden="true"><use href="#bean"/></svg>Адреса</p>
+        <h2 class="h2" id="pl-title">Три кофейни <em>в центре Москвы</em></h2>
+      </div>
+      <div class="pl-grid">
+        <div class="map">
+          <svg viewBox="0 0 600 440" role="img" aria-label="Схема центра Москвы с тремя кофейнями: Динамо, Патриаршие и Покровка">
+            <rect width="600" height="440" fill="#efe4d3"/>
+            <ellipse cx="160" cy="300" rx="70" ry="44" fill="#dde6d3"/><ellipse cx="470" cy="90" rx="60" ry="36" fill="#dde6d3"/>
+            <path d="M-10 380C90 330 170 420 270 380s120-110 210-90 110 70 140 60" fill="none" stroke="#bcd3d6" stroke-width="26" stroke-linecap="round"/>
+            <g fill="none" stroke="#fffaf3" stroke-linecap="round"><circle cx="320" cy="230" r="150" stroke-width="12"/><circle cx="320" cy="230" r="80" stroke-width="9"/><path d="M320 230L120 20M320 230L330 0M320 230L600 120M320 230L560 440M320 230L60 230M320 230L180 440" stroke-width="7"/></g>
+            <circle cx="320" cy="230" r="16" fill="#b4502c" opacity=".25"/>
+            <g font-family="system-ui,sans-serif" font-size="15" fill="#69503f" font-weight="600"><text x="300" y="262">Кремль</text><text x="238" y="108">Динамо</text><text x="274" y="180">Патриаршие</text><text x="478" y="160">Китай-город</text></g>
+            <g class="pin"><path d="M170 92c0-19 14-32 30-32s30 13 30 32c0 22-30 48-30 48s-30-26-30-48z" fill="#b4502c"/><text x="200" y="100" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-size="22" fill="#fff">3</text></g>
+            <g class="pin"><path d="M206 162c0-19 14-32 30-32s30 13 30 32c0 22-30 48-30 48s-30-26-30-48z" fill="#b4502c"/><text x="236" y="170" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-size="22" fill="#fff">2</text></g>
+            <g class="pin"><path d="M410 142c0-19 14-32 30-32s30 13 30 32c0 22-30 48-30 48s-30-26-30-48z" fill="#b4502c"/><text x="440" y="150" text-anchor="middle" font-family="Georgia,serif" font-weight="700" font-size="22" fill="#fff">1</text></g>
+          </svg>
+        </div>
+        <div class="pl-list">
+          <article class="place">
+            <div class="place-h"><span class="num" aria-hidden="true">1</span><h3>Покровка</h3></div>
+            <p class="addr">ул. Покровка, 31, стр. 2</p>
+            <p class="metro">м. Китай-город, 7 минут пешком</p>
+            <dl class="hours"><dt>Пн–Пт</dt><dd>7:30 – 22:00</dd><dt>Сб–Вс</dt><dd>9:00 – 22:00</dd></dl>
+            <p class="feats"><span>40 мест</span><span>розетки у столов</span><span>можно с собакой</span></p>
+            <a class="place-tel" href="tel:+74951234567"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>+7 (495) 123-45-67</a>
+          </article>
+          <article class="place">
+            <div class="place-h"><span class="num" aria-hidden="true">2</span><h3>Патриаршие</h3></div>
+            <p class="addr">Малая Бронная ул., 20</p>
+            <p class="metro">м. Маяковская, 9 минут пешком</p>
+            <dl class="hours"><dt>Пн–Пт</dt><dd>8:00 – 22:00</dd><dt>Сб–Вс</dt><dd>9:00 – 23:00</dd></dl>
+            <p class="feats"><span>летняя веранда</span><span>завтраки до 13:00</span></p>
+            <a class="place-tel" href="tel:+74951234568"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>+7 (495) 123-45-68</a>
+          </article>
+          <article class="place">
+            <div class="place-h"><span class="num" aria-hidden="true">3</span><h3>Динамо · обжарочная</h3></div>
+            <p class="addr">Ленинградский проспект, 47</p>
+            <p class="metro">м. Динамо, выход 3, 4 минуты</p>
+            <dl class="hours"><dt>Ежедневно</dt><dd>7:30 – 21:00</dd><dt>Каппинг</dt><dd>чт, 19:00</dd></dl>
+            <p class="feats"><span>вид на ростер</span><span>зёрна оптом</span><span>школа бариста</span></p>
+            <a class="place-tel" href="tel:+74951234569"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>+7 (495) 123-45-69</a>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="booking" aria-labelledby="book-title">
+    <div class="wrap book-grid">
+      <div>
+        <p class="eyebrow"><svg aria-hidden="true"><use href="#bean"/></svg>Бронь и предзаказ</p>
+        <h2 class="h2" id="book-title">Столик или кофе <em>без очереди</em></h2>
+        <p class="lead">Оставьте заявку — администратор перезвонит в течение 15 минут и подтвердит бронь.</p>
+        <ul class="perks">
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 7v5l3 2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><div><b>Предзаказ за 10 минут</b><p>Напиток будет ждать на стойке «С собой» — просто назовите имя.</p></div></li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10h16M6 10v9M18 10v9M8 6h8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><div><b>Столы на 2–8 гостей</b><p>Большой стол у окна на Покровке удобно бронировать для встреч.</p></div></li>
+          <li><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#cupi"/></svg><div><b>Каппинг и мастер-классы</b><p>Укажите в комментарии — забронируем место на четверг или субботу.</p></div></li>
+        </ul>
+      </div>
+      <form class="form" method="get" action="#thanks">
+        <div class="fgrid">
+          <fieldset class="fs full">
+            <legend>Что оформляем?</legend>
+            <div class="seg">
+              <input class="sr" type="radio" name="type" id="t-table" value="table" checked><label for="t-table">🪑 Столик в зале</label>
+              <input class="sr" type="radio" name="type" id="t-pre" value="preorder"><label for="t-pre">🥡 Предзаказ с собой</label>
+            </div>
+          </fieldset>
+          <div class="field"><label for="f-name">Имя</label><input id="f-name" name="name" type="text" required minlength="2" autocomplete="given-name" placeholder="Мария"></div>
+          <div class="field"><label for="f-tel">Телефон</label><input id="f-tel" name="tel" type="tel" required inputmode="tel" autocomplete="tel" pattern="\+?[0-9\s\(\)\-]{10,20}" placeholder="+7 (900) 000-00-00"></div>
+          <div class="field full"><label for="f-place">Кофейня</label><select id="f-place" name="place" required><option value="">Выберите адрес</option><option>Покровка, 31</option><option>Малая Бронная, 20</option><option>Ленинградский пр-т, 47</option></select></div>
+          <div class="field"><label for="f-date">Дата</label><input id="f-date" name="date" type="date" required></div>
+          <div class="field"><label for="f-time">Время</label><select id="f-time" name="time" required><option value="">Во сколько?</option><option>08:00</option><option>09:00</option><option>10:00</option><option>12:00</option><option>14:00</option><option>16:00</option><option>18:00</option><option>19:00</option><option>20:00</option></select></div>
+          <div class="field full"><label for="f-guests">Гостей</label><select id="f-guests" name="guests"><option>1 гость</option><option selected>2 гостя</option><option>3–4 гостя</option><option>5–8 гостей</option></select></div>
+          <div class="field full"><label for="f-msg">Комментарий или заказ</label><textarea id="f-msg" name="msg" rows="3" placeholder="Например: капучино на овсяном и два канеле к 9:00"></textarea></div>
+        </div>
+        <button class="btn" type="submit">Отправить заявку</button>
+        <p class="consent">Нажимая кнопку, вы соглашаетесь на обработку персональных данных. Мы не звоним с рекламой.</p>
+      </form>
+    </div>
+  </section>
+
+  <div class="thanks" id="thanks" role="dialog" aria-labelledby="thx-title">
+    <div class="thanks-box">
+      <svg viewBox="0 0 96 96" aria-hidden="true"><circle cx="48" cy="48" r="48" fill="#dde6d3"/><path d="M30 49l12 12 24-26" fill="none" stroke="#4f6b43" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <h2 id="thx-title">Спасибо, заявка у нас!</h2>
+      <p>Администратор перезвонит в течение 15 минут, чтобы подтвердить детали. А мы пока прогреем чашку.</p>
+      <a class="btn" href="#booking">Хорошо</a>
+    </div>
+  </div>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="logo" href="#top" aria-label="Coffee Lab — наверх">
+          <svg viewBox="0 0 36 36" aria-hidden="true"><rect width="36" height="36" rx="11" fill="#c58a54"/><ellipse cx="18" cy="18" rx="8.5" ry="12" fill="#2a1a10"/><path d="M18 6.5c-5 6.5 5 16.5 0 23" stroke="#c58a54" stroke-width="2.4" fill="none" stroke-linecap="round"/></svg>
+          <span>Coffee Lab<small>обжарочная · Москва</small></span>
+        </a>
+        <p class="foot-about">Specialty-кофе собственной обжарки с 2017 года. Отправляем зёрна по Москве в день обжарки.</p>
+        <div class="soc">
+          <a href="#top" aria-label="Telegram-канал Coffee Lab"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 4L3 11l6 2 2 6 3-4 5 4z" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round"/><path d="M9 13l12-9" stroke="currentColor" stroke-width="1.9"/></svg></a>
+          <a href="#top" aria-label="Сообщество ВКонтакте"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7h3c.5 4 2 6 4 7V7h3v4c1.5-.5 3-2 3.5-4h3c-.5 2.5-2 4.5-4 5.5 2 1 3.8 3 4.5 5.5h-3.3c-.7-2-2.2-3.4-3.7-3.7V18h-.5C7 18 3.3 13.5 3 7z" fill="currentColor"/></svg></a>
+          <a href="#top" aria-label="YouTube-канал о кофе"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2.5" y="5.5" width="19" height="13" rx="4" fill="none" stroke="currentColor" stroke-width="1.9"/><path d="M10 9.2v5.6l4.8-2.8z" fill="currentColor"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h3>Кофейни</h3>
+        <ul><li><a href="#places">Покровка, 31</a></li><li><a href="#places">Малая Бронная, 20</a></li><li><a href="#places">Ленинградский пр-т, 47</a></li></ul>
+      </div>
+      <div>
+        <h3>Гостям</h3>
+        <ul><li><a href="#menu">Меню</a></li><li><a href="#beans">Зёрна навынос</a></li><li><a href="#loyalty">Карта гостя</a></li><li><a href="#booking">Бронь столика</a></li></ul>
+      </div>
+      <div>
+        <h3>Контакты</h3>
+        <ul><li><a href="tel:+74951234567">+7 (495) 123-45-67</a></li><li><a href="mailto:hello@coffeelab.ru">hello@coffeelab.ru</a></li><li><a href="#booking">Оптовые поставки</a></li></ul>
+      </div>
+    </div>
+    <div class="foot-bottom"><span>© 2026 ООО «Кофе Лаб». Все права защищены.</span><span>Демо-проект из портфолио vtitek</span></div>
+  </div>
+</footer>
+</body>
+</html>
