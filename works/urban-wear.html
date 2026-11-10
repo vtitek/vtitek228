@@ -1,0 +1,955 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Urban Wear — стритвир-магазин в Москве · DROP FW26</title>
+<meta name="description" content="Urban Wear — московский магазин уличной одежды: худи из хлопка 480 г/м², карго, бомберы и аксессуары. Дроп FW26, примерка перед оплатой, возврат 30 дней, оплата долями.">
+<meta name="theme-color" content="#111111">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23111'/%3E%3Cpath d='M12 14h8v22a6 6 0 0 0 12 0V14h8v22a14 14 0 0 1-28 0z' fill='%23c6ff00'/%3E%3Cpath d='M40 14h7l2 22 4-22h3l-4 36h-6z' fill='%23f1efe9'/%3E%3C/svg%3E">
+<style>
+:root{
+  --ink:#111;--ink-2:#1d1d1d;--paper:#f1efe9;--paper-2:#e6e3db;--paper-3:#d9d5cb;
+  --grey:#555;--grey-2:#7a7a7a;--line:#111;--line-soft:rgba(17,17,17,.14);
+  --acid:#c6ff00;--sale:#ff3b1f;
+  --display:'Arial Black','Helvetica Neue',Impact,'Franklin Gothic Heavy',sans-serif;
+  --mono:ui-monospace,'SFMono-Regular',Menlo,Consolas,'Liberation Mono',monospace;
+  --sans:system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;
+  --pad:clamp(16px,4.5vw,56px);--gap:clamp(12px,2vw,24px);
+  --s1:8px;--s2:16px;--s3:24px;--s4:40px;--s5:clamp(56px,9vw,112px);
+  --r:4px;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:76px;-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 16px/1.55 var(--sans);overflow-x:clip}
+img,svg{display:block;max-width:100%}
+a{color:inherit}
+h1,h2,h3,p{margin:0}
+ul{margin:0;padding:0;list-style:none}
+:focus-visible{outline:3px solid var(--ink);outline-offset:3px;box-shadow:0 0 0 6px var(--acid)}
+.vh{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap;margin:-1px;padding:0;border:0}
+.wrap{max-width:1360px;margin-inline:auto;padding-inline:var(--pad)}
+.mono{font-family:var(--mono)}
+
+/* back pill */
+.vt-back{position:fixed;left:max(12px,env(safe-area-inset-left));bottom:max(12px,env(safe-area-inset-bottom));z-index:9999;display:inline-flex;align-items:center;min-height:40px;padding:8px 16px;border-radius:999px;background:rgba(17,17,17,.74);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);color:#fff;font:600 13.5px/1 var(--sans);text-decoration:none;box-shadow:0 6px 20px rgba(0,0,0,.3),inset 0 0 0 1px rgba(255,255,255,.16)}
+@media (hover:hover){.vt-back:hover{background:rgba(17,17,17,.92)}}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:14px 26px;border:2px solid var(--ink);border-radius:999px;background:var(--ink);color:var(--paper);font:900 15px/1 var(--display);text-transform:uppercase;letter-spacing:.04em;text-decoration:none;cursor:pointer;transition:transform .2s,background .2s,color .2s}
+.btn--acid{background:var(--acid);border-color:var(--acid);color:var(--ink)}
+.btn--ghost{background:transparent;color:inherit;border-color:currentColor}
+.btn--block{width:100%}
+@media (hover:hover){
+  .btn:hover{transform:translateY(-2px);background:var(--acid);border-color:var(--ink);color:var(--ink)}
+  .btn--acid:hover{background:var(--paper)}
+  .btn--ghost:hover{background:var(--paper);color:var(--ink);border-color:var(--paper)}
+}
+
+/* announcement */
+.announce{background:var(--ink);color:var(--paper);font:500 13px/1.35 var(--mono);text-align:center;padding:10px var(--pad);letter-spacing:.04em;padding-top:max(10px,env(safe-area-inset-top))}
+.announce b{color:var(--acid);font-weight:700}
+
+/* header */
+.header{position:sticky;top:0;z-index:40;background:rgba(241,239,233,.9);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border-bottom:2px solid var(--ink)}
+.hdr{display:flex;align-items:center;gap:var(--s2);min-height:64px;position:relative}
+.logo{display:inline-flex;align-items:baseline;gap:2px;min-height:44px;align-items:center;text-decoration:none;font:900 22px/1 var(--display);text-transform:uppercase;letter-spacing:-.02em;margin-right:auto}
+.logo i{font-style:normal;background:var(--ink);color:var(--acid);padding:4px 6px 3px;margin-left:4px}
+.burger{order:3;display:inline-flex;flex-direction:column;justify-content:center;align-items:center;gap:5px;width:48px;height:48px;border:2px solid var(--ink);border-radius:999px;cursor:pointer}
+.burger span{display:block;width:20px;height:2px;background:var(--ink);transition:transform .25s,opacity .2s}
+#nav-toggle:focus-visible~.burger{outline:3px solid var(--ink);outline-offset:3px;box-shadow:0 0 0 6px var(--acid)}
+#nav-toggle:checked~.burger{background:var(--ink)}
+#nav-toggle:checked~.burger span{background:var(--acid)}
+#nav-toggle:checked~.burger span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+#nav-toggle:checked~.burger span:nth-child(2){opacity:0}
+#nav-toggle:checked~.burger span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.nav{display:none;position:absolute;top:100%;left:calc(-1*var(--pad));right:calc(-1*var(--pad));margin-top:2px;background:var(--paper);border-bottom:2px solid var(--ink);padding:8px var(--pad) 20px;max-height:calc(100svh - 120px);overflow-y:auto}
+#nav-toggle:checked~.nav{display:block}
+.nav a{display:flex;justify-content:space-between;align-items:center;min-height:56px;border-bottom:1px solid var(--line-soft);font:900 26px/1 var(--display);text-transform:uppercase;text-decoration:none;letter-spacing:-.01em}
+.nav a::after{content:"↗";font:400 20px/1 var(--mono);color:var(--grey)}
+.cart-link{order:2;display:inline-flex;align-items:center;gap:8px;min-height:48px;padding:0 6px 0 14px;border-radius:999px;border:2px solid var(--ink);text-decoration:none;font:700 14px/1 var(--mono);text-transform:uppercase}
+.cart-link b{display:inline-grid;place-items:center;min-width:34px;height:34px;border-radius:999px;background:var(--acid);color:var(--ink);font:900 14px/1 var(--display)}
+.cart-link .txt{display:none}
+@media (min-width:480px){.cart-link .txt{display:inline}}
+@media (min-width:960px){
+  .burger{display:none}
+  .nav{display:flex!important;position:static;gap:4px;background:none;border:0;padding:0;margin:0 auto 0 0;max-height:none;overflow:visible}
+  .nav a{min-height:44px;padding:0 12px;border:0;font:700 14px/1 var(--mono);letter-spacing:.06em;border-radius:999px}
+  .nav a::after{content:none}
+  .logo{margin-right:24px}
+  .cart-link{order:4}
+}
+@media (min-width:960px) and (hover:hover){.nav a:hover{background:var(--ink);color:var(--acid)}}
+
+/* hero */
+.hero{background:var(--ink);color:var(--paper);position:relative;overflow:hidden;border-bottom:2px solid var(--ink);
+  background-image:linear-gradient(rgba(241,239,233,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(241,239,233,.07) 1px,transparent 1px);background-size:56px 56px}
+.hero .wrap{display:grid;gap:var(--s4);padding-block:clamp(36px,7vw,96px) clamp(40px,7vw,88px)}
+.tag{display:inline-flex;align-items:center;gap:10px;font:500 13px/1.3 var(--mono);text-transform:uppercase;letter-spacing:.1em}
+.tag::before{content:"";width:10px;height:10px;background:var(--acid);border-radius:50%;flex:none}
+.hero h1{font:900 clamp(76px,22vw,232px)/.84 var(--display);text-transform:uppercase;letter-spacing:-.045em;margin:20px 0 0}
+.hero h1 .ol{display:block;color:transparent;-webkit-text-stroke:2px var(--acid)}
+.hero__lead{max-width:34ch;font-size:clamp(17px,1.6vw,20px);color:#d6d3cb;margin-top:var(--s3)}
+.hero__cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:var(--s4)}
+.hero__meta{display:grid;grid-template-columns:repeat(3,1fr);margin-top:var(--s4);border-top:1px solid rgba(241,239,233,.25)}
+.hero__meta div{padding:14px 10px 0 0;font:500 13px/1.35 var(--mono);color:#bdbab2;text-transform:uppercase}
+.hero__meta b{display:block;font:900 clamp(22px,3vw,34px)/1 var(--display);color:var(--paper);margin-bottom:6px;letter-spacing:-.02em}
+.hero__art{position:relative;min-height:320px;display:grid;place-items:center}
+.hero__art .frame{position:relative;width:min(100%,560px);aspect-ratio:1;border:1px solid rgba(241,239,233,.3);display:grid;place-items:center;background:radial-gradient(closest-side,rgba(198,255,0,.16),transparent 75%)}
+.hero__art .frame::before,.hero__art .frame::after{content:"";position:absolute;background:rgba(241,239,233,.3)}
+.hero__art .frame::before{left:50%;top:0;bottom:0;width:1px}
+.hero__art .frame::after{top:50%;left:0;right:0;height:1px}
+.hero__art .garment{position:relative;z-index:1;width:82%;color:var(--acid);filter:drop-shadow(14px 18px 0 rgba(0,0,0,.6))}
+.hero__art .badge{position:absolute;z-index:2;right:-4px;top:-14px;width:clamp(96px,22vw,150px)}
+.spin{transform-origin:60px 60px;animation:spin 16s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.hero__art .label{position:absolute;z-index:2;left:0;bottom:12px;background:var(--paper);color:var(--ink);font:700 13px/1.3 var(--mono);padding:8px 12px;border:2px solid var(--ink);transform:rotate(-3deg);text-transform:uppercase}
+.hero__art .label b{display:block;font:900 18px/1.1 var(--display)}
+.hero__art .coord{position:absolute;font:500 12px/1 var(--mono);color:#9c9990;letter-spacing:.08em}
+.coord--tl{left:8px;top:8px}.coord--br{right:8px;bottom:8px}
+@media (min-width:960px){.hero .wrap{grid-template-columns:1.15fr .85fr;align-items:center}}
+
+/* marquee */
+.marquee{background:var(--acid);border-bottom:2px solid var(--ink);overflow:hidden;white-space:nowrap}
+.marquee__track{display:inline-flex;animation:marq 28s linear infinite}
+.marquee__track span{display:inline-flex;align-items:center;gap:22px;padding:16px 11px;font:900 clamp(20px,3vw,30px)/1 var(--display);text-transform:uppercase;letter-spacing:-.01em}
+.marquee__track span::after{content:"✶";font-size:.8em}
+@keyframes marq{to{transform:translateX(-50%)}}
+
+/* sections */
+.sec{padding-block:var(--s5);border-bottom:2px solid var(--ink)}
+.sec-head{display:grid;gap:12px;margin-bottom:clamp(28px,4vw,48px)}
+.sec-head .idx{font:500 13px/1 var(--mono);text-transform:uppercase;letter-spacing:.12em;color:var(--grey)}
+.sec-head h2{font:900 clamp(42px,9vw,112px)/.88 var(--display);text-transform:uppercase;letter-spacing:-.04em;overflow-wrap:break-word}
+.sec-head p{max-width:52ch;color:var(--grey);font-size:17px}
+@media (min-width:860px){.sec-head{grid-template-columns:1fr auto;align-items:end;column-gap:var(--s4)}.sec-head .idx{grid-column:1/-1}.sec-head p{max-width:40ch}}
+
+/* catalog */
+.filters{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;margin:0 calc(-1*var(--pad)) var(--s3);padding:2px var(--pad) 4px}
+.filters::-webkit-scrollbar{display:none}
+.filters a{flex:none;display:inline-flex;align-items:center;min-height:44px;padding:0 18px;border:2px solid var(--ink);border-radius:999px;font:700 14px/1 var(--mono);text-transform:uppercase;text-decoration:none}
+.filters a[aria-current]{background:var(--ink);color:var(--acid)}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));border-top:2px solid var(--ink);border-left:2px solid var(--ink)}
+@media (min-width:1000px){.grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.card{position:relative;display:flex;flex-direction:column;border-right:2px solid var(--ink);border-bottom:2px solid var(--ink);background:var(--paper)}
+.card__art{position:relative;aspect-ratio:4/5;display:grid;place-items:center;background:var(--bg,var(--paper-2));border-bottom:2px solid var(--ink);overflow:hidden}
+.card__art svg{width:74%;transition:transform .35s}
+.card__art::after{content:attr(data-sku);position:absolute;left:10px;bottom:8px;font:500 11px/1 var(--mono);letter-spacing:.06em;color:rgba(17,17,17,.6)}
+.stk{position:absolute;z-index:1;top:10px;left:10px;display:inline-flex;align-items:center;min-height:28px;padding:4px 10px;border:2px solid var(--ink);font:900 13px/1 var(--display);text-transform:uppercase;background:var(--acid);transform:rotate(-4deg)}
+.stk--sale{background:var(--sale);color:#fff;transform:rotate(3deg)}
+.stk--dark{background:var(--ink);color:var(--paper)}
+.stk+.stk{top:44px}
+.card__body{display:flex;flex-direction:column;gap:6px;padding:14px 12px 12px;flex:1}
+.card h3{font:900 clamp(15px,1.6vw,19px)/1.15 var(--display);text-transform:uppercase;letter-spacing:-.01em}
+.card .meta{font:500 13px/1.35 var(--mono);color:var(--grey)}
+.card__foot{display:flex;align-items:flex-end;justify-content:space-between;gap:8px;margin-top:auto;padding-top:8px}
+.price{font:700 17px/1.1 var(--mono);white-space:nowrap}
+.price s{display:block;font-size:13px;font-weight:400;color:var(--grey)}
+.price--sale{color:#c42a12}
+.dots{display:flex;gap:6px;margin-top:2px}
+.dots li{width:16px;height:16px;border-radius:50%;background:var(--d);box-shadow:inset 0 0 0 2px var(--ink)}
+.add{flex:none;display:grid;place-items:center;width:44px;height:44px;border-radius:50%;background:var(--ink);color:var(--acid);text-decoration:none;font:400 26px/1 var(--mono);transition:transform .2s}
+@media (hover:hover){.card:hover .card__art svg{transform:rotate(-4deg) scale(1.05)}.add:hover{transform:rotate(90deg)}}
+@media (max-width:420px){.card__body{padding:12px 10px 10px}.price{font-size:16px}}
+
+/* featured */
+.feat{background:var(--paper-2)}
+.feat-grid{position:relative;display:grid;gap:var(--s4);margin:0}
+@media (min-width:960px){.feat-grid{grid-template-columns:1fr 1fr;align-items:start}}
+.feat-art{position:relative;color:#1a1a1a;aspect-ratio:1;border:2px solid var(--ink);display:grid;place-items:center;overflow:hidden;
+  background:repeating-linear-gradient(90deg,transparent 0 47px,var(--line-soft) 47px 48px),repeating-linear-gradient(0deg,transparent 0 47px,var(--line-soft) 47px 48px),var(--paper)}
+.feat-art svg{width:78%;transition:color .35s}
+.feat-art .cap{position:absolute;right:12px;bottom:12px;font:700 13px/1 var(--mono);text-transform:uppercase;background:var(--ink);color:var(--paper);padding:8px 10px}
+.feat-art .stk{top:14px;left:14px}
+#fc-graphite:checked~.feat-art{color:#6b6e72}
+#fc-acid:checked~.feat-art{color:var(--acid)}
+#fc-milk:checked~.feat-art{color:#f7f5ef}
+.cn{display:none}
+#fc-black:checked~.feat-info .cn-black,#fc-graphite:checked~.feat-info .cn-graphite,#fc-acid:checked~.feat-info .cn-acid,#fc-milk:checked~.feat-info .cn-milk{display:inline}
+.feat-info .sku{font:500 13px/1 var(--mono);color:var(--grey);text-transform:uppercase;letter-spacing:.08em}
+.feat-info h3{font:900 clamp(34px,5vw,64px)/.92 var(--display);text-transform:uppercase;letter-spacing:-.03em;margin:12px 0 16px}
+.feat-info .desc{color:#333;max-width:52ch}
+.feat-price{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 16px;margin:20px 0 4px}
+.feat-price b{font:800 32px/1 var(--mono)}
+.feat-price span{font:500 14px/1.3 var(--mono);color:var(--grey)}
+.feat-price span em{font-style:normal;background:var(--ink);color:var(--acid);padding:2px 6px}
+fieldset{border:0;margin:24px 0 0;padding:0;min-width:0}
+legend{padding:0;margin-bottom:10px;font:700 14px/1.3 var(--mono);text-transform:uppercase;letter-spacing:.06em}
+legend .cn{color:var(--grey)}
+.swatches{display:flex;flex-wrap:wrap;gap:10px}
+.sw{display:grid;place-items:center;width:52px;height:52px;border-radius:50%;border:2px solid var(--line-soft);cursor:pointer;transition:border-color .2s}
+.sw::before{content:"";width:36px;height:36px;border-radius:50%;background:var(--d);box-shadow:inset 0 0 0 2px var(--ink)}
+#fc-black:checked~.feat-info .sw[for=fc-black],#fc-graphite:checked~.feat-info .sw[for=fc-graphite],#fc-acid:checked~.feat-info .sw[for=fc-acid],#fc-milk:checked~.feat-info .sw[for=fc-milk]{border-color:var(--ink);box-shadow:0 0 0 2px var(--ink)}
+#fc-black:focus-visible~.feat-info .sw[for=fc-black],#fc-graphite:focus-visible~.feat-info .sw[for=fc-graphite],#fc-acid:focus-visible~.feat-info .sw[for=fc-acid],#fc-milk:focus-visible~.feat-info .sw[for=fc-milk]{outline:3px solid var(--ink);outline-offset:3px;box-shadow:0 0 0 7px var(--acid)}
+.sizes{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;max-width:420px}
+.chip{position:relative;display:block}
+.chip input{position:absolute;opacity:0;inset:0;margin:0;cursor:pointer}
+.chip span{display:grid;place-items:center;min-height:52px;border:2px solid var(--ink);font:700 16px/1 var(--mono);background:var(--paper);transition:background .15s}
+.chip input:checked+span{background:var(--ink);color:var(--acid)}
+.chip input:focus-visible+span{outline:3px solid var(--ink);outline-offset:3px;box-shadow:0 0 0 6px var(--acid)}
+.chip input:disabled+span{color:#8a8a8a;border-color:#b5b1a8;background:repeating-linear-gradient(135deg,transparent 0 6px,rgba(17,17,17,.08) 6px 7px),var(--paper-2);text-decoration:line-through}
+.size-note{margin-top:10px;font:500 13px/1.4 var(--mono);color:var(--grey)}
+.size-note a{color:var(--ink);font-weight:700}
+.feat-actions{display:grid;gap:10px;margin-top:28px}
+@media (min-width:520px){.feat-actions{grid-template-columns:1.3fr 1fr}}
+.specs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));margin:28px 0 0;border-top:2px solid var(--ink)}
+.specs div{padding:12px 12px 12px 0;border-bottom:1px solid var(--line-soft)}
+.specs dt{font:500 12px/1.3 var(--mono);text-transform:uppercase;color:var(--grey);letter-spacing:.06em}
+.specs dd{margin:4px 0 0;font-weight:600}
+
+/* lookbook */
+.lookbook{background:var(--ink);color:var(--paper);overflow:clip}
+.lookbook .sec-head .idx,.lookbook .sec-head p{color:#bdbab2}
+.look-track{display:grid;grid-auto-flow:column;grid-auto-columns:min(80%,400px);gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;overscroll-behavior-x:contain;padding:4px var(--pad) 20px;scroll-padding-inline:var(--pad);scrollbar-width:thin;scrollbar-color:var(--acid) transparent;max-width:1472px;margin-inline:auto}
+.look-track::-webkit-scrollbar{height:6px}
+.look-track::-webkit-scrollbar-thumb{background:var(--acid);border-radius:6px}
+.look{scroll-snap-align:start;margin:0;display:flex;flex-direction:column}
+.look__pic{position:relative;aspect-ratio:3/4;background:var(--bg);border:2px solid var(--paper);overflow:hidden;color:var(--ink)}
+.look__pic svg{position:absolute;inset:0;width:100%;height:100%}
+.look__num{position:absolute;left:12px;top:8px;font:900 64px/1 var(--display);letter-spacing:-.05em;color:transparent;-webkit-text-stroke:2px rgba(17,17,17,.55)}
+.look figcaption{display:flex;justify-content:space-between;gap:12px;padding-top:14px;font:500 14px/1.4 var(--mono)}
+.look figcaption b{display:block;font:900 18px/1.15 var(--display);text-transform:uppercase;margin-bottom:4px;color:var(--paper)}
+.look figcaption span{color:#bdbab2}
+.look figcaption strong{white-space:nowrap;color:var(--acid)}
+.swipe{font:500 13px/1 var(--mono);color:#bdbab2;text-transform:uppercase;letter-spacing:.1em}
+
+/* categories */
+.cats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--gap)}
+@media (min-width:900px){.cats{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.cat{position:relative;display:flex;flex-direction:column;justify-content:space-between;min-height:220px;padding:14px;border:2px solid var(--ink);background:var(--bg);text-decoration:none;overflow:hidden;transition:transform .2s,box-shadow .2s}
+.cat svg{position:absolute;right:-14%;bottom:-12%;width:78%;color:var(--c);transform:rotate(-8deg)}
+.cat h3{position:relative;font:900 clamp(18px,2.2vw,26px)/1 var(--display);text-transform:uppercase;letter-spacing:-.02em}
+.cat .n{position:relative;font:500 13px/1 var(--mono);color:#333}
+.cat .arr{position:relative;display:grid;place-items:center;width:44px;height:44px;border-radius:50%;background:var(--ink);color:var(--acid);font:400 20px/1 var(--mono)}
+@media (hover:hover){.cat:hover{transform:translate(-4px,-4px);box-shadow:6px 6px 0 var(--ink)}}
+
+/* sizes */
+.sizes-sec .cols{display:grid;gap:var(--s3)}
+@media (min-width:960px){.sizes-sec .cols{grid-template-columns:.8fr 1.2fr;align-items:start}}
+.tips{display:grid;gap:12px}
+.tips li{display:grid;grid-template-columns:44px 1fr;gap:12px;align-items:start;padding:14px;border:2px solid var(--ink);background:var(--paper)}
+.tips li b{display:grid;place-items:center;width:44px;height:44px;background:var(--acid);border:2px solid var(--ink);font:900 18px/1 var(--display)}
+.tips p{color:#333}
+details{border:2px solid var(--ink);background:var(--paper)}
+details+details{margin-top:12px}
+summary{display:flex;justify-content:space-between;align-items:center;gap:16px;min-height:60px;padding:12px 16px;cursor:pointer;list-style:none;font:900 clamp(17px,2vw,22px)/1.15 var(--display);text-transform:uppercase}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";flex:none;display:grid;place-items:center;width:40px;height:40px;border-radius:50%;background:var(--ink);color:var(--acid);font:400 24px/1 var(--mono);transition:transform .25s}
+details[open] summary::after{transform:rotate(45deg)}
+details[open] summary{border-bottom:2px solid var(--ink)}
+.det-body{padding:16px}
+.table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--ink)}
+.table-wrap:focus-visible{outline-offset:2px}
+table{width:100%;min-width:600px;border-collapse:collapse;font:500 15px/1.3 var(--mono)}
+th,td{padding:12px 14px;text-align:left;border-bottom:1px solid var(--line-soft);white-space:nowrap}
+thead th{background:var(--ink);color:var(--paper);font-weight:700;font-size:13px;text-transform:uppercase;letter-spacing:.06em}
+tbody th{font:900 16px/1 var(--display);background:var(--paper-2);position:sticky;left:0}
+tbody tr:nth-child(3) td,tbody tr:nth-child(3) th{background:#eaffb0}
+.det-body .note{margin-top:12px;font:500 13px/1.45 var(--mono);color:var(--grey)}
+.measure{display:grid;gap:10px;padding-left:20px;margin:0}
+.measure li{list-style:decimal}
+
+/* collab */
+.collab{position:relative;background:var(--ink);color:var(--paper);overflow:clip}
+.tape{position:absolute;left:-10%;right:-10%;background:var(--acid);color:var(--ink);white-space:nowrap;overflow:hidden;font:900 18px/1 var(--display);padding:10px 0;letter-spacing:.06em;border-block:2px solid var(--ink)}
+.tape--1{top:28px;transform:rotate(-3deg)}
+.tape--2{bottom:28px;transform:rotate(2deg);background:var(--paper)}
+.collab .wrap{position:relative;padding-block:clamp(110px,14vw,170px)}
+.collab .idx{font:500 13px/1 var(--mono);text-transform:uppercase;letter-spacing:.12em;color:#bdbab2}
+.collab h2{font:900 clamp(40px,8.6vw,120px)/.88 var(--display);text-transform:uppercase;letter-spacing:-.04em;margin:16px 0 20px}
+.collab h2 span{color:var(--acid)}
+.collab p{max-width:52ch;color:#d6d3cb;font-size:17px}
+.drop-facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:2px;margin:32px 0;max-width:760px;background:rgba(241,239,233,.25);border:2px solid rgba(241,239,233,.25)}
+@media (min-width:700px){.drop-facts{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.drop-facts div{background:var(--ink);padding:16px 14px;font:500 13px/1.3 var(--mono);color:#bdbab2;text-transform:uppercase}
+.drop-facts b{display:block;font:900 clamp(26px,3.4vw,38px)/1 var(--display);color:var(--paper);margin-bottom:6px}
+
+/* benefits */
+.benefits{display:grid;gap:var(--gap)}
+@media (min-width:640px){.benefits{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (min-width:1100px){.benefits{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.ben{padding:22px 20px 24px;border:2px solid var(--ink);background:var(--paper);display:grid;gap:12px;align-content:start}
+.ben svg{width:52px;height:52px}
+.ben h3{font:900 21px/1.1 var(--display);text-transform:uppercase;letter-spacing:-.01em}
+.ben p{color:#333}
+.ben .k{font:700 13px/1 var(--mono);text-transform:uppercase;letter-spacing:.06em;background:var(--ink);color:var(--acid);padding:6px 8px;justify-self:start}
+
+/* newsletter */
+.news{background:var(--acid)}
+.news .box{display:grid;gap:var(--s4)}
+@media (min-width:960px){.news .box{grid-template-columns:1.1fr .9fr;align-items:end}}
+.news h2{font:900 clamp(44px,9vw,120px)/.86 var(--display);text-transform:uppercase;letter-spacing:-.045em}
+.news .lead{margin-top:16px;font-size:18px;max-width:40ch}
+.form{display:grid;gap:12px}
+.form label{font:700 14px/1 var(--mono);text-transform:uppercase;letter-spacing:.06em}
+.field{display:grid;gap:10px}
+@media (min-width:520px){.field{grid-template-columns:1fr auto}}
+.form input[type=email],.form input[type=tel]{width:100%;min-height:56px;padding:12px 18px;border:2px solid var(--ink);border-radius:999px;background:var(--paper);font:500 17px/1.2 var(--sans);color:var(--ink)}
+.form input::placeholder{color:#6b6b6b}
+.check{display:flex;gap:10px;align-items:flex-start;font:400 15px/1.4 var(--sans)!important;text-transform:none!important;letter-spacing:0!important;cursor:pointer;min-height:44px;padding-top:4px}
+.check input{width:22px;height:22px;margin:1px 0 0;accent-color:var(--ink);flex:none}
+.consent{font:400 13px/1.45 var(--sans);color:#2b2b2b}
+.thanks{display:none;border:2px solid var(--ink);background:var(--ink);color:var(--paper);padding:24px;position:relative}
+.thanks:target{display:block;animation:pop .4s ease-out}
+.thanks:target+.form{display:none}
+.thanks b{display:block;font:900 30px/1 var(--display);text-transform:uppercase;color:var(--acid);margin-bottom:10px}
+.thanks code{font:700 18px/1 var(--mono);background:var(--acid);color:var(--ink);padding:4px 8px}
+@keyframes pop{from{transform:translateY(8px);opacity:0}}
+
+/* footer */
+.footer{background:var(--ink);color:#d6d3cb;padding-top:var(--s5);padding-bottom:calc(96px + env(safe-area-inset-bottom))}
+.footer .big{font:900 clamp(56px,16vw,230px)/.8 var(--display);text-transform:uppercase;letter-spacing:-.06em;color:var(--paper);margin-bottom:var(--s4)}
+.footer .big span{color:transparent;-webkit-text-stroke:2px var(--acid)}
+.fcols{display:grid;gap:var(--s4);grid-template-columns:repeat(2,minmax(0,1fr))}
+@media (min-width:960px){.fcols{grid-template-columns:1.3fr 1fr 1fr 1.2fr}}
+.fcols .contact{grid-column:1/-1}
+@media (min-width:960px){.fcols .contact{grid-column:auto}}
+.fcols h3{font:700 13px/1 var(--mono);text-transform:uppercase;letter-spacing:.12em;color:var(--acid);margin-bottom:14px}
+.fcols a{display:flex;align-items:center;min-height:44px;text-decoration:none;color:var(--paper)}
+.fcols p{margin-bottom:10px}
+.fcols .tel{font:900 22px/1 var(--display);color:var(--paper)}
+.social{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.social span{display:inline-flex;align-items:center;min-height:36px;padding:0 12px;border:1px solid rgba(241,239,233,.35);border-radius:999px;font:500 13px/1 var(--mono);color:var(--paper)}
+.legal{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between;margin-top:var(--s4);padding-top:var(--s3);border-top:1px solid rgba(241,239,233,.2);font:500 13px/1.5 var(--mono);color:#a6a39b}
+@media (hover:hover){.fcols a:hover{color:var(--acid)}}
+
+/* drawers (:target) */
+.drawer{position:fixed;inset:0;z-index:60;visibility:hidden;transition:visibility 0s .3s}
+.drawer:target{visibility:visible;transition:none}
+.scrim{position:absolute;inset:0;background:rgba(17,17,17,.6);opacity:0;transition:opacity .3s}
+.drawer:target .scrim{opacity:1}
+.panel{position:absolute;top:0;right:0;bottom:0;width:min(440px,100%);background:var(--paper);border-left:2px solid var(--ink);overflow-y:auto;transform:translateX(100%);transition:transform .3s;padding:max(16px,env(safe-area-inset-top)) max(20px,env(safe-area-inset-right)) calc(88px + env(safe-area-inset-bottom)) 20px;display:flex;flex-direction:column;gap:18px}
+.drawer:target .panel{transform:none}
+.panel__top{display:flex;justify-content:space-between;align-items:center;gap:12px;padding-bottom:14px;border-bottom:2px solid var(--ink)}
+.panel__top h2{font:900 28px/1 var(--display);text-transform:uppercase;letter-spacing:-.02em}
+.close{display:grid;place-items:center;width:48px;height:48px;border-radius:50%;border:2px solid var(--ink);text-decoration:none;font:400 24px/1 var(--mono)}
+.line{display:grid;grid-template-columns:84px 1fr auto;gap:12px;align-items:center;padding-bottom:16px;border-bottom:1px solid var(--line-soft)}
+.line .th{aspect-ratio:1;background:var(--paper-2);border:2px solid var(--ink);display:grid;place-items:center}
+.line .th svg{width:80%}
+.line b{display:block;font:900 15px/1.15 var(--display);text-transform:uppercase}
+.line span{font:500 13px/1.4 var(--mono);color:var(--grey)}
+.line .p{font:700 15px/1 var(--mono);white-space:nowrap}
+.ship{font:500 13px/1.4 var(--mono);padding:12px;border:2px dashed var(--ink);background:#f5ffd9}
+.ship i{display:block;height:8px;margin-top:8px;background:var(--acid);border:1px solid var(--ink);font-style:normal}
+.total{display:flex;justify-content:space-between;align-items:baseline;font:900 22px/1 var(--display);text-transform:uppercase}
+.total span{font:700 22px/1 var(--mono)}
+.crm{font:500 13px/1.45 var(--mono);color:var(--grey)}
+.ok-ico{width:72px;height:72px;border-radius:50%;background:var(--acid);border:2px solid var(--ink);display:grid;place-items:center;font:900 34px/1 var(--display)}
+.order-steps{display:grid;gap:10px;counter-reset:st}
+.order-steps li{counter-increment:st;display:grid;grid-template-columns:36px 1fr;gap:10px;align-items:start}
+.order-steps li::before{content:counter(st);display:grid;place-items:center;width:32px;height:32px;border:2px solid var(--ink);font:900 14px/1 var(--display);background:var(--paper-2)}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+}
+</style>
+</head>
+<body id="top">
+<a class="vt-back" href="../index.html#works">← Портфолио vtitek</a>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="g-hoodie" viewBox="0 0 200 200">
+      <g stroke="#111" stroke-width="4" stroke-linejoin="round" stroke-linecap="round">
+        <path fill="currentColor" d="M64 48 40 56Q28 62 24 80L14 160 38 166 52 110 54 178H146L148 110 162 166 186 160 176 80Q172 62 160 56L136 48Z"/>
+        <path fill="currentColor" d="M64 54Q58 16 100 14 142 16 136 54 120 72 100 72 80 72 64 54Z"/>
+        <path fill="#000" fill-opacity=".3" d="M78 52Q80 28 100 28 120 28 122 52 112 62 100 62 88 62 78 52Z"/>
+        <path fill="#000" fill-opacity=".1" d="M72 128H128L136 162H64Z"/>
+        <path fill="none" d="M92 68 90 100M108 68 110 100M54 166H146M16 148 40 154M184 148 160 154"/>
+        <circle cx="90" cy="102" r="3" fill="#111"/><circle cx="110" cy="102" r="3" fill="#111"/>
+      </g>
+    </symbol>
+    <symbol id="g-tee" viewBox="0 0 200 200">
+      <g stroke="#111" stroke-width="4" stroke-linejoin="round" stroke-linecap="round">
+        <path fill="currentColor" d="M72 30 46 38 14 66 34 96 54 84V176H146V84L166 96 186 66 154 38 128 30Q100 52 72 30Z"/>
+        <path fill="none" d="M76 33Q100 56 124 33M30 88 50 76M170 88 150 76"/>
+        <rect x="74" y="96" width="52" height="30" fill="#111"/>
+        <path fill="none" stroke="#c6ff00" stroke-width="3" d="M82 104V114Q82 120 88 120 94 120 94 114V104M100 104 104 120 109 108 114 120 118 104"/>
+      </g>
+    </symbol>
+    <symbol id="g-cargo" viewBox="0 0 200 200">
+      <g stroke="#111" stroke-width="4" stroke-linejoin="round" stroke-linecap="round">
+        <path fill="currentColor" d="M62 16H138L146 184H110L100 68 90 184H54Z"/>
+        <path fill="#000" fill-opacity=".14" d="M60 96H86V138H62ZM140 96H114V138H138Z"/>
+        <path fill="none" d="M62 30H138M100 30V68M76 16V30M124 16V30M60 106H86M114 106H140M55 170H90M110 170H145"/>
+      </g>
+    </symbol>
+    <symbol id="g-bomber" viewBox="0 0 200 200">
+      <g stroke="#111" stroke-width="4" stroke-linejoin="round" stroke-linecap="round">
+        <path fill="currentColor" d="M66 40 40 50Q28 56 24 74L14 156 40 162 54 104V168H146V104L160 162 186 156 176 74Q172 56 160 50L134 40Q100 54 66 40Z"/>
+        <path fill="currentColor" d="M68 30Q100 46 132 30L136 42Q100 60 64 42Z"/>
+        <path fill="#000" fill-opacity=".28" d="M68 30Q100 46 132 30L136 42Q100 60 64 42ZM54 166H146V182H54ZM14 156 40 162 38 176 11 170ZM186 156 160 162 162 176 189 170Z"/>
+        <path fill="none" d="M100 50V166M30 92 46 94 44 112 28 110Z"/>
+        <rect x="96" y="70" width="8" height="14" fill="#c6ff00"/>
+      </g>
+    </symbol>
+    <symbol id="g-cap" viewBox="0 0 200 200">
+      <g stroke="#111" stroke-width="4" stroke-linejoin="round" stroke-linecap="round">
+        <path fill="currentColor" d="M36 126Q32 52 100 46 168 52 164 126Z"/>
+        <path fill="currentColor" d="M30 128Q100 110 170 128 178 156 100 162 22 156 30 128Z"/>
+        <path fill="#000" fill-opacity=".18" d="M30 128Q100 110 170 128 178 156 100 162 22 156 30 128Z"/>
+        <path fill="none" d="M100 46V120M66 58Q74 90 70 122M134 58Q126 90 130 122"/>
+        <circle cx="100" cy="46" r="6" fill="#111"/>
+        <rect x="80" y="80" width="40" height="24" fill="#111"/>
+        <path fill="none" stroke="#c6ff00" stroke-width="3" d="M87 86V93Q87 98 92 98 97 98 97 93V86M102 86 105 98 108 90 111 98 114 86"/>
+      </g>
+    </symbol>
+    <symbol id="g-sneaker" viewBox="0 0 200 200">
+      <g stroke="#111" stroke-width="4" stroke-linejoin="round" stroke-linecap="round">
+        <path fill="#f7f5ef" d="M14 140H186Q194 140 194 150V156Q194 166 184 166H22Q10 166 10 154V148Q10 140 14 140Z"/>
+        <path fill="currentColor" d="M16 140Q12 110 34 102L70 90Q78 66 100 66L118 68Q124 94 150 102L172 108Q194 114 192 140Z"/>
+        <path fill="#000" fill-opacity=".14" d="M150 102 172 108Q194 114 192 140H152Q142 120 150 102ZM16 140Q12 110 34 102V140Z"/>
+        <path fill="#111" d="M54 132 92 98 104 106 76 136Z"/>
+        <path fill="none" d="M108 80 122 84M112 90 128 94M118 98 134 102M10 154H194"/>
+      </g>
+    </symbol>
+    <symbol id="g-tote" viewBox="0 0 200 200">
+      <g stroke-linejoin="round" stroke-linecap="round">
+        <path fill="none" stroke="#111" stroke-width="13" d="M72 74Q72 20 100 20 128 20 128 74"/>
+        <path fill="none" stroke="currentColor" stroke-width="5" d="M72 74Q72 20 100 20 128 20 128 74"/>
+        <path fill="currentColor" stroke="#111" stroke-width="4" d="M40 72H160L168 184H32Z"/>
+        <path fill="none" stroke="#111" stroke-width="4" d="M39 86H161"/>
+        <text x="100" y="132" text-anchor="middle" font-family="Arial Black,Impact,sans-serif" font-weight="900" font-size="30" fill="#111">URBAN</text>
+        <text x="100" y="164" text-anchor="middle" font-family="Arial Black,Impact,sans-serif" font-weight="900" font-size="30" fill="none" stroke="#111" stroke-width="1.6">WEAR</text>
+      </g>
+    </symbol>
+    <symbol id="g-long" viewBox="0 0 200 200">
+      <g stroke="#111" stroke-width="4" stroke-linejoin="round" stroke-linecap="round">
+        <path fill="currentColor" d="M72 30 48 38Q34 44 30 64L16 164 40 168 54 96V176H146V96L160 168 184 164 170 64Q166 44 152 38L128 30Q100 52 72 30Z"/>
+        <path fill="none" d="M76 33Q100 56 124 33M17 154 41 158M183 154 159 158"/>
+        <path fill="none" stroke-width="2" d="M76 82H124V130H76ZM92 82V130M108 82V130M76 98H124M76 114H124"/>
+        <rect x="92" y="98" width="16" height="16" fill="#c6ff00" stroke-width="2"/>
+      </g>
+    </symbol>
+  </defs>
+</svg>
+
+<div class="announce" role="note">Бесплатная доставка по России от <b>5&nbsp;000&nbsp;₽</b> · примерка курьером по Москве</div>
+
+<header class="header">
+  <div class="wrap hdr">
+    <a class="logo" href="#top" aria-label="Urban Wear — на главную">Urban<i>Wear</i></a>
+    <input type="checkbox" id="nav-toggle" class="vh" aria-label="Открыть меню">
+    <label class="burger" for="nav-toggle" aria-hidden="true"><span></span><span></span><span></span></label>
+    <nav class="nav" aria-label="Основная навигация">
+      <a href="#catalog">Новинки</a>
+      <a href="#featured">Дроп</a>
+      <a href="#lookbook">Lookbook</a>
+      <a href="#categories">Категории</a>
+      <a href="#sizes">Размеры</a>
+      <a href="#service">Сервис</a>
+    </nav>
+    <a class="cart-link" href="#cart" aria-label="Корзина, 2 товара"><span class="txt">Корзина</span><b>2</b></a>
+  </div>
+</header>
+
+<main>
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="wrap">
+      <div>
+        <p class="tag">Осень–зима 2026 · в продаже с 14 ноября</p>
+        <h1 id="hero-title"><span class="vh">Urban Wear — </span>Drop<span class="ol">FW26</span></h1>
+        <p class="hero__lead">Тяжёлый хлопок 480&nbsp;г/м², свободный крой и&nbsp;цвета, которые видно в&nbsp;ноябрьской Москве. 48&nbsp;позиций, отшитых малыми тиражами в&nbsp;Иванове.</p>
+        <div class="hero__cta">
+          <a class="btn btn--acid" href="#catalog">Смотреть дроп →</a>
+          <a class="btn btn--ghost" href="#lookbook">Lookbook</a>
+        </div>
+        <div class="hero__meta">
+          <div><b>48</b>новых моделей</div>
+          <div><b>480</b>г/м² хлопок</div>
+          <div><b>1 день</b>доставка по МСК</div>
+        </div>
+      </div>
+      <div class="hero__art">
+        <div class="frame">
+          <span class="coord coord--tl">X 00 / Y 00</span>
+          <svg class="garment" viewBox="0 0 200 200" role="img" aria-label="Иллюстрация: худи HEAVY 480 кислотно-лаймового цвета"><use href="#g-hoodie"/></svg>
+          <svg class="badge" viewBox="0 0 120 120" aria-hidden="true">
+            <defs><path id="circ" d="M60 60m-44 0a44 44 0 1 1 88 0a44 44 0 1 1-88 0"/></defs>
+            <circle cx="60" cy="60" r="58" fill="#f1efe9" stroke="#111" stroke-width="3"/>
+            <g class="spin"><text font-family="ui-monospace,Menlo,monospace" font-size="10.5" font-weight="700" letter-spacing="2.4" fill="#111"><textPath href="#circ">HEAVY COTTON · 480 GSM · LIMITED ·</textPath></text></g>
+            <text x="60" y="69" text-anchor="middle" font-family="Arial Black,Impact,sans-serif" font-weight="900" font-size="26" fill="#111">UW</text>
+          </svg>
+          <p class="label"><b>Худи HEAVY</b>7 490 ₽ · XS–XL</p>
+          <span class="coord coord--br">FW26 / 001</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee__track">
+      <span>Heavy cotton</span><span>Oversize</span><span>Москва</span><span>Drop FW26</span><span>Limited 300</span><span>Примерка курьером</span><span>Сделано в Иванове</span>
+      <span>Heavy cotton</span><span>Oversize</span><span>Москва</span><span>Drop FW26</span><span>Limited 300</span><span>Примерка курьером</span><span>Сделано в Иванове</span>
+    </div>
+  </div>
+
+  <section class="sec" id="catalog" aria-labelledby="cat-title">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="idx">[01] Каталог · 8 из 48</span>
+        <h2 id="cat-title">Новинки</h2>
+        <p>Свежие позиции дропа. Остатки обновляются из&nbsp;склада каждые 5&nbsp;минут — если вещь в&nbsp;каталоге, она есть в&nbsp;наличии.</p>
+      </div>
+      <nav class="filters" aria-label="Фильтр каталога">
+        <a href="#catalog" aria-current="true">Все</a><a href="#categories">Худи</a><a href="#categories">Футболки</a><a href="#categories">Штаны</a><a href="#categories">Верхняя одежда</a><a href="#categories">Аксессуары</a><a href="#catalog">Sale −30%</a>
+      </nav>
+      <ul class="grid">
+        <li class="card">
+          <div class="card__art" style="--bg:#e6e3db" data-sku="UW-001">
+            <span class="stk">New</span>
+            <svg viewBox="0 0 200 200" role="img" aria-label="Чёрное худи оверсайз" style="color:#1c1c1c"><use href="#g-hoodie"/></svg>
+          </div>
+          <div class="card__body">
+            <h3>Худи Heavy 480</h3>
+            <p class="meta">Хлопок 100%, начёс</p>
+            <ul class="dots" aria-label="Цвета: чёрный, графит, лайм, молочный"><li style="--d:#1c1c1c"></li><li style="--d:#6b6e72"></li><li style="--d:#c6ff00"></li><li style="--d:#f7f5ef"></li></ul>
+            <div class="card__foot"><span class="price">7 490 ₽</span><a class="add" href="#cart" aria-label="Добавить в корзину: худи Heavy 480">+</a></div>
+          </div>
+        </li>
+        <li class="card">
+          <div class="card__art" style="--bg:#d9d5cb" data-sku="UW-014">
+            <svg viewBox="0 0 200 200" role="img" aria-label="Молочная футболка с принтом UW" style="color:#f7f5ef"><use href="#g-tee"/></svg>
+          </div>
+          <div class="card__body">
+            <h3>Футболка Boxy 240</h3>
+            <p class="meta">Кулирка 240 г/м²</p>
+            <ul class="dots" aria-label="Цвета: молочный, чёрный"><li style="--d:#f7f5ef"></li><li style="--d:#1c1c1c"></li></ul>
+            <div class="card__foot"><span class="price">2 990 ₽</span><a class="add" href="#cart" aria-label="Добавить в корзину: футболка Boxy 240">+</a></div>
+          </div>
+        </li>
+        <li class="card">
+          <div class="card__art" style="--bg:#e6e3db" data-sku="UW-022">
+            <span class="stk stk--sale">−30%</span>
+            <svg viewBox="0 0 200 200" role="img" aria-label="Оливковые брюки карго" style="color:#6a6f45"><use href="#g-cargo"/></svg>
+          </div>
+          <div class="card__body">
+            <h3>Карго Utility</h3>
+            <p class="meta">Рипстоп, 6 карманов</p>
+            <ul class="dots" aria-label="Цвета: олива, чёрный"><li style="--d:#6a6f45"></li><li style="--d:#1c1c1c"></li></ul>
+            <div class="card__foot"><span class="price price--sale"><s>8 990 ₽</s>6 290 ₽</span><a class="add" href="#cart" aria-label="Добавить в корзину: карго Utility">+</a></div>
+          </div>
+        </li>
+        <li class="card">
+          <div class="card__art" style="--bg:#d9d5cb" data-sku="UW-031">
+            <span class="stk">New</span><span class="stk stk--dark">Limited</span>
+            <svg viewBox="0 0 200 200" role="img" aria-label="Графитовый бомбер с молнией" style="color:#3b3f44"><use href="#g-bomber"/></svg>
+          </div>
+          <div class="card__body">
+            <h3>Бомбер MA-1 Rework</h3>
+            <p class="meta">Нейлон, утеплитель 150 г</p>
+            <ul class="dots" aria-label="Цвета: графит, олива"><li style="--d:#3b3f44"></li><li style="--d:#6a6f45"></li></ul>
+            <div class="card__foot"><span class="price">11 900 ₽</span><a class="add" href="#cart" aria-label="Добавить в корзину: бомбер MA-1 Rework">+</a></div>
+          </div>
+        </li>
+        <li class="card">
+          <div class="card__art" style="--bg:#e6e3db" data-sku="UW-045">
+            <svg viewBox="0 0 200 200" role="img" aria-label="Кепка цвета лайм с нашивкой UW" style="color:#c6ff00"><use href="#g-cap"/></svg>
+          </div>
+          <div class="card__body">
+            <h3>Кепка 5-Panel</h3>
+            <p class="meta">Твил, регулировка</p>
+            <ul class="dots" aria-label="Цвета: лайм, чёрный, молочный"><li style="--d:#c6ff00"></li><li style="--d:#1c1c1c"></li><li style="--d:#f7f5ef"></li></ul>
+            <div class="card__foot"><span class="price">2 490 ₽</span><a class="add" href="#cart" aria-label="Добавить в корзину: кепка 5-Panel">+</a></div>
+          </div>
+        </li>
+        <li class="card">
+          <div class="card__art" style="--bg:#d9d5cb" data-sku="UW-052">
+            <span class="stk stk--sale">−20%</span>
+            <svg viewBox="0 0 200 200" role="img" aria-label="Серые кроссовки с чёрной полосой" style="color:#a9aba6"><use href="#g-sneaker"/></svg>
+          </div>
+          <div class="card__body">
+            <h3>Кроссовки Runner 03</h3>
+            <p class="meta">Замша + сетка, 36–45</p>
+            <ul class="dots" aria-label="Цвета: светло-серый, чёрный"><li style="--d:#a9aba6"></li><li style="--d:#1c1c1c"></li></ul>
+            <div class="card__foot"><span class="price price--sale"><s>12 490 ₽</s>9 990 ₽</span><a class="add" href="#cart" aria-label="Добавить в корзину: кроссовки Runner 03">+</a></div>
+          </div>
+        </li>
+        <li class="card">
+          <div class="card__art" style="--bg:#e6e3db" data-sku="UW-060">
+            <svg viewBox="0 0 200 200" role="img" aria-label="Песочный шоппер с надписью Urban Wear" style="color:#d8cdb5"><use href="#g-tote"/></svg>
+          </div>
+          <div class="card__body">
+            <h3>Шоппер Canvas XL</h3>
+            <p class="meta">Канвас 340 г/м²</p>
+            <ul class="dots" aria-label="Цвета: песочный, чёрный"><li style="--d:#d8cdb5"></li><li style="--d:#1c1c1c"></li></ul>
+            <div class="card__foot"><span class="price">1 790 ₽</span><a class="add" href="#cart" aria-label="Добавить в корзину: шоппер Canvas XL">+</a></div>
+          </div>
+        </li>
+        <li class="card">
+          <div class="card__art" style="--bg:#d9d5cb" data-sku="UW-018">
+            <span class="stk">New</span>
+            <svg viewBox="0 0 200 200" role="img" aria-label="Серый лонгслив с принтом-сеткой" style="color:#8d8f93"><use href="#g-long"/></svg>
+          </div>
+          <div class="card__body">
+            <h3>Лонгслив Grid</h3>
+            <p class="meta">Хлопок 220 г/м²</p>
+            <ul class="dots" aria-label="Цвета: серый, чёрный"><li style="--d:#8d8f93"></li><li style="--d:#1c1c1c"></li></ul>
+            <div class="card__foot"><span class="price">3 890 ₽</span><a class="add" href="#cart" aria-label="Добавить в корзину: лонгслив Grid">+</a></div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="sec feat" id="featured" aria-labelledby="feat-title">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="idx">[02] Вещь сезона</span>
+        <h2 id="feat-title">Главный дроп</h2>
+        <p>Выберите цвет и размер — иллюстрация перекрасится сразу. Оформление занимает меньше минуты.</p>
+      </div>
+      <form class="feat-grid" method="get" action="#cart">
+        <input type="radio" name="color" value="black" id="fc-black" class="vh" checked>
+        <input type="radio" name="color" value="graphite" id="fc-graphite" class="vh">
+        <input type="radio" name="color" value="acid" id="fc-acid" class="vh">
+        <input type="radio" name="color" value="milk" id="fc-milk" class="vh">
+        <div class="feat-art">
+          <span class="stk">Bestseller</span>
+          <svg viewBox="0 0 200 200" role="img" aria-label="Худи HEAVY 480 в выбранном цвете"><use href="#g-hoodie"/></svg>
+          <span class="cap">UW-FW26-001</span>
+        </div>
+        <div class="feat-info">
+          <p class="sku">Артикул UW-FW26-001 · осталось 37 шт.</p>
+          <h3>Худи Heavy 480</h3>
+          <p class="desc">Двухслойный капюшон без завязок-удавок, опущенное плечо, рукав со спущенной проймой и&nbsp;плотная резинка по низу. Не&nbsp;садится после стирки при 30&nbsp;°C — проверили на&nbsp;50 циклах.</p>
+          <div class="feat-price"><b>7 490 ₽</b><span>или <em>4 × 1 873 ₽</em> долями</span></div>
+          <fieldset>
+            <legend>Цвет: <span class="cn cn-black">чёрный</span><span class="cn cn-graphite">графит</span><span class="cn cn-acid">кислотный лайм</span><span class="cn cn-milk">молочный</span></legend>
+            <div class="swatches">
+              <label class="sw" for="fc-black" style="--d:#1c1c1c"><span class="vh">Чёрный</span></label>
+              <label class="sw" for="fc-graphite" style="--d:#6b6e72"><span class="vh">Графит</span></label>
+              <label class="sw" for="fc-acid" style="--d:#c6ff00"><span class="vh">Кислотный лайм</span></label>
+              <label class="sw" for="fc-milk" style="--d:#f7f5ef"><span class="vh">Молочный</span></label>
+            </div>
+          </fieldset>
+          <fieldset>
+            <legend>Размер</legend>
+            <div class="sizes">
+              <label class="chip"><input type="radio" name="size" value="XS" disabled aria-label="XS — нет в наличии"><span>XS</span></label>
+              <label class="chip"><input type="radio" name="size" value="S"><span>S</span></label>
+              <label class="chip"><input type="radio" name="size" value="M" checked><span>M</span></label>
+              <label class="chip"><input type="radio" name="size" value="L"><span>L</span></label>
+              <label class="chip"><input type="radio" name="size" value="XL"><span>XL</span></label>
+            </div>
+            <p class="size-note">Модель — рост 182 см, размер M. <a href="#sizes">Таблица размеров</a></p>
+          </fieldset>
+          <div class="feat-actions">
+            <button class="btn" type="submit">В корзину — 7 490 ₽</button>
+            <a class="btn btn--ghost" href="#service">Примерка дома</a>
+          </div>
+          <dl class="specs">
+            <div><dt>Состав</dt><dd>100% хлопок</dd></div>
+            <div><dt>Плотность</dt><dd>480 г/м², начёс</dd></div>
+            <div><dt>Крой</dt><dd>Oversize</dd></div>
+            <div><dt>Производство</dt><dd>Иваново, Россия</dd></div>
+          </dl>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <section class="sec lookbook" id="lookbook" aria-labelledby="look-title">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="idx">[03] Образы сезона</span>
+        <h2 id="look-title">Lookbook</h2>
+        <p class="swipe">← листайте →</p>
+      </div>
+    </div>
+    <ul class="look-track" aria-label="Образы FW26">
+      <li><figure class="look">
+        <div class="look__pic" style="--bg:#c6ff00">
+          <span class="look__num" aria-hidden="true">01</span>
+          <svg viewBox="0 0 300 400" role="img" aria-label="Образ 01: чёрное худи, оливковые карго, серые кроссовки">
+            <use href="#g-hoodie" x="40" y="10" width="220" height="220" style="color:#1c1c1c"/>
+            <use href="#g-cargo" x="70" y="188" width="160" height="160" style="color:#6a6f45"/>
+            <use href="#g-sneaker" x="150" y="300" width="110" height="110" style="color:#a9aba6"/>
+          </svg>
+        </div>
+        <figcaption><div><b>Night shift</b><span>Худи Heavy · Карго Utility · Runner 03</span></div><strong>23 770 ₽</strong></figcaption>
+      </figure></li>
+      <li><figure class="look">
+        <div class="look__pic" style="--bg:#e6e3db">
+          <span class="look__num" aria-hidden="true">02</span>
+          <svg viewBox="0 0 300 400" role="img" aria-label="Образ 02: графитовый бомбер, молочная футболка, кепка лайм">
+            <use href="#g-cap" x="170" y="20" width="110" height="110" style="color:#c6ff00"/>
+            <use href="#g-tee" x="20" y="100" width="150" height="150" style="color:#f7f5ef"/>
+            <use href="#g-bomber" x="90" y="150" width="200" height="200" style="color:#3b3f44"/>
+          </svg>
+        </div>
+        <figcaption><div><b>Метро 06:40</b><span>Бомбер MA-1 · Boxy 240 · 5-Panel</span></div><strong>17 380 ₽</strong></figcaption>
+      </figure></li>
+      <li><figure class="look">
+        <div class="look__pic" style="--bg:#8d8f93">
+          <span class="look__num" aria-hidden="true">03</span>
+          <svg viewBox="0 0 300 400" role="img" aria-label="Образ 03: молочный лонгслив, чёрные карго, песочный шоппер">
+            <use href="#g-long" x="30" y="20" width="200" height="200" style="color:#f7f5ef"/>
+            <use href="#g-cargo" x="50" y="200" width="160" height="160" style="color:#1c1c1c"/>
+            <use href="#g-tote" x="170" y="190" width="120" height="120" style="color:#d8cdb5"/>
+          </svg>
+        </div>
+        <figcaption><div><b>Флакон, суббота</b><span>Лонгслив Grid · Карго · Canvas XL</span></div><strong>11 970 ₽</strong></figcaption>
+      </figure></li>
+      <li><figure class="look">
+        <div class="look__pic" style="--bg:#f7f5ef">
+          <span class="look__num" aria-hidden="true">04</span>
+          <svg viewBox="0 0 300 400" role="img" aria-label="Образ 04: лаймовое худи, графитовые карго, чёрная кепка">
+            <use href="#g-cap" x="20" y="40" width="100" height="100" style="color:#1c1c1c"/>
+            <use href="#g-hoodie" x="70" y="20" width="210" height="210" style="color:#c6ff00"/>
+            <use href="#g-cargo" x="90" y="200" width="160" height="160" style="color:#3b3f44"/>
+          </svg>
+        </div>
+        <figcaption><div><b>Acid weekend</b><span>Худи Heavy · Карго · 5-Panel</span></div><strong>16 270 ₽</strong></figcaption>
+      </figure></li>
+      <li><figure class="look">
+        <div class="look__pic" style="--bg:#d8cdb5">
+          <span class="look__num" aria-hidden="true">05</span>
+          <svg viewBox="0 0 300 400" role="img" aria-label="Образ 05: серый лонгслив, чёрный бомбер, кроссовки">
+            <use href="#g-bomber" x="40" y="20" width="220" height="220" style="color:#1c1c1c"/>
+            <use href="#g-long" x="20" y="210" width="150" height="150" style="color:#8d8f93"/>
+            <use href="#g-sneaker" x="150" y="270" width="130" height="130" style="color:#f7f5ef"/>
+          </svg>
+        </div>
+        <figcaption><div><b>Late november</b><span>MA-1 · Лонгслив Grid · Runner 03</span></div><strong>25 780 ₽</strong></figcaption>
+      </figure></li>
+    </ul>
+  </section>
+
+  <section class="sec" id="categories" aria-labelledby="cats-title">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="idx">[04] Разделы</span>
+        <h2 id="cats-title">Категории</h2>
+      </div>
+      <div class="cats">
+        <a class="cat" href="#catalog" style="--bg:#c6ff00;--c:#1c1c1c">
+          <div><h3>Худи и свитшоты</h3><p class="n">24 модели</p></div>
+          <span class="arr" aria-hidden="true">↗</span>
+          <svg viewBox="0 0 200 200" aria-hidden="true"><use href="#g-hoodie"/></svg>
+        </a>
+        <a class="cat" href="#catalog" style="--bg:#e6e3db;--c:#f7f5ef">
+          <div><h3>Футболки</h3><p class="n">38 моделей</p></div>
+          <span class="arr" aria-hidden="true">↗</span>
+          <svg viewBox="0 0 200 200" aria-hidden="true"><use href="#g-tee"/></svg>
+        </a>
+        <a class="cat" href="#catalog" style="--bg:#d9d5cb;--c:#6a6f45">
+          <div><h3>Штаны и карго</h3><p class="n">19 моделей</p></div>
+          <span class="arr" aria-hidden="true">↗</span>
+          <svg viewBox="0 0 200 200" aria-hidden="true"><use href="#g-cargo"/></svg>
+        </a>
+        <a class="cat" href="#catalog" style="--bg:#f7f5ef;--c:#c6ff00">
+          <div><h3>Аксессуары</h3><p class="n">42 модели</p></div>
+          <span class="arr" aria-hidden="true">↗</span>
+          <svg viewBox="0 0 200 200" aria-hidden="true"><use href="#g-cap"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec sizes-sec" id="sizes" aria-labelledby="sizes-title">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="idx">[05] Как выбрать размер</span>
+        <h2 id="sizes-title">Размеры</h2>
+        <p>Почти всё в дропе — свободного кроя. Если сомневаетесь между двумя размерами, берите меньший.</p>
+      </div>
+      <div class="cols">
+        <ol class="tips">
+          <li><b>1</b><p>Измерьте любимое худи, лёжа на столе: ширину от подмышки до подмышки и длину от плеча.</p></li>
+          <li><b>2</b><p>Сравните с таблицей — в ней обхваты тела и замеры изделия.</p></li>
+          <li><b>3</b><p>Не подошло — курьер заберёт вещь бесплатно, деньги вернутся за 1–3 дня.</p></li>
+        </ol>
+        <div>
+          <details open>
+            <summary>Таблица размеров · худи</summary>
+            <div class="det-body">
+              <div class="table-wrap" tabindex="0" role="region" aria-label="Таблица размеров, прокручивается по горизонтали">
+                <table>
+                  <thead><tr><th scope="col">Размер</th><th scope="col">RU</th><th scope="col">Рост, см</th><th scope="col">Грудь, см</th><th scope="col">Ширина изделия</th><th scope="col">Длина изделия</th><th scope="col">Рукав</th></tr></thead>
+                  <tbody>
+                    <tr><th scope="row">XS</th><td>42–44</td><td>160–168</td><td>84–88</td><td>60</td><td>68</td><td>56</td></tr>
+                    <tr><th scope="row">S</th><td>44–46</td><td>166–174</td><td>88–94</td><td>63</td><td>70</td><td>58</td></tr>
+                    <tr><th scope="row">M</th><td>46–48</td><td>172–180</td><td>94–100</td><td>66</td><td>72</td><td>60</td></tr>
+                    <tr><th scope="row">L</th><td>50–52</td><td>178–186</td><td>100–106</td><td>69</td><td>74</td><td>62</td></tr>
+                    <tr><th scope="row">XL</th><td>52–54</td><td>184–194</td><td>106–114</td><td>72</td><td>76</td><td>64</td></tr>
+                  </tbody>
+                </table>
+              </div>
+              <p class="note">Замеры изделия — в см, по плоской вещи. Допуск ±1,5 см.</p>
+            </div>
+          </details>
+          <details>
+            <summary>Как снять мерки</summary>
+            <div class="det-body">
+              <ol class="measure">
+                <li><strong>Грудь</strong> — по самым выступающим точкам, лента параллельна полу.</li>
+                <li><strong>Рост</strong> — без обуви, стоя у стены.</li>
+                <li><strong>Длина рукава</strong> — от шва плеча до запястья по согнутой руке.</li>
+              </ol>
+              <p class="note">Нужна помощь? Напишите в чат или позвоните: стилист подберёт размер по фото.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="collab" id="collab" aria-labelledby="collab-title">
+    <div class="tape tape--1" aria-hidden="true">LIMITED ✶ URBAN × ЛИТЕРА ✶ LIMITED ✶ URBAN × ЛИТЕРА ✶ LIMITED ✶ URBAN × ЛИТЕРА ✶ LIMITED ✶ URBAN × ЛИТЕРА ✶</div>
+    <div class="wrap">
+      <span class="idx">[06] Коллаборация</span>
+      <h2 id="collab-title">Urban <span>×</span> Литера</h2>
+      <p>Капсула с московской типографией «Литера»: 300 худи с ручной трафаретной печатью, у каждого — свой номер на бирке. Повторного тиража не будет.</p>
+      <div class="drop-facts">
+        <div><b>300</b>штук всего</div>
+        <div><b>21.11</b>старт продаж</div>
+        <div><b>12:00</b>по Москве</div>
+        <div><b>2 шт.</b>в одни руки</div>
+      </div>
+      <a class="btn btn--acid" href="#subscribe">Напомнить о старте</a>
+    </div>
+    <div class="tape tape--2" aria-hidden="true">300 PCS ✶ ТРАФАРЕТ ВРУЧНУЮ ✶ 300 PCS ✶ ТРАФАРЕТ ВРУЧНУЮ ✶ 300 PCS ✶ ТРАФАРЕТ ВРУЧНУЮ ✶ 300 PCS ✶ ТРАФАРЕТ ВРУЧНУЮ ✶</div>
+  </section>
+
+  <section class="sec" id="service" aria-labelledby="ben-title">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="idx">[07] Покупать спокойно</span>
+        <h2 id="ben-title">Сервис</h2>
+        <p>Заказы, бонусы и статусы доставки синхронизированы с нашей CRM: менеджер видит вашу историю и не задаёт лишних вопросов.</p>
+      </div>
+      <div class="benefits">
+        <article class="ben">
+          <svg viewBox="0 0 52 52" aria-hidden="true"><rect x="2" y="2" width="48" height="48" fill="#c6ff00" stroke="#111" stroke-width="3"/><path d="M16 22h16a8 8 0 0 1 0 16h-6M16 22l6-6M16 22l6 6" fill="none" stroke="#111" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span class="k">30 дней</span>
+          <h3>Возврат без вопросов</h3>
+          <p>Вещь не подошла — оформите возврат в личном кабинете, курьер заберёт её бесплатно.</p>
+        </article>
+        <article class="ben">
+          <svg viewBox="0 0 52 52" aria-hidden="true"><rect x="2" y="2" width="48" height="48" fill="#f1efe9" stroke="#111" stroke-width="3"/><path d="M19 15l-7 5 4 6 3-2v14h14V24l3 2 4-6-7-5q-6 5-14 0z" fill="#111"/></svg>
+          <span class="k">15 минут</span>
+          <h3>Примерка перед оплатой</h3>
+          <p>Курьер по Москве ждёт, пока вы примерите. Платите только за то, что оставили.</p>
+        </article>
+        <article class="ben">
+          <svg viewBox="0 0 52 52" aria-hidden="true"><rect x="2" y="2" width="48" height="48" fill="#111" stroke="#111" stroke-width="3"/><path d="M10 34h7v-8h-7zM20 34h7V20h-7zM30 34h7V14h-7z" fill="#c6ff00"/><path d="M8 40h36" stroke="#f1efe9" stroke-width="3"/></svg>
+          <span class="k">4 платежа</span>
+          <h3>Оплата долями</h3>
+          <p>Разделите сумму на четыре части раз в две недели — без процентов и переплат.</p>
+        </article>
+        <article class="ben">
+          <svg viewBox="0 0 52 52" aria-hidden="true"><rect x="2" y="2" width="48" height="48" fill="#c6ff00" stroke="#111" stroke-width="3"/><circle cx="26" cy="26" r="12" fill="none" stroke="#111" stroke-width="3"/><path d="M26 19v7l5 4" fill="none" stroke="#111" stroke-width="3" stroke-linecap="round"/></svg>
+          <span class="k">5% бонусами</span>
+          <h3>UW Club</h3>
+          <p>Кешбэк с каждого заказа, ранний доступ к дропам и статус заказа в Telegram в реальном времени.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec news" id="subscribe" aria-labelledby="news-title">
+    <div class="wrap box">
+      <div>
+        <span class="idx mono">[08] Рассылка</span>
+        <h2 id="news-title">−10% на первый заказ</h2>
+        <p class="lead">Раз в неделю: даты дропов, закрытые распродажи и ранний доступ к коллаборациям. Без спама.</p>
+      </div>
+      <div>
+        <div class="thanks" id="thanks" role="status">
+          <b>Вы в списке!</b>
+          <p>Промокод <code>UW10</code> уже летит на почту. Действует 14 дней на любой заказ от 3 000 ₽.</p>
+        </div>
+        <form class="form" method="get" action="#thanks">
+          <label for="email">Ваш e-mail</label>
+          <div class="field">
+            <input id="email" name="email" type="email" required autocomplete="email" inputmode="email" placeholder="name@mail.ru" pattern="[^@\s]+@[^@\s]+\.[^@\s]+">
+            <button class="btn" type="submit">Получить −10%</button>
+          </div>
+          <label class="check"><input type="checkbox" name="drops" checked> Напоминать о старте дропов</label>
+          <p class="consent">Нажимая кнопку, вы соглашаетесь на обработку персональных данных и получение рассылки. Отписаться можно в один клик.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <p class="big" aria-hidden="true">Urban <span>Wear</span></p>
+    <div class="fcols">
+      <div class="contact">
+        <h3>Шоурум</h3>
+        <p>Москва, ул. Большая Новодмитровская, 36, стр. 4, 2 этаж<br>м. Дмитровская, 7 минут пешком</p>
+        <p class="mono">Ежедневно 12:00–21:00</p>
+        <a class="tel" href="tel:+74951234567">+7 (495) 123-45-67</a>
+        <a href="mailto:hello@urbanwear.ru">hello@urbanwear.ru</a>
+        <div class="social"><span>TG @urbanwear_msk</span><span>VK /urbanwear</span></div>
+      </div>
+      <div>
+        <h3>Покупателям</h3>
+        <a href="#service">Доставка и оплата</a>
+        <a href="#service">Возврат и обмен</a>
+        <a href="#sizes">Таблица размеров</a>
+        <a href="#cart">Статус заказа</a>
+      </div>
+      <div>
+        <h3>Магазин</h3>
+        <a href="#catalog">Новинки</a>
+        <a href="#featured">Дроп FW26</a>
+        <a href="#lookbook">Lookbook</a>
+        <a href="#collab">Коллаборации</a>
+      </div>
+      <div>
+        <h3>Компания</h3>
+        <p>ООО «Урбан Вир»<br>ИНН 7714123456</p>
+        <p>Отшиваем в Иванове с 2019 года, малыми партиями до 500 штук.</p>
+      </div>
+    </div>
+    <div class="legal"><span>© 2026 Urban Wear</span><span>Политика конфиденциальности · Оферта</span></div>
+  </div>
+</footer>
+
+<aside class="drawer" id="cart" aria-labelledby="cart-title">
+  <a class="scrim" href="#_" aria-label="Закрыть корзину" tabindex="-1"></a>
+  <div class="panel">
+    <div class="panel__top"><h2 id="cart-title">Корзина · 2</h2><a class="close" href="#_" aria-label="Закрыть корзину">×</a></div>
+    <div class="line">
+      <div class="th"><svg viewBox="0 0 200 200" aria-hidden="true" style="color:#1c1c1c"><use href="#g-hoodie"/></svg></div>
+      <div><b>Худи Heavy 480</b><span>Чёрный · M · 1 шт.</span></div>
+      <span class="p">7 490 ₽</span>
+    </div>
+    <div class="line">
+      <div class="th"><svg viewBox="0 0 200 200" aria-hidden="true" style="color:#c6ff00"><use href="#g-cap"/></svg></div>
+      <div><b>Кепка 5-Panel</b><span>Лайм · OS · 1 шт.</span></div>
+      <span class="p">2 490 ₽</span>
+    </div>
+    <p class="ship">✓ Доставка бесплатная — сумма больше 5 000 ₽<i></i></p>
+    <div class="total">Итого <span>9 980 ₽</span></div>
+    <form class="form" method="get" action="#ordered">
+      <label for="phone">Телефон для подтверждения</label>
+      <input id="phone" name="phone" type="tel" required autocomplete="tel" inputmode="tel" placeholder="+7 (900) 000-00-00" pattern="[+0-9\s()\-]{10,20}">
+      <button class="btn btn--block" type="submit">Оформить заказ</button>
+      <p class="consent">Нажимая кнопку, вы соглашаетесь на обработку персональных данных.</p>
+    </form>
+    <p class="crm">Заказ сразу попадает в CRM — менеджер перезвонит в течение 15 минут (с 10:00 до 22:00).</p>
+  </div>
+</aside>
+
+<aside class="drawer" id="ordered" aria-labelledby="ord-title">
+  <a class="scrim" href="#_" aria-label="Закрыть" tabindex="-1"></a>
+  <div class="panel">
+    <div class="panel__top"><h2 id="ord-title">Заказ принят</h2><a class="close" href="#_" aria-label="Закрыть">×</a></div>
+    <div class="ok-ico" aria-hidden="true">✓</div>
+    <p><strong>Номер заказа UW-48213.</strong> Мы отправили SMS с ссылкой на отслеживание.</p>
+    <ol class="order-steps">
+      <li><span>Менеджер подтвердит состав и адрес — до 15 минут.</span></li>
+      <li><span>Соберём заказ на складе в Москве сегодня.</span></li>
+      <li><span>Курьер привезёт завтра, примерка — 15 минут.</span></li>
+    </ol>
+    <a class="btn btn--acid btn--block" href="#catalog">Продолжить покупки</a>
+  </div>
+</aside>
+</body>
+</html>
